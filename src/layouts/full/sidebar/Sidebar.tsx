@@ -1,15 +1,14 @@
 import { useMediaQuery, Box, Drawer } from '@mui/material';
 import Logo from '../shared/logo/Logo';
 import SidebarItems from './SidebarItems';
-import { Upgrade } from './Updrade';
 
 interface ItemType {
-  isMobileSidebarOpen:  boolean;
-  onSidebarClose:  (event: React.MouseEvent<HTMLElement>) => void;
+  isMobileSidebarOpen: boolean;
+  onSidebarClose: (event: React.MouseEvent<HTMLElement>) => void;
   isSidebarOpen: boolean;
 }
 
-const Sidebar = ({isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: ItemType) => {
+const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: ItemType) => {
 
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up("lg"));
 
@@ -56,9 +55,8 @@ const Sidebar = ({isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: ItemType
               {/* Sidebar Items */}
               {/* ------------------------------------------- */}
               <SidebarItems />
-              <Upgrade />
             </Box>
-            
+
           </Box>
         </Drawer>
       </Box>
@@ -88,7 +86,6 @@ const Sidebar = ({isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: ItemType
       {/* Sidebar For Mobile */}
       {/* ------------------------------------------- */}
       <SidebarItems />
-      <Upgrade />
     </Drawer>
   );
 };
