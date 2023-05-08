@@ -26,8 +26,14 @@ export default function Home() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} lg={12}>
-            <ProductPerformance />
+          <Grid item xs={12} lg={4}>
+            <YearlyBreakup />
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <YearlyBreakup />
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <YearlyBreakup />
           </Grid>
         </Grid>
       </Box>
