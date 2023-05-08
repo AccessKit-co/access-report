@@ -8,44 +8,33 @@ import {
     TableRow,
     Chip
 } from '@mui/material';
-import DashboardCard from '../../../src/components/shared/DashboardCard';
+import { IconHandStop, IconContrast2Off, IconTopologyFullHierarchy } from '@tabler/icons-react';
+import DashboardCard from '../shared/DashboardCard';
 
 const products = [
     {
-        id: "1",
-        name: "Sunil Joshi",
-        post: "Web Designer",
-        pname: "Elite Admin",
-        priority: "Low",
-        pbg: "primary.main",
-        budget: "3.9",
-    },
-    {
-        id: "2",
-        name: "Andrew McDownland",
-        post: "Project Manager",
-        pname: "Real Homes WP Theme",
-        priority: "Medium",
-        pbg: "secondary.main",
-        budget: "24.5",
-    },
-    {
-        id: "3",
-        name: "Christopher Jamil",
-        post: "Project Manager",
-        pname: "MedicalPro WP Theme",
+        icon: IconHandStop,
+        name: "Aria Issues",
+        post: "Simple Issues, easy fix",
         priority: "High",
         pbg: "error.main",
-        budget: "12.8",
+        budget: "64",
     },
     {
-        id: "4",
-        name: "Nirav Joshi",
-        post: "Frontend Engineer",
-        pname: "Hosting Press HTML",
-        priority: "Critical",
-        pbg: "success.main",
-        budget: "2.4",
+        icon: IconContrast2Off,
+        name: "Contrast",
+        post: "Problems with colour contrasts",
+        priority: "Medium",
+        pbg: "secondary.main",
+        budget: "35",
+    },
+    {
+        icon: IconTopologyFullHierarchy,
+        name: "Structure",
+        post: "Structural issues impeding tools for disabled users",
+        priority: "High",
+        pbg: "error.main",
+        budget: "128",
     },
 ];
 
@@ -53,7 +42,7 @@ const products = [
 const ProductPerformance = () => {
     return (
 
-        <DashboardCard title="Product Performance">
+        <DashboardCard title="Error Report">
             <Box sx={{ overflow: 'auto', width: { xs: '280px', sm: 'auto' } }}>
                 <Table
                     aria-label="simple table"
@@ -65,28 +54,18 @@ const ProductPerformance = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                <Typography variant="subtitle2" fontWeight={600}>
-                                    Id
+                                <Typography variant="subtitle2" fontWeight={1000}>
+                                    Issue Type
                                 </Typography>
                             </TableCell>
                             <TableCell>
-                                <Typography variant="subtitle2" fontWeight={600}>
-                                    Assigned
-                                </Typography>
-                            </TableCell>
-                            <TableCell>
-                                <Typography variant="subtitle2" fontWeight={600}>
-                                    Name
-                                </Typography>
-                            </TableCell>
-                            <TableCell>
-                                <Typography variant="subtitle2" fontWeight={600}>
-                                    Priority
+                                <Typography variant="subtitle2" fontWeight={1000}>
+                                    Danger Level
                                 </Typography>
                             </TableCell>
                             <TableCell align="right">
-                                <Typography variant="subtitle2" fontWeight={600}>
-                                    Budget
+                                <Typography variant="subtitle2" fontWeight={1000}>
+                                    Number
                                 </Typography>
                             </TableCell>
                         </TableRow>
@@ -94,16 +73,6 @@ const ProductPerformance = () => {
                     <TableBody>
                         {products.map((product) => (
                             <TableRow key={product.name}>
-                                <TableCell>
-                                    <Typography
-                                        sx={{
-                                            fontSize: "15px",
-                                            fontWeight: "500",
-                                        }}
-                                    >
-                                        {product.id}
-                                    </Typography>
-                                </TableCell>
                                 <TableCell>
                                     <Box
                                         sx={{
@@ -127,11 +96,6 @@ const ProductPerformance = () => {
                                     </Box>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography color="textSecondary" variant="subtitle2" fontWeight={400}>
-                                        {product.pname}
-                                    </Typography>
-                                </TableCell>
-                                <TableCell>
                                     <Chip
                                         sx={{
                                             px: "4px",
@@ -143,7 +107,7 @@ const ProductPerformance = () => {
                                     ></Chip>
                                 </TableCell>
                                 <TableCell align="right">
-                                    <Typography variant="h6">${product.budget}k</Typography>
+                                    <Typography variant="h6">{product.budget}</Typography>
                                 </TableCell>
                             </TableRow>
                         ))}

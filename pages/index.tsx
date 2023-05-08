@@ -4,8 +4,8 @@ import PageContainer from '../src/components/container/PageContainer';
 
 // components
 import YearlyBreakup from '../src/components/dashboard/OverallScore';
-import ProductPerformance from '../src/components/dashboard/ProductPerformance';
-import MonthlyEarnings from '../src/components/dashboard/MonthlyEarnings';
+import ProductPerformance from '../src/components/dashboard/errorReport';
+import MonthlyEarnings from '../src/components/dashboard/statusReport';
 import FullLayout from '../src/layouts/full/FullLayout';
 
 export default function Home() {
