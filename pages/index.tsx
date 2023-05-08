@@ -6,6 +6,8 @@ import PageContainer from '../src/components/container/PageContainer';
 import YearlyBreakup from '../src/components/dashboard/OverallScore';
 import ProductPerformance from '../src/components/dashboard/errorReport';
 import MonthlyEarnings from '../src/components/dashboard/statusReport';
+import SimpleErrors from '../src/components/dashboard/simpleErrors';
+import StructuralErrors from '../src/components/dashboard/structuralErrors';
 import FullLayout from '../src/layouts/full/FullLayout';
 
 export default function Home() {
@@ -27,7 +29,7 @@ export default function Home() {
             </Grid>
           </Grid>
           <Grid item xs={12} lg={4}>
-            <YearlyBreakup />
+            <SimpleErrors />
           </Grid>
           <Grid item xs={12} lg={4}>
             <YearlyBreakup />
