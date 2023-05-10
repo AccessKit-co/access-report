@@ -4,7 +4,7 @@ import { VscCircleLargeFilled } from 'react-icons/vsc';
 
 const Alerts = () => (
     <div
-        className="overflow-hidden group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+        className="group rounded-lg border px-5 py-4 transition-colors hover:scale-110 hover:border-gray-300 hover:dark:bg-neutral-800/30">
         <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-2'>
                 <FiAlertTriangle style={{ color: 'olive' }} />
@@ -16,7 +16,7 @@ const Alerts = () => (
         <div className='flex flex-row w-full h-3/5 items-center justify-center'>
             <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'olive' }} />
-                <span className='absolute text-2xl font-semibold'>43</span>
+                <span className='absolute text-2xl font-semibold text-white'>43</span>
             </div>
         </div>
         <div className='flex flex-row w-full h-1/5 items-center'>
