@@ -14,7 +14,7 @@ interface ApiResponse {
     // other properties from the API response if needed
 }
 
-const URLSearch = () => {
+export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const [categories, setCategories] = useState<Category[]>([]);
     const [errorCount, setErrorCount] = useState<number>(0);
@@ -78,4 +78,3 @@ const URLSearch = () => {
     );
 };
 
-export default URLSearch;
