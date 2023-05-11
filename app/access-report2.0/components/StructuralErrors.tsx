@@ -1,4 +1,3 @@
-import React from 'react';
 import { IoConstructSharp } from 'react-icons/io5';
 import { VscCircleLargeFilled } from 'react-icons/vsc';
 
@@ -10,7 +9,7 @@ const StructuralErrors = () => (
                 <IoConstructSharp style={{ fill: 'purple' }} />
             </div>
             <div className='flex h-full justify-start ml-1 items-center'>
-                <h2 className='text-xl font-semibold '>Structural Errors</h2>
+                <h2 className='text-xl font-semibold '>Structure</h2>
             </div>
         </div>
         <div className='flex flex-row w-full h-3/5 items-center justify-center'>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { VscCircleLargeFilled } from 'react-icons/vsc';
 
@@ -19,8 +18,8 @@ const Alerts = () => (
                 <span className='absolute text-2xl font-semibold text-white'>43</span>
             </div>
         </div>
-        <div className='flex flex-row w-full h-1/5 items-center'>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+        <div className='flex flex-row w-full h-1/5 items-center justify-center'>
+            <p className={`m-0 text-sm opacity-50`}>
                 Possible problems in the code.
             </p>
         </div>
