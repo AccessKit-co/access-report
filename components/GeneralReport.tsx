@@ -4,7 +4,7 @@ import { IoConstructSharp } from 'react-icons/io5';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 const GeneralReport = () => (
-    <div
+    <div>
         className="flex flex-col rounded-lg border px-5 py-4 h-full">
         <div className='flex flex-row w-full h-1/4 items-center justify-center'>
             <div className='flex h-full justify-start mx-1 items-center'>
@@ -12,7 +12,7 @@ const GeneralReport = () => (
             </div>
         </div>
         <div className='flex flex-col w-full h-full m-1 items-center justify-center gap-2'>
-            <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4'>
+            <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                     <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                         <MdError style={{ fill: 'red' }} />
@@ -21,10 +21,13 @@ const GeneralReport = () => (
                         <h2 className='text-xl font-semibold '>Errors</h2>
                     </div>
                 </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                    <p className='text-xl font-bold'>56</p>
+                </div>
             </div>
 
 
-            <div className='flex rounded-lg border bg-gray-200 w-full h-1/4'>
+            <div className='flex rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                     <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                         <ImContrast style={{ fill: 'fuchsia' }} />
@@ -33,8 +36,11 @@ const GeneralReport = () => (
                         <h2 className='text-xl font-semibold'>Contrast</h2>
                     </div>
                 </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                    <p className='text-xl font-bold'>56</p>
+                </div>
             </div>
-            <div className='flex rounded-lg border bg-gray-200 w-full h-1/4'>
+            <div className='flex rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                     <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                         <IoConstructSharp style={{ fill: 'purple' }} />
@@ -42,6 +48,9 @@ const GeneralReport = () => (
                     <div className='flex h-full justify-start ml-1 items-center'>
                         <h2 className='text-xl font-semibold '>Structure</h2>
                     </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                    <p className='text-xl font-bold'>56</p>
                 </div>
             </div>
             <div className='flex flex-row h-1/4 w-full justify-left items-center gap-2'>

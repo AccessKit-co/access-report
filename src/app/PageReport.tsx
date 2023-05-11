@@ -7,7 +7,7 @@ import Alerts from '../../components/Alerts';
 import StructuralErrors from '../../components/StructuralErrors';
 
 const PageReport = () => (
-    <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center">
+    <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
         <div
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>

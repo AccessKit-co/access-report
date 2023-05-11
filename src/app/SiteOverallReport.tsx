@@ -35,8 +35,27 @@ const SiteOverallReport = () => (
                                 <h2 className='text-xl font-semibold '>Errors</h2>
                             </div>
                         </div>
-                        <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                            <p className='text-xl font-bold'>56</p>
+                        <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
+                            <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
+                                <div className='flex h-full justify-start m-1 items-center justify-between'>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <h2 className='text-xs font-light '>Avg </h2>
+                                    </div>
+                                    <div className='flex h-full items-center justify-start mr-1'>
+                                        <p className='text-xl font-bold'>56</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
+                                <div className='flex h-full m-1 items-center justify-between'>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <h2 className='text-xs font-light '>Total </h2>
+                                    </div>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <p className='text-xl font-bold'>56</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -46,12 +65,31 @@ const SiteOverallReport = () => (
                             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                                 <ImContrast style={{ fill: 'fuchsia' }} />
                             </div>
-                            <div className='flex h-full justify-start ml-1 items-center'>
+                            <div className='flex h-full justify-center ml-1 items-center'>
                                 <h2 className='text-xl font-semibold'>Contrast</h2>
                             </div>
                         </div>
-                        <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                            <p className='text-xl font-bold'>56</p>
+                        <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
+                            <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
+                                <div className='flex h-full justify-start m-1 items-center justify-between'>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <h2 className='text-xs font-light '>Avg </h2>
+                                    </div>
+                                    <div className='flex h-full items-center justify-start mr-1'>
+                                        <p className='text-xl font-bold'>56</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
+                                <div className='flex h-full m-1 items-center justify-between'>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <h2 className='text-xs font-light '>Total </h2>
+                                    </div>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <p className='text-xl font-bold'>56</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='flex rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
@@ -63,8 +101,27 @@ const SiteOverallReport = () => (
                                 <h2 className='text-xl font-semibold '>Structure</h2>
                             </div>
                         </div>
-                        <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                            <p className='text-xl font-bold'>56</p>
+                        <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
+                            <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
+                                <div className='flex h-full justify-start m-1 items-center justify-between'>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <h2 className='text-xs font-light '>Avg</h2>
+                                    </div>
+                                    <div className='flex h-full items-center justify-start mr-1'>
+                                        <p className='text-xl font-bold'>56</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
+                                <div className='flex h-full m-1 items-center justify-between'>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <h2 className='text-xs font-light '>Total </h2>
+                                    </div>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <p className='text-xl font-bold'>56</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='flex flex-row h-1/4 w-full justify-left items-center gap-2'>
