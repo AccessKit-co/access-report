@@ -1,3 +1,5 @@
+"use client";
+
 import { IoConstructSharp } from 'react-icons/io5';
 import { VscCircleLargeFilled } from 'react-icons/vsc';
 
@@ -15,7 +17,8 @@ const StructuralErrors = () => (
         <div className='flex flex-row w-full h-3/5 items-center justify-center'>
             <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'purple' }} />
-                <span className='absolute text-2xl font-semibold text-white'>72</span>
+                <span className='absolute text-2xl font-semibold text-white'> 74
+                </span>
             </div>
         </div>
         <div className='flex flex-row w-full h-1/5 items-center'>
