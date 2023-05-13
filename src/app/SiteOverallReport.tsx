@@ -24,18 +24,20 @@ const SiteOverallReport = () => (
                     <div className='flex h-full justify-start m-2 items-center'>
                         <h2 className='text-xl font-semibold '> Overall Report</h2>
                     </div>
-                    <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                        <div className='flex rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center h-full '>
-                            <div className='flex h-full justify-start m-1 items-center justify-between'>
-                                <div className='flex h-full items-center justify-start mx-1'>
-                                    <h2 className='text-xs font-light '>Avg per page </h2>
+                    <div className='flex flex-row m-2 w-1/3 justify-center items-center h-full'>
+                        <div className='flex h-full justify-center items-center mb-2'>
+                            <div className='flex h-full rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center '>
+                                <div className='flex h-full justify-start m-1 items-center justify-between'>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <h2 className='text-xs font-light '>Avg per page </h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='flex rounded-lg border border-gray-100 bg-gray-100 ml-1 h-full w-1/2 justify-center items-center'>
-                            <div className='flex h-full m-1 items-center justify-between'>
-                                <div className='flex h-full items-center justify-start mx-1'>
-                                    <h2 className='text-xs font-light '>Total per page</h2>
+                            <div className='flex rounded-lg border border-gray-100 bg-gray-100 ml-1 h-full w-1/2 justify-center items-center'>
+                                <div className='flex h-full m-1 items-center justify-between'>
+                                    <div className='flex h-full items-center justify-start mx-1'>
+                                        <h2 className='text-xs font-light '>Total per page</h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +157,7 @@ const SiteOverallReport = () => (
         <div className='md:col-span-1 flex flex-col gap-2 '>
             <Score />
             <div
-                className="flex flex-col rounded-lg border px-5 py-4 gap-1">
+                className="flex flex-col rounded-lg border px-5 py-4 gap-1 h-1/4">
                 <div className='flex flex-row w-full h-1/4 items-center justify-center'>
                     <div className='flex h-full justify-start mx-1 items-center'>
                         <h2 className='text-xl font-semibold '>Status</h2>

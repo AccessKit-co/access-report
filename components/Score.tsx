@@ -3,7 +3,7 @@ import { MdShield } from 'react-icons/md';
 
 const Score = () => (
     <div
-        className="group rounded-lg border px-5 py-4 transition-colors hover:dark:bg-neutral-800/30">
+        className="group rounded-lg border px-5 py-4 transition-colors hover:dark:bg-neutral-800/30 h-3/4">
         <div className='flex flex-row w-full h-1/5 items-center justify-center'>
             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                 <AiOutlineAim style={{ fill: 'green' }} />

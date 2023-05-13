@@ -103,18 +103,20 @@ export default function Home() {
               <div className='flex h-full justify-start m-2 items-center'>
                 <h2 className='text-xl font-semibold '> Overall Report</h2>
               </div>
-              <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                <div className='flex rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center h-full '>
-                  <div className='flex h-full justify-start m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <h2 className='text-xs font-light '>Avg per page </h2>
+              <div className='flex flex-row m-2 w-1/3 justify-center items-center h-full'>
+                <div className='flex h-full justify-center items-center mb-2'>
+                  <div className='flex h-full rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center '>
+                    <div className='flex h-full justify-start m-1 items-center justify-between'>
+                      <div className='flex h-full items-center justify-start mx-1'>
+                        <h2 className='text-xs font-light '>Avg per page </h2>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className='flex rounded-lg border border-gray-100 bg-gray-100 ml-1 h-full w-1/2 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <h2 className='text-xs font-light '>Total per page</h2>
+                  <div className='flex rounded-lg border border-gray-100 bg-gray-100 ml-1 h-full w-1/2 justify-center items-center'>
+                    <div className='flex h-full m-1 items-center justify-between'>
+                      <div className='flex h-full items-center justify-start mx-1'>
+                        <h2 className='text-xs font-light '>Total per page</h2>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -133,14 +135,14 @@ export default function Home() {
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mr-1'>
+                      <div className='flex h-full items-center justify-start'>
                         <p className='text-xl font-bold'>{errorCount}</p>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mx-1'>
+                      <div className='flex h-full items-center justify-start'>
                         <p className='text-xl font-bold'>{errorCount}</p>
                       </div>
                     </div>
@@ -159,14 +161,14 @@ export default function Home() {
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mr-1'>
+                      <div className='flex h-full items-center justify-start'>
                         <p className='text-xl font-bold'>{contrastCount}</p>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mx-1'>
+                      <div className='flex h-full items-center justify-start'>
                         <p className='text-xl font-bold'>{contrastCount}</p>
                       </div>
                     </div>
@@ -185,14 +187,14 @@ export default function Home() {
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mr-1'>
+                      <div className='flex h-full items-center justify-start'>
                         <p className='text-xl font-bold'>{structureCount}</p>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mx-1'>
+                      <div className='flex h-full items-center justify-start'>
                         <p className='text-xl font-bold'>{structureCount}</p>
                       </div>
                     </div>
@@ -250,95 +252,289 @@ export default function Home() {
 
       {/** Page Report Component */}
 
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
-        <div
-          className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-          <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-            <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-              <MdError style={{ fill: 'red' }} />
+      <div className='flex flex-col gap-4 w-full'>
+        <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
+          <div
+            className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
+            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
+              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                <MdError style={{ fill: 'red' }} />
+              </div>
+              <div className='flex h-full justify-start ml-1 items-center'>
+                <h2 className='text-xl font-semibold '>Errors</h2>
+              </div>
             </div>
-            <div className='flex h-full justify-start ml-1 items-center'>
-              <h2 className='text-xl font-semibold '>Errors</h2>
+            <div className='flex flex-row w-full h-3/5 items-center justify-center'>
+              <div className='flex relative w-full h-full items-center justify-center text-7xl'>
+                <VscCircleLargeFilled style={{ fill: 'red' }} />
+                <span className='absolute text-2xl font-semibold text-white'>{errorCount}</span>
+              </div>
             </div>
-          </div>
-          <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-            <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-              <VscCircleLargeFilled style={{ fill: 'red' }} />
-              <span className='absolute text-2xl font-semibold text-white'>{errorCount}</span>
-            </div>
-          </div>
-          <div className='flex flex-row w-full h-1/5 items-center'>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Issues in compliance with the code.
-            </p>
-          </div>
-        </div>
-        <div className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-hidden">
-          <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-            <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
-              <ImContrast style={{ fill: 'fuchsia' }} />
-            </div>
-            <div className='flex h-full justify-start ml-1 items-center'>
-              <h2 className='text-xl font-semibold'>Contrast</h2>
+            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
+              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                Issues in compliance with the code.
+              </p>
             </div>
           </div>
-          <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-            <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-              <VscCircleLargeFilled style={{ fill: 'fuchsia' }} />
-              <span className='absolute text-2xl font-semibold text-white'>{contrastCount}</span>
+          <div className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-hidden">
+            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
+              <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
+                <ImContrast style={{ fill: 'fuchsia' }} />
+              </div>
+              <div className='flex h-full justify-start ml-1 items-center justify-center'>
+                <h2 className='text-xl font-semibold'>Contrast</h2>
+              </div>
+            </div>
+            <div className='flex flex-row w-full h-3/5 items-center justify-center'>
+              <div className='flex relative w-full h-full items-center justify-center text-7xl'>
+                <VscCircleLargeFilled style={{ fill: 'fuchsia' }} />
+                <span className='absolute text-2xl font-semibold text-white'>{contrastCount}</span>
+              </div>
+            </div>
+            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
+              <div className=''>
+                <p className={`m-0 text-sm opacity-50 `}>
+                  Issues in visibility for people with impared vision.
+                </p>
+              </div>
             </div>
           </div>
-          <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-            <div className=''>
-              <p className={`m-0 text-sm opacity-50 `}>
-                Issues in visibility for people with impared vision.
+          <div
+            className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
+            <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
+              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                <FiAlertTriangle style={{ color: 'olive' }} />
+              </div>
+              <div className='flex h-full justify-start ml-1 items-center'>
+                <h2 className='text-xl font-semibold'>Alerts</h2>
+              </div>
+            </div>
+            <div className='flex flex-row w-full h-3/5 items-center justify-center'>
+              <div className='flex relative w-full h-full items-center justify-center text-7xl'>
+                <VscCircleLargeFilled style={{ fill: 'olive' }} />
+                <span className='absolute text-2xl font-semibold text-white'>{alertsCount}</span>
+              </div>
+            </div>
+            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
+              <p className={`m-0 text-sm opacity-50`}>
+                Possible problems in the code.
+              </p>
+            </div>
+          </div>
+          <div
+            className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
+            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
+              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                <IoConstructSharp style={{ fill: 'purple' }} />
+              </div>
+              <div className='flex h-full justify-start ml-1 items-center'>
+                <h2 className='text-xl font-semibold '>Structure</h2>
+              </div>
+            </div>
+            <div className='flex flex-row w-full h-3/5 items-center justify-center'>
+              <div className='flex relative w-full h-full items-center justify-center text-7xl'>
+                <VscCircleLargeFilled style={{ fill: 'purple' }} />
+                <span className='absolute text-2xl font-semibold text-white'> {structureCount}
+                </span>
+              </div>
+            </div>
+            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
+              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                Issues with how the website is structured.
               </p>
             </div>
           </div>
         </div>
+
+        {/** Page Report Issue Component */}
+
         <div
-          className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-          <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
-            <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-              <FiAlertTriangle style={{ color: 'olive' }} />
-            </div>
-            <div className='flex h-full justify-start ml-1 items-center'>
-              <h2 className='text-xl font-semibold'>Alerts</h2>
-            </div>
+          className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full'">
+          <div className='flex flex-row w-full h-1/6 items-center justify-start mx-3 mb-3'>
+            <h2 className='text-xl font-semibold '> Overall Report</h2>
           </div>
-          <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-            <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-              <VscCircleLargeFilled style={{ fill: 'olive' }} />
-              <span className='absolute text-2xl font-semibold text-white'>{alertsCount}</span>
+          <div className='relative flex mx-1 items-center justify-center gap-2 overflow-y-auto'>
+            <div className='flex flex-col gap-2 overflow-y-scroll w-full h-64'>
+              <div className='flex flex-row rounded-lg border bg-gray-200 h-full w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full justify-start mx-1 items-center'>
+                    <h2 className='text-xl font-semibold'>Type</h2>
+                  </div>
+                  <div className='flex h-full justify-start mx-1 items-center'>
+                    <h2 className='text-xl font-light'> | </h2>
+                  </div>
+                  <div className='flex items-center justify-start'>
+                    <p className='text-sm font-light text-left truncate'>
+                      This error occurs when there is missing alt-text on the page
+                    </p>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center flex-shrink-0'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <ImContrast style={{ fill: 'fuchsia' }} />
+                  </div>
+                  <div className='flex h-full justify-center ml-1 items-center'>
+                    <h2 className='text-xl font-semibold'>Contrast</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/** delete after here */}
+
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                <div className='flex flex-row m-2 items-center justify-center'>
+                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
+                  <div className='flex h-full m-1 items-center justify-between'>
+                    <div className='flex h-full items-center justify-start mx-1'>
+                      <p className='text-xl font-bold'>{errorCount}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-            <p className={`m-0 text-sm opacity-50`}>
-              Possible problems in the code.
-            </p>
-          </div>
-        </div>
-        <div
-          className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-          <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-            <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-              <IoConstructSharp style={{ fill: 'purple' }} />
-            </div>
-            <div className='flex h-full justify-start ml-1 items-center'>
-              <h2 className='text-xl font-semibold '>Structure</h2>
-            </div>
-          </div>
-          <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-            <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-              <VscCircleLargeFilled style={{ fill: 'purple' }} />
-              <span className='absolute text-2xl font-semibold text-white'> {structureCount}
-              </span>
-            </div>
-          </div>
-          <div className='flex flex-row w-full h-1/5 items-center'>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Issues with how the website is structured.
-            </p>
           </div>
         </div>
       </div>
