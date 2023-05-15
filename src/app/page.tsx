@@ -45,6 +45,7 @@ export default function Home() {
     }
   };
 
+
   const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -432,6 +433,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+
+              {/** opened Issue Type component */}
+
               <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
