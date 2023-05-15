@@ -4,7 +4,7 @@ import Image from 'next/image';
 import PageReport from './PageReport';
 import SiteOverallReport from './SiteOverallReport';
 import PageSelector from './PageSelector';
-import Score from '../../components/Score';
+import IssueSubtype from '../../IssueSubtype';
 import { useRef, useState, KeyboardEvent } from "react";
 import { AiOutlineSearch, AiFillCheckCircle } from 'react-icons/ai';
 import { MdError } from 'react-icons/md';
@@ -13,6 +13,8 @@ import { ImContrast, ImCross } from 'react-icons/im';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import { IoConstructSharp } from 'react-icons/io5';
 import { FiAlertTriangle } from 'react-icons/fi';
+import { AiOutlineAim } from 'react-icons/ai';
+import { MdShield } from 'react-icons/md';
 
 interface Category {
   id: string;
@@ -235,7 +237,31 @@ export default function Home() {
           </div>
         </div>
         <div className='md:col-span-1 flex flex-col gap-2 '>
-          <Score />
+          <div
+            className="group rounded-lg border px-5 py-4 transition-colors hover:dark:bg-neutral-800/30 h-3/4" >
+            <div className='flex flex-row w-full h-1/5 items-center justify-center' >
+              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1' >
+                <AiOutlineAim style={{ fill: 'green' }} />
+              </div>
+              < div className='flex h-full justify-start mx-1 items-center' >
+                <h2 className='text-xl font-semibold ' > Overall Score </h2>
+              </div>
+              < div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 ml-1' >
+                <AiOutlineAim style={{ fill: 'green' }} />
+              </div>
+            </div>
+            <div className='flex flex-row w-full h-3/5 items-center justify-center' >
+              <div className='flex relative w-full h-full items-center justify-center text-7xl' >
+                <MdShield style={{ fill: 'green' }} />
+                < span className='absolute text-2xl font-semibold text-white' > 72 </span>
+              </div>
+            </div>
+            < div className='flex flex-row w-full h-1/5 items-center justify-center' >
+              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                A score of less than 85 is at risk of legal action.
+              </p>
+            </div>
+          </div>
           <div
             className="flex flex-col rounded-lg border px-5 py-4 gap-1">
             <div className='flex flex-row w-full h-1/4 items-center justify-center'>
@@ -354,241 +380,12 @@ export default function Home() {
           <div className='flex flex-row w-full h-1/6 items-center justify-start mx-3 mb-3'>
             <h2 className='text-xl font-semibold '> Overall Report</h2>
           </div>
-          <div className='relative flex mx-1 items-center justify-center gap-2'>
-            <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip w-full h-64'>
-              <div className='flex flex-row w-full h-16 justify-top'>
-                <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 '>
-                  <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
-                    <div className='flex flex-row m-2 justify-start items-center'>
-                      <div className='flex h-full justify-start mx-1 items-center'>
-                        <h2 className='text-xl font-semibold'>Type</h2>
-                      </div>
-                      <div className='flex h-full justify-start mx-1 items-center'>
-                        <h2 className='text-xl font-light'> | </h2>
-                      </div>
-                      <div className='flex items-center justify-start'>
-                        <p className='text-sm font-light text-left truncate'>
-                          This error occurs when there is missing alt-text on the page
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='flex w-1/6 justify-center items-center flex-shrink-0'>
-                    <div className='flex rounded-lg border bg-gray-300 m-2 w-full items-center justify-center'>
-                      <div className='flex h-full m-1 items-center justify-between'>
-                        <div className='flex h-full items-center justify-start mx-1'>
-                          <p className='text-xl font-bold'>{errorCount}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/** Clicked Issue Type Component */}
-              <div
-                className="flex flex-col rounded-lg border bg-gray-200/50 w-full h-48 gap-1">
-                <div className='flex flex-row w-full h-16 justify-top'>
-                  <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 '>
-                    <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
-                      <div className='flex flex-row m-2 justify-start items-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex w-1/6 justify-center items-center flex-shrink-0'>
-                      <div className='flex rounded-lg border bg-gray-300 m-2 w-full items-center justify-center'>
-                        <div className='flex h-full m-1 items-center justify-between'>
-                          <div className='flex h-full items-center justify-start mx-1'>
-                            <p className='text-xl font-bold'>{errorCount}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='relative flex mx-1 items-center justify-center h-32'>
-                  <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip w-full h-full m-2'>
-
-                    {/** List of the actual issues of this specific type */}
-
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                      <div className='flex flex-row m-2 items-center justify-center'>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-l font-semibold'>Type</h2>
-                        </div>
-                        <div className='flex h-full justify-start mx-1 items-center'>
-                          <h2 className='text-xl font-light'> | </h2>
-                        </div>
-                        <div className='flex items-center justify-start'>
-                          <p className='text-sm font-light text-left truncate'>
-                            This error occurs when there is missing alt-text on the page
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/** End of  */}
-              <div className='flex flex-row w-full h-16 justify-top'>
-                <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 '>
-                  <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
-                    <div className='flex flex-row m-2 justify-start items-center'>
-                      <div className='flex h-full justify-start mx-1 items-center'>
-                        <h2 className='text-xl font-semibold'>Type</h2>
-                      </div>
-                      <div className='flex h-full justify-start mx-1 items-center'>
-                        <h2 className='text-xl font-light'> | </h2>
-                      </div>
-                      <div className='flex items-center justify-start'>
-                        <p className='text-sm font-light text-left truncate'>
-                          This error occurs when there is missing alt-text on the page
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='flex w-1/6 justify-center items-center flex-shrink-0'>
-                    <div className='flex rounded-lg border bg-gray-300 m-2 w-full items-center justify-center'>
-                      <div className='flex h-full m-1 items-center justify-between'>
-                        <div className='flex h-full items-center justify-start mx-1'>
-                          <p className='text-xl font-bold'>{errorCount}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className='relative flex mx-1 items-center justify-center'>
+            <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip w-full h-64'>
+              <IssueSubtype />
+              <IssueSubtype />
+              <IssueSubtype />
+              <IssueSubtype />
             </div>
           </div>
         </div>
