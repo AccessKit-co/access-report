@@ -42,7 +42,7 @@ export default function IssueSubtype() {
                     </div>
                 </button>
                 <div className='relative flex mx-1 items-center justify-center h-32'>
-                    <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip w-full h-32 m-2'>
+                    <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip w-full h-full m-2'>
 
                         {/** List of the actual issues of this specific type */}
 
