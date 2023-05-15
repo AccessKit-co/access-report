@@ -74,11 +74,11 @@ export default function Home() {
   return (
 
 
-    <main className="flex min-h-screen flex-col items-center gap-4 p-12">
+    <main className="min-h-screen flex-col items-center gap-4 p-12">
 
       {/** Searchbar Component */}
 
-      <div className="items-center flex justify-center w-full h-full">
+      <div className="items-center flex justify-center w-full h-full mb-4">
         <div className="relative w-full h-full">
           <div className="absolute top-3 left-3 items-center" ref={clickPoint}>
             <AiOutlineSearch className="text-xl text-gray-600" />
@@ -96,7 +96,7 @@ export default function Home() {
 
       {/** Site Overall Review Component */}
 
-      <div className="w-full grid md:grid-cols-4 gap-2 text-center justify-center">
+      <div className="w-full grid md:grid-cols-4 gap-2 text-center justify-center mb-4">
         <div className='md:col-span-3'>
           <div
             className="flex flex-col rounded-lg border px-5 py-4 h-full">
@@ -354,9 +354,9 @@ export default function Home() {
           <div className='flex flex-row w-full h-1/6 items-center justify-start mx-3 mb-3'>
             <h2 className='text-xl font-semibold '> Overall Report</h2>
           </div>
-          <div className='relative flex mx-1 items-center justify-center gap-2 overflow-y-auto'>
-            <div className='flex flex-col gap-2 overflow-y-scroll w-full h-64'>
-              <div className='flex flex-row rounded-lg border bg-gray-200 h-full w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+          <div className='relative flex mx-1 items-center justify-center gap-2'>
+            <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip w-full h-64'>
+              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-16 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full justify-start mx-1 items-center'>
                     <h2 className='text-xl font-semibold'>Type</h2>
@@ -379,161 +379,194 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <ImContrast style={{ fill: 'fuchsia' }} />
-                  </div>
-                  <div className='flex h-full justify-center ml-1 items-center'>
-                    <h2 className='text-xl font-semibold'>Contrast</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
+              {/** Clicked Issue Type Component */}
+              <div
+                className="flex flex-col rounded-lg border bg-gray-200/50 w-full'">
+                <div className='flex flex-row w-full h-1/6 justify-top mb-3'>
+                  <div className='flex flex-row rounded-lg border bg-gray-200 h-14 w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 '>
+                    <div className='flex flex-row m-2 items-center justify-center'>
+                      <div className='flex h-full justify-start mx-1 items-center'>
+                        <h2 className='text-xl font-semibold'>Type</h2>
+                      </div>
+                      <div className='flex h-full justify-start mx-1 items-center'>
+                        <h2 className='text-xl font-light'> | </h2>
+                      </div>
+                      <div className='flex items-center justify-start'>
+                        <p className='text-sm font-light text-left truncate'>
+                          This error occurs when there is missing alt-text on the page
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center flex-shrink-0'>
+                      <div className='flex h-full m-1 items-center justify-between'>
+                        <div className='flex h-full items-center justify-start mx-1'>
+                          <p className='text-xl font-bold'>{errorCount}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <div className='relative flex mx-1 items-center justify-center gap-2'>
+                  <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip w-full h-64'>
 
-              {/** delete after here */}
+                    {/** List of the actual issues of this specific type */}
 
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-8 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                      <div className='flex flex-row m-2 items-center justify-center'>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-l font-semibold'>Type</h2>
+                        </div>
+                        <div className='flex h-full justify-start mx-1 items-center'>
+                          <h2 className='text-xl font-light'> | </h2>
+                        </div>
+                        <div className='flex items-center justify-start'>
+                          <p className='text-sm font-light text-left truncate'>
+                            This error occurs when there is missing alt-text on the page
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/** opened Issue Type component */}
-
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
+                <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-16 justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30'>
+                  <div className='flex flex-row m-2 items-center justify-center'>
+                    <div className='flex h-full justify-start mx-1 items-center'>
+                      <h2 className='text-xl font-semibold'>Type</h2>
+                    </div>
+                    <div className='flex h-full justify-start mx-1 items-center'>
+                      <h2 className='text-xl font-light'> | </h2>
+                    </div>
+                    <div className='flex items-center justify-start'>
+                      <p className='text-sm font-light text-left truncate'>
+                        This error occurs when there is missing alt-text on the page
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full justify-between hover:border-gray-300 hover:dark:bg-neutral-800/30'>
-                <div className='flex flex-row m-2 items-center justify-center'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
-                  </div>
-                </div>
-                <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center'>
-                  <div className='flex h-full m-1 items-center justify-between'>
-                    <div className='flex h-full items-center justify-start mx-1'>
-                      <p className='text-xl font-bold'>{errorCount}</p>
+                  <div className='flex rounded-lg border bg-gray-300 m-2 w-1/6 justify-center items-center flex-shrink-0'>
+                    <div className='flex h-full m-1 items-center justify-between'>
+                      <div className='flex h-full items-center justify-start mx-1'>
+                        <p className='text-xl font-bold'>{errorCount}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -541,7 +574,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </div >
+    </main >
   )
 }
