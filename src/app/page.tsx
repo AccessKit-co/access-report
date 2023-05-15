@@ -4,7 +4,7 @@ import Image from 'next/image';
 import PageReport from './PageReport';
 import SiteOverallReport from './SiteOverallReport';
 import PageSelector from './PageSelector';
-import IssueSubtype from '../../IssueSubtype';
+import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { useRef, useState, KeyboardEvent } from "react";
 import { AiOutlineSearch, AiFillCheckCircle } from 'react-icons/ai';
 import { MdError } from 'react-icons/md';
@@ -376,12 +376,14 @@ export default function Home() {
         {/** Page Report Issue Component */}
 
         <div
-          className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full'">
-          <div className='flex flex-row w-full h-1/6 items-center justify-start mx-3 mb-3'>
+          className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-96">
+          <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
             <h2 className='text-xl font-semibold '> Overall Report</h2>
           </div>
           <div className='relative flex mx-1 items-center justify-center'>
-            <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip w-full h-64'>
+            <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-80'>
+              <IssueSubtype />
+              <IssueSubtype />
               <IssueSubtype />
               <IssueSubtype />
               <IssueSubtype />
