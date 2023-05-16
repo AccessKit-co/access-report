@@ -2,15 +2,13 @@
 
 import { useRef, useState, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
+import { usePageReportStore, useIssueStore, useSubtypeStore } from "../store/PageReportStore";
+
 
 interface Category {
-    id: string;
-    description: string;
-    priority: number;
 }
 
 interface ApiResponse {
-    categories: Category[];
     // other properties from the API response if needed
 }
 
@@ -39,20 +37,14 @@ export const URLSearch = () => {
             event.preventDefault();
             const url = event.currentTarget.value;
             try {
-                const response = await fetch(`https://wave.webaim.org/api/request?key=Hx9brA2T3220&url=${url}`);
+                const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=3&url=${url}`);
                 const json: ApiResponse = await response.json();
                 console.log(json);
                 const { categories } = json;
                 setCategories(categories);
-                var { error: { count } } = categories;
-                setErrorCount(count);
-                var { contrast: { count } } = categories;
-                setContrastCount(count);
-                var { structure: { count } } = categories;
-                setStructureCount(count);
-                var { alerts: { count } } = categories;
-                setAlertsCount(count);
-                console.log(count)
+                console.log(categories);
+                console.log(categories['error']);
+                console.log(categories['error']['items']);
             } catch (error) {
                 console.log("Error:", error);
             }
@@ -61,13 +53,13 @@ export const URLSearch = () => {
 
     return (
         <div className="items-center flex justify-center w-full h-full mb-4">
-            <div className="relative w-full h-full">
-                <div className="absolute top-3 left-3 items-center" ref={clickPoint}>
+            <div className="relative flex flex-row w-full h-full rounded-lg border border-gray-200">
+                <div className="w-1/12 left-3 items-center" ref={clickPoint}>
                     <AiOutlineSearch className="text-xl text-gray-600" />
                 </div>
                 <input
                     type="text"
-                    className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-200 focus:pl-3"
+                    className="block p-4 pl-10 w-full h-full text-gray-900 bg-gray-50 focus:pl-3 mx-2"
                     placeholder="Search for your website..."
                     onFocus={handleFocus}
                     onBlur={handleBlur}

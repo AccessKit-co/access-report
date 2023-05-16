@@ -17,18 +17,14 @@ import { FiAlertTriangle } from 'react-icons/fi';
 import { AiOutlineAim } from 'react-icons/ai';
 import { MdShield } from 'react-icons/md';
 import IssueSubtype from '/components/PageReport/IssueReport/IssueSubtype';
-import Issue from '../../components/PageReport/IssueReport/Issue';
+import Issue from '../../components/PageReport/IssueReport/IssueC';
+import { useIssueStore, usePageReportStore, useSubtypeStore } from '../../store/PageReportStore';
+import { URLSearch } from '../../components/URLSearch';
 
 interface Category {
   id: string;
   description: string;
   priority: number;
-}
-
-interface IssueInterface {
-  description: string;
-  count: number;
-  items: string[];
 }
 
 interface ApiResponse {
@@ -39,11 +35,16 @@ interface ApiResponse {
 export default function Home() {
   const clickPoint = useRef<HTMLDivElement>(null);
   const [categories, setCategories] = useState<Category[]>([]);
+
+  const error = usePageReportStore(state => state.error);
   const [errorCount, setErrorCount] = useState<number>(0);
   const [contrastCount, setContrastCount] = useState<number>(0);
   const [structureCount, setStructureCount] = useState<number>(0);
   const [alertsCount, setAlertsCount] = useState<number>(0);
-  const [issueType, setIssueType] = useState<IssueInterface>([]);
+
+
+
+  const issueType = useIssueStore(state => state.description);
 
   const handleFocus = () => {
     if (clickPoint.current) {
@@ -69,12 +70,7 @@ export default function Home() {
         const { categories } = json;
         setCategories(categories);
         const { error } = categories;
-        setIssueType({
-          description: error.description,
-          count: error.count,
-          items: error.items
-        });
-        console.log(issueType);
+
         console.log(categories);
         var { error: { count } } = categories;
         setErrorCount(count);
@@ -97,22 +93,7 @@ export default function Home() {
     <main className="min-h-screen flex-col items-center gap-4 p-12">
 
       {/** Searchbar Component */}
-
-      <div className="items-center flex justify-center w-full h-full mb-4">
-        <div className="relative w-full h-full">
-          <div className="absolute top-3 left-3 items-center" ref={clickPoint}>
-            <AiOutlineSearch className="text-xl text-gray-600" />
-          </div>
-          <input
-            type="text"
-            className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-200 focus:pl-3"
-            placeholder="Search for your website..."
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-          />
-        </div>
-      </div>
+      <URLSearch />
 
       {/** Site Overall Review Component */}
 
@@ -271,7 +252,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center' >
               <div className='flex relative w-full h-full items-center justify-center text-7xl' >
                 <MdShield style={{ fill: 'green' }} />
-                < span className='absolute text-2xl font-semibold text-white' > 72 </span>
+                < span className='absolute text-2xl font-semibold text-white' > {useIssueStore(state => state.count)} </span>
               </div>
             </div>
             < div className='flex flex-row w-full h-1/5 items-center justify-center' >
@@ -312,7 +293,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'red' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{errorCount}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{usePageReportStore(state => state.errors.count)}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -333,7 +314,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'fuchsia' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{contrastCount}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{usePageReportStore(state => state.contrast.count)}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -357,7 +338,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'olive' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{alertsCount}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{usePageReportStore(state => state.alerts.count)}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -379,7 +360,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'purple' }} />
-                <span className='absolute text-2xl font-semibold text-white'> {structureCount}
+                <span className='absolute text-2xl font-semibold text-white'> {usePageReportStore(state => state.structure.count)}
                 </span>
               </div>
             </div>
@@ -396,7 +377,7 @@ export default function Home() {
         <div
           className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
           <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-            <h2 className='text-xl font-semibold '> Issue Report </h2>
+            <h2 className='text-xl font-semibold '> {issueType} Report </h2>
           </div>
           <div className='relative flex mx-1 items-center justify-center h-64'>
             <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>

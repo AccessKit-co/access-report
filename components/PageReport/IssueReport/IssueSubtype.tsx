@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Issue from "./Issue";
+import Issue from "./IssueC";
 
 export default function IssueSubtype() {
     const [isClicked, setIsClicked] = useState<boolean>(false);
