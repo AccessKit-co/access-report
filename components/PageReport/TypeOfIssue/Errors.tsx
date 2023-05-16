@@ -18,7 +18,7 @@ const Errors = () => (
                 <span className='absolute text-2xl font-semibold text-white'>72</span>
             </div>
         </div>
-        <div className='flex flex-row w-full h-1/5 items-center'>
+        <div className='flex flex-row w-full h-1/5 items-center justify-center'>
             <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
                 Errors in compliance in the code.
             </p>

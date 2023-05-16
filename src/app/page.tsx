@@ -1,10 +1,11 @@
 "use client";
 
 import Image from 'next/image';
-import PageReport from './PageReport';
+import PageReport from '../../components/PageReport/PageReport';
 import SiteOverallReport from './SiteOverallReport';
 import PageSelector from './PageSelector';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
+import IssueTypes from '../../components/PageReport/TypeOfIssue/IssueTypes';
 import { useRef, useState, KeyboardEvent } from "react";
 import { AiOutlineSearch, AiFillCheckCircle } from 'react-icons/ai';
 import { MdError } from 'react-icons/md';
@@ -280,99 +281,7 @@ export default function Home() {
       {/** Page Report Component */}
 
       <div className='flex flex-col gap-4 w-full'>
-        <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
-          <div
-            className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                <MdError style={{ fill: 'red' }} />
-              </div>
-              <div className='flex h-full justify-start ml-1 items-center'>
-                <h2 className='text-xl font-semibold '>Errors</h2>
-              </div>
-            </div>
-            <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-              <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-                <VscCircleLargeFilled style={{ fill: 'red' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{errorCount}</span>
-              </div>
-            </div>
-            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                Issues in compliance with the code.
-              </p>
-            </div>
-          </div>
-          <div className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-hidden">
-            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
-                <ImContrast style={{ fill: 'fuchsia' }} />
-              </div>
-              <div className='flex h-full justify-start ml-1 items-center justify-center'>
-                <h2 className='text-xl font-semibold'>Contrast</h2>
-              </div>
-            </div>
-            <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-              <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-                <VscCircleLargeFilled style={{ fill: 'fuchsia' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{contrastCount}</span>
-              </div>
-            </div>
-            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <div className=''>
-                <p className={`m-0 text-sm opacity-50 `}>
-                  Issues in visibility for people with impared vision.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-            <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
-              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                <FiAlertTriangle style={{ color: 'olive' }} />
-              </div>
-              <div className='flex h-full justify-start ml-1 items-center'>
-                <h2 className='text-xl font-semibold'>Alerts</h2>
-              </div>
-            </div>
-            <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-              <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-                <VscCircleLargeFilled style={{ fill: 'olive' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{alertsCount}</span>
-              </div>
-            </div>
-            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <p className={`m-0 text-sm opacity-50`}>
-                Possible problems in the code.
-              </p>
-            </div>
-          </div>
-          <div
-            className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                <IoConstructSharp style={{ fill: 'purple' }} />
-              </div>
-              <div className='flex h-full justify-start ml-1 items-center'>
-                <h2 className='text-xl font-semibold '>Structure</h2>
-              </div>
-            </div>
-            <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-              <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-                <VscCircleLargeFilled style={{ fill: 'purple' }} />
-                <span className='absolute text-2xl font-semibold text-white'> {structureCount}
-                </span>
-              </div>
-            </div>
-            <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                Issues with how the website is structured.
-              </p>
-            </div>
-          </div>
-        </div>
-
+        <IssueTypes />
         {/** Page Report Issue Component */}
 
         <div
