@@ -10,7 +10,7 @@ export default function IssueSubtype() {
 
     return (
         < div className="flex flex-col rounded-lg border bg-red-500 w-full h-48">
-            <button onClick={handleClick} className='flex flex-row w-full h-16 justify-top'>
+            <button onClick={handleClick} className='flex flex-row w-full h-14 justify-top'>
                 <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-x-clip'>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
                         <div className='flex flex-row m-2 justify-start items-center'>
