@@ -5,7 +5,6 @@ import StructuralErrors from './StructuralErrors';
 
 
 export default function IssueSubtype() {
-
     return (
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
             <Errors />

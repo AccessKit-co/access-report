@@ -60,7 +60,7 @@ export const URLSearch = () => {
     };
 
     return (
-        <div className="items-center flex justify-center w-full h-full">
+        <div className="items-center flex justify-center w-full h-full mb-4">
             <div className="relative w-full h-full">
                 <div className="absolute top-3 left-3 items-center" ref={clickPoint}>
                     <AiOutlineSearch className="text-xl text-gray-600" />
