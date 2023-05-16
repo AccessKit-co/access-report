@@ -40,15 +40,15 @@ export default function IssueSubtype() {
                         </div>
                     </div>
                 </button>
-                <div className='relative flex mx-1 items-center justify-center h-48'>
-                    <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip w-full h-48'>
+                <div className='relative flex m-1 items-center justify-center h-48'>
+                    <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-48'>
 
                         {/** List of the actual issues of this specific type */}
-                        <Issue />
-                        <Issue />
-                        <Issue />
-                        <Issue />
-                        <Issue />
+                        <Issue text="issue 1" />
+                        <Issue text="issue 2" />
+                        <Issue text="issue 3" />
+                        <Issue text="issue 4" />
+                        <Issue text="issue 5" />
                     </div>
                 </div>
             </div>
