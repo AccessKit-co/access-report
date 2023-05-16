@@ -4,7 +4,7 @@ import { IoConstructSharp } from 'react-icons/io5';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 const GeneralReport = () => (
-    <div>
+    <div
         className="flex flex-col rounded-lg border px-5 py-4 h-full">
         <div className='flex flex-row w-full h-1/4 items-center justify-center'>
             <div className='flex h-full justify-start mx-1 items-center'>
