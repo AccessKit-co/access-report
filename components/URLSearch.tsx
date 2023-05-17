@@ -45,19 +45,14 @@ export const URLSearch = () => {
                 console.log(json);
                 const { categories } = json;
                 setCategories(categories);
-
-                console.log(categories.error.count);
-                console.log(categories.contrast.count);
-                console.log(categories.alert.count);
-                console.log(categories.structure.count);
                 PageReport.setError(categories.error.count);
                 PageReport.setContrast(categories.contrast.count);
                 PageReport.setAlert(categories.alert.count);
                 PageReport.setStructure(categories.structure.count);
-                console.log(PageReport.error.count);
+                console.log(categories.error.count);
+                console.log(PageReport.error);
                 console.log(PageReport.contrast.count);
-                console.log(PageReport.alert.count);
-                console.log(PageReport.structure.count);
+                console.log(PageReport.structure);
 
 
             } catch (error) {

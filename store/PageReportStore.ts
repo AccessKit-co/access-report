@@ -1,20 +1,6 @@
 import { type } from 'os';
 import { create } from 'zustand';
 
-
-type PageReport = {
-    url: string;
-    error: { description: string, count: number };
-    contrast: { description: string, count: number };
-    alert: { description: string, count: number };
-    structure: { description: string, count: number };
-    setUrl: (text: string) => void;
-    setError: (number: number) => void;
-    setContrast: (number: number) => void;
-    setAlert: (number: number) => void;
-    setStructure: (number: number) => void;
-};
-
 type Issue = {
     description: string;
     count: number;
@@ -22,6 +8,21 @@ type Issue = {
     setIssueDescription: (text: string) => void;
     setIssueCount: (number: number) => void;
 };
+
+type PageReport = {
+    url: string;
+    error: Issue;
+    contrast: Issue;
+    alert: Issue;
+    structure: Issue;
+    setUrl: (text: string) => void;
+    setError: (number: number) => void;
+    setContrast: (number: number) => void;
+    setAlert: (number: number) => void;
+    setStructure: (number: number) => void;
+};
+
+
 
 const useIssueStore = create<Issue>((set) => ({
     description: 'Issue',
@@ -48,7 +49,7 @@ const usePageReportStore = create<PageReport>((set) => ({
     url: '',
     error: { description: "Error", count: 0 },
     contrast: { description: "Contrast", count: 0 },
-    alert: { description: "Alert", count: 0 },
+    alert: { description: "Alerts", count: 0 },
     structure: { description: "Structure", count: 0 },
     setUrl(text: string) {
         set(state => ({
@@ -68,7 +69,7 @@ const usePageReportStore = create<PageReport>((set) => ({
     },
     setAlert(number: number) {
         set(state => ({
-            alert: { description: "Alert", count: number }
+            alert: { description: "Alerts", count: number }
         }));
     }
     ,
