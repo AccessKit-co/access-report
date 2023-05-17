@@ -1,7 +1,7 @@
 import { type } from 'os';
 import { create } from 'zustand';
 
-type Subtype = {
+export type Subtype = {
     description: string;
     count: number;
     issues: string[];
@@ -10,7 +10,7 @@ type Subtype = {
     setissues: (text: string[]) => void;
 };
 
-type Issue = {
+export type Issue = {
     description: string;
     count: number;
     subtypes?: Subtype[];
@@ -19,7 +19,7 @@ type Issue = {
     setIssueCount: (number: number) => void;
 };
 
-type PageReport = {
+export type PageReport = {
     url: string;
     error: Issue;
     contrast: Issue;
@@ -129,5 +129,5 @@ const usePageReportStore = create<PageReport>((set) => ({
     }
 }));
 
-export { usePageReportStore, useIssueStore };
+export { usePageReportStore, useIssueStore, useSubtypeStore };
 

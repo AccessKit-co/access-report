@@ -94,30 +94,24 @@ export default function Home() {
         <div className='md:col-span-3'>
           <div
             className="flex flex-col rounded-lg border px-5 py-4 h-full">
-            <div className='flex flex-row w-full h-1/6 items-center justify-between mx-1 gap-2'>
-              <div className='flex h-full justify-start m-2 items-center'>
+            <div className='flex flex-row w-full h-1/6 items-center justify-between'>
+              <div className='flex m-2 justify-center items-center'>
                 <h2 className='text-xl font-semibold '> Overall Report</h2>
               </div>
-              <div className='flex flex-row m-2 w-1/3 justify-center items-center h-full'>
-                <div className='flex h-full justify-center items-center mb-2'>
-                  <div className='flex h-full rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center '>
-                    <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mx-1'>
-                        <h2 className='text-xs font-light '>Avg per page </h2>
-                      </div>
-                    </div>
+              <div className='flex flex-row m-2 w-1/3  justify-center items-end h-full gap-1'>
+                <div className='flex h-2/3 rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center mb-1 '>
+                  <div className='flex h-full items-center justify-start mx-1'>
+                    <p className='text-xs font-light '>Average / page </p>
                   </div>
-                  <div className='flex rounded-lg border border-gray-100 bg-gray-100 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mx-1'>
-                        <h2 className='text-xs font-light '>Total per page</h2>
-                      </div>
-                    </div>
+                </div>
+                <div className='flex rounded-lg border border-gray-100 bg-gray-100 h-2/3 w-1/2 justify-center items-center mb-1'>
+                  <div className='flex h-full items-center justify-start mx-1'>
+                    <p className='text-xs font-light '>Total</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='flex flex-col w-full h-full mx-1 items-center justify-center gap-2'>
+            <div className='flex flex-col w-full h-5/6 items-center justify-center gap-2'>
               <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
@@ -129,49 +123,41 @@ export default function Home() {
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.error.count}
-                        </span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.error.count}
+                      </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.error.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.error.count}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
+              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <ImContrast style={{ fill: 'fuchsia' }} />
                   </div>
-                  <div className='flex h-full justify-center ml-1 items-center'>
-                    <h2 className='text-xl font-semibold'>Contrast</h2>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Contrast</h2>
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}
+                      </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
+              </div><div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <IoConstructSharp style={{ fill: 'purple' }} />
@@ -182,17 +168,14 @@ export default function Home() {
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}
+                      </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
                     </div>
                   </div>
                 </div>
@@ -375,7 +358,7 @@ export default function Home() {
           </div>
           <div className='relative flex mx-1 items-center justify-center h-64'>
             <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-              {PageReport.error.subtypes ? Object.values(PageReport.structure.subtypes).map(
+              {PageReport.error.subtypes ? Object.values(PageReport.error.subtypes).map(
                 (subtype) => (IssueSubtype({ description: subtype.description, count: subtype.count, id: subtype.id, xpaths: subtype.xpaths })))
                 : []}
             </div>
