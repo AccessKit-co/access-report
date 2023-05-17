@@ -52,7 +52,8 @@ export const URLSearch = () => {
                 PageReport.setStructure({ count: categories.structure.count, subtypes: categories.structure.items });
                 console.log(PageReport.url);
                 console.log(json.statistics.pageurl);
-                console.log(PageReport.contrast.count);
+                console.log(PageReport.error.subtypes);
+                console.log(Object.values(PageReport.error.subtypes));
                 console.log(PageReport.structure);
 
 

@@ -375,14 +375,9 @@ export default function Home() {
           </div>
           <div className='relative flex mx-1 items-center justify-center h-64'>
             <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
+              {PageReport.error.subtypes ? Object.values(PageReport.structure.subtypes).map(
+                (subtype) => (IssueSubtype({ description: subtype.description, count: subtype.count, id: subtype.id, xpaths: subtype.xpaths })))
+                : []}
             </div>
           </div>
         </div>
