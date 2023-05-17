@@ -316,22 +316,24 @@ export default function Home() {
           </button>
         </div>
 
-        {/** Page Report Issue */}
+        {/** Page Issue Report */
 
-        {IssueReport.description == '' ? null :
-          <div
-            className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
-            <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-              <h2 className='text-xl font-semibold '> {IssueReport.description} Report </h2>
-            </div>
-            <div className='relative flex mx-1 items-center justify-center h-64'>
-              <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-                {IssueReport.subtypes ? Object.values(IssueReport.subtypes).map(
-                  (subtype) => (IssueSubtype({ description: subtype.description, count: subtype.count, id: subtype.id, xpaths: subtype.xpaths })))
+          /** Only show if description is '', which means none are selected */
+          IssueReport.description == '' ? null :
+            <div
+              className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
+              <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
+                <h2 className='text-xl font-semibold '> {IssueReport.description} Report </h2>
+              </div>
+              <div className='relative flex mx-1 items-center justify-center h-64'>
+                {IssueReport.subtypes ?
+                  <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
+                    {Object.values(IssueReport.subtypes).map(
+                      (subtype) => <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} xpaths={subtype.xpaths} />)})}
+                  </div>
                   : []}
               </div>
-            </div>
-          </div>}
+            </div>}
       </div >
     </main >
   )
