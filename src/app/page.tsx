@@ -138,14 +138,15 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <p className='text-xl font-bold'>{errorCount}</p>
+                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.errors.count)}
+                        </span>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <p className='text-xl font-bold'>{errorCount}</p>
+                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.errors.count)}</span>
                       </div>
                     </div>
                   </div>
@@ -164,14 +165,14 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <p className='text-xl font-bold'>{contrastCount}</p>
+                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.contrast.count)}</span>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <p className='text-xl font-bold'>{contrastCount}</p>
+                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.contrast.count)}</span>
                       </div>
                     </div>
                   </div>
@@ -190,14 +191,14 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <p className='text-xl font-bold'>{structureCount}</p>
+                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.structure.count)}</span>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <p className='text-xl font-bold'>{structureCount}</p>
+                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.structure.count)}</span>
                       </div>
                     </div>
                   </div>

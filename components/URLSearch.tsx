@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, KeyboardEvent } from "react";
+import { useRef, useState, KeyboardEvent, use } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore, useIssueStore, useSubtypeStore } from "../store/PageReportStore";
 
@@ -19,6 +19,8 @@ export const URLSearch = () => {
     const [contrastCount, setContrastCount] = useState<number>(0);
     const [structureCount, setStructureCount] = useState<number>(0);
     const [alertsCount, setAlertsCount] = useState<number>(0);
+    const PageReportStore = usePageReportStore();
+    const ErrorStore = useIssueStore();
 
     const handleFocus = () => {
         if (clickPoint.current) {
@@ -37,14 +39,24 @@ export const URLSearch = () => {
             event.preventDefault();
             const url = event.currentTarget.value;
             try {
-                const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=3&url=${url}`);
+                const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&url=${url}`);
                 const json: ApiResponse = await response.json();
                 console.log(json);
                 const { categories } = json;
                 setCategories(categories);
                 console.log(categories);
                 console.log(categories['error']);
-                console.log(categories['error']['items']);
+                console.log(categories['error']);
+
+                () => PageReportStore.errors.setIssueCount(10);
+                () => ErrorStore.setIssueCount(10);
+
+                console.log(PageReportStore
+                    .errors.count)
+                console.log(ErrorStore.count)
+                console.log(categories['error']['count']);
+
+
             } catch (error) {
                 console.log("Error:", error);
             }
