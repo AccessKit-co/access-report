@@ -18,7 +18,7 @@ import { AiOutlineAim } from 'react-icons/ai';
 import { MdShield } from 'react-icons/md';
 import IssueSubtype from '/components/PageReport/IssueReport/IssueSubtype';
 import Issue from '../../components/PageReport/IssueReport/IssueC';
-import { useIssueStore } from '../../store/PageReportStore';
+import { useIssueStore, usePageReportStore } from '../../store/PageReportStore';
 import { URLSearch } from '../../components/URLSearch';
 
 interface Category {
@@ -36,15 +36,8 @@ export default function Home() {
   const clickPoint = useRef<HTMLDivElement>(null);
   const [categories, setCategories] = useState<Category[]>([]);
 
-  const error = useIssueStore();
-  const [errorCount, setErrorCount] = useState<number>(0);
-  const [contrastCount, setContrastCount] = useState<number>(0);
-  const [structureCount, setStructureCount] = useState<number>(0);
-  const [alertsCount, setAlertsCount] = useState<number>(0);
-
-
-
-  const issueType = useIssueStore(state => state.description);
+  const PageReport = usePageReportStore();
+  const IssueReport = useIssueStore();
 
   const handleFocus = () => {
     if (clickPoint.current) {
@@ -138,7 +131,7 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {error.count}
+                        <span className='absolute text-2xl font-semibold'> {PageReport.error.count}
                         </span>
                       </div>
                     </div>
@@ -146,7 +139,7 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
+                        <span className='absolute text-2xl font-semibold'> {PageReport.error.count}</span>
                       </div>
                     </div>
                   </div>
@@ -165,14 +158,14 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
+                        <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
+                        <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
                       </div>
                     </div>
                   </div>
@@ -191,14 +184,14 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
+                        <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
+                        <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
                       </div>
                     </div>
                   </div>
@@ -253,7 +246,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center' >
               <div className='flex relative w-full h-full items-center justify-center text-7xl' >
                 <MdShield style={{ fill: 'green' }} />
-                < span className='absolute text-2xl font-semibold text-white' > {useIssueStore(state => state.count)} </span>
+                < span className='absolute text-2xl font-semibold text-white' > 8 </span>
               </div>
             </div>
             < div className='flex flex-row w-full h-1/5 items-center justify-center' >
@@ -294,7 +287,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'red' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{error.count}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{PageReport.error.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -315,7 +308,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'fuchsia' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{error.count}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{PageReport.contrast.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -339,7 +332,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'olive' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{error.count}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{PageReport.alert.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -361,7 +354,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'purple' }} />
-                <span className='absolute text-2xl font-semibold text-white'> {error.count}
+                <span className='absolute text-2xl font-semibold text-white'> {PageReport.structure.count}
                 </span>
               </div>
             </div>
@@ -378,7 +371,7 @@ export default function Home() {
         <div
           className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
           <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-            <h2 className='text-xl font-semibold '> {issueType} Report </h2>
+            <h2 className='text-xl font-semibold '> {IssueReport.description} Report </h2>
           </div>
           <div className='relative flex mx-1 items-center justify-center h-64'>
             <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>

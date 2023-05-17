@@ -2,7 +2,7 @@
 
 import { useRef, useState, KeyboardEvent, use } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useIssueStore } from "../store/PageReportStore";
+import { useIssueStore, usePageReportStore } from "../store/PageReportStore";
 
 
 interface Category {
@@ -19,11 +19,9 @@ interface ApiResponse {
 export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [errorCount, setErrorCount] = useState<number>(0);
-    const [contrastCount, setContrastCount] = useState<number>(0);
-    const [structureCount, setStructureCount] = useState<number>(0);
-    const [alertsCount, setAlertsCount] = useState<number>(0);
-    const ErrorStore = useIssueStore();
+
+    const PageReport = usePageReportStore();
+
 
     const handleFocus = () => {
         if (clickPoint.current) {
@@ -47,20 +45,24 @@ export const URLSearch = () => {
                 console.log(json);
                 const { categories } = json;
                 setCategories(categories);
-                console.log(categories);
-                console.log(categories['error']);
-                console.log(categories.error.count);
-                ErrorStore.setIssueCount(categor.error.count)
-                console.log(ErrorStore.count)
 
-                console.log(categories['error']['count']);
+                console.log(categories.error.count);
+                console.log(categories.contrast.count);
+                console.log(categories.alert.count);
+                console.log(categories.structure.count);
+                PageReport.setError(categories.error.count);
+                PageReport.setContrast(categories.contrast.count);
+                PageReport.setAlert(categories.alert.count);
+                PageReport.setStructure(categories.structure.count);
+                console.log(PageReport.error.count);
+                console.log(PageReport.contrast.count);
+                console.log(PageReport.alert.count);
+                console.log(PageReport.structure.count);
 
 
             } catch (error) {
                 console.log("Error:", error);
             }
-
-            console.log(ErrorStore.count)
 
         }
     };
