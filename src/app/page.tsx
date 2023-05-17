@@ -18,7 +18,7 @@ import { AiOutlineAim } from 'react-icons/ai';
 import { MdShield } from 'react-icons/md';
 import IssueSubtype from '/components/PageReport/IssueReport/IssueSubtype';
 import Issue from '../../components/PageReport/IssueReport/IssueC';
-import { useIssueStore, usePageReportStore, useSubtypeStore } from '../../store/PageReportStore';
+import { useIssueStore } from '../../store/PageReportStore';
 import { URLSearch } from '../../components/URLSearch';
 
 interface Category {
@@ -36,7 +36,7 @@ export default function Home() {
   const clickPoint = useRef<HTMLDivElement>(null);
   const [categories, setCategories] = useState<Category[]>([]);
 
-  const error = usePageReportStore(state => state.error);
+  const error = useIssueStore();
   const [errorCount, setErrorCount] = useState<number>(0);
   const [contrastCount, setContrastCount] = useState<number>(0);
   const [structureCount, setStructureCount] = useState<number>(0);
@@ -138,7 +138,7 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.errors.count)}
+                        <span className='absolute text-2xl font-semibold'> {error.count}
                         </span>
                       </div>
                     </div>
@@ -146,7 +146,7 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.errors.count)}</span>
+                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
                       </div>
                     </div>
                   </div>
@@ -165,14 +165,14 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.contrast.count)}</span>
+                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.contrast.count)}</span>
+                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
                       </div>
                     </div>
                   </div>
@@ -191,14 +191,14 @@ export default function Home() {
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full justify-start m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.structure.count)}</span>
+                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
                       </div>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full m-1 items-center justify-between'>
                       <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {usePageReportStore(state => state.structure.count)}</span>
+                        <span className='absolute text-2xl font-semibold'> {error.count}</span>
                       </div>
                     </div>
                   </div>
@@ -294,7 +294,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'red' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{usePageReportStore(state => state.errors.count)}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{error.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -315,7 +315,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'fuchsia' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{usePageReportStore(state => state.contrast.count)}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{error.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -339,7 +339,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'olive' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{usePageReportStore(state => state.alerts.count)}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{error.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -361,7 +361,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'purple' }} />
-                <span className='absolute text-2xl font-semibold text-white'> {usePageReportStore(state => state.structure.count)}
+                <span className='absolute text-2xl font-semibold text-white'> {error.count}
                 </span>
               </div>
             </div>

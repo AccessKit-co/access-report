@@ -2,13 +2,17 @@
 
 import { useRef, useState, KeyboardEvent, use } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { usePageReportStore, useIssueStore, useSubtypeStore } from "../store/PageReportStore";
+import { useIssueStore } from "../store/PageReportStore";
 
 
 interface Category {
+    id: string;
+    description: string;
+    priority: number;
 }
 
 interface ApiResponse {
+    categories: Category[];
     // other properties from the API response if needed
 }
 
@@ -19,7 +23,6 @@ export const URLSearch = () => {
     const [contrastCount, setContrastCount] = useState<number>(0);
     const [structureCount, setStructureCount] = useState<number>(0);
     const [alertsCount, setAlertsCount] = useState<number>(0);
-    const PageReportStore = usePageReportStore();
     const ErrorStore = useIssueStore();
 
     const handleFocus = () => {
@@ -46,20 +49,19 @@ export const URLSearch = () => {
                 setCategories(categories);
                 console.log(categories);
                 console.log(categories['error']);
-                console.log(categories['error']);
-
-                () => PageReportStore.errors.setIssueCount(10);
-                () => ErrorStore.setIssueCount(10);
-
-                console.log(PageReportStore
-                    .errors.count)
+                console.log(categories.error.count);
+                ErrorStore.setIssueCount(categor.error.count)
                 console.log(ErrorStore.count)
+
                 console.log(categories['error']['count']);
 
 
             } catch (error) {
                 console.log("Error:", error);
             }
+
+            console.log(ErrorStore.count)
+
         }
     };
 
