@@ -14,7 +14,7 @@ export type Issue = {
     description: string;
     count: number;
     subtypes?: Subtype[];
-    setIssue: (text: string, number: number) => void;
+    setIssue: (issue: Issue) => void;
     setIssueDescription: (text: string) => void;
     setIssueCount: (number: number) => void;
 };
@@ -54,13 +54,13 @@ const useSubtypeStore = create<Subtype>((set) => ({
 }));
 
 const useIssueStore = create<Issue>((set) => ({
-    description: 'Issue',
+    description: '',
     count: 0,
-    setIssue(text: string, number: number, subtypes?: Subtype[]) {
+    setIssue(issue: Issue) {
         set(state => ({
-            description: text,
-            count: number,
-            subtypes: subtypes ? subtypes : []
+            description: issue.description,
+            count: issue.count,
+            subtypes: issue.subtypes ? issue.subtypes : []
         }));
     },
     setIssueDescription(text: string) {
