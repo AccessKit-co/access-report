@@ -329,7 +329,7 @@ export default function Home() {
                 {IssueReport.subtypes ?
                   <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
                     {Object.values(IssueReport.subtypes).map(
-                      (subtype) => <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} xpaths={subtype.xpaths} />)}
+                      (subtype) => <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} selectors={subtype.selectors} />)}
                   </div>
                   : []}
               </div>

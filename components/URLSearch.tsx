@@ -40,7 +40,7 @@ export const URLSearch = () => {
             event.preventDefault();
             const url = event.currentTarget.value;
             try {
-                const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=3&url=${url}`);
+                const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
                 const json: ApiResponse = await response.json();
                 console.log(json);
                 const { categories } = json;

@@ -40,9 +40,9 @@ export default function IssueSubtype(subtype: Subtype) {
             </button>
             {isClicked ?
                 <div className='relative flex flex-auto m-1 items-center justify-center h-48 '>
-                    {subtype.xpaths ?
+                    {subtype.selectors ?
                         <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full'>
-                            {subtype.xpaths.map(
+                            {subtype.selectors.map(
                                 (code) => <Issue text={code} />
                             )}
 
