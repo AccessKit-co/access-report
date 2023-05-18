@@ -33,52 +33,8 @@ interface ApiResponse {
 }
 
 export default function Home() {
-  const clickPoint = useRef<HTMLDivElement>(null);
-  const [categories, setCategories] = useState<Category[]>([]);
-
   const PageReport = usePageReportStore();
   const IssueReport = useIssueStore();
-
-  const handleFocus = () => {
-    if (clickPoint.current) {
-      clickPoint.current.style.display = "none";
-    }
-  };
-
-  const handleBlur = () => {
-    if (clickPoint.current) {
-      clickPoint.current.style.display = "block";
-    }
-  };
-
-
-  const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const url = event.currentTarget.value;
-      try {
-        const response = await fetch(`https://wave.webaim.org/api/request?key=Hx9brA2T3220&reporttype=3&url=${url}`);
-        const json: ApiResponse = await response.json();
-        console.log(json);
-        const { categories } = json;
-        setCategories(categories);
-        const { error } = categories;
-
-        console.log(categories);
-        var { error: { count } } = categories;
-        setErrorCount(count);
-        var { contrast: { count } } = categories;
-        setContrastCount(count);
-        var { structure: { count } } = categories;
-        setStructureCount(count);
-        var { alert: { count } } = categories;
-        setAlertsCount(count);
-        console.log(count)
-      } catch (error) {
-        console.log("Error:", error);
-      }
-    }
-  };
 
   return (
 
@@ -94,30 +50,24 @@ export default function Home() {
         <div className='md:col-span-3'>
           <div
             className="flex flex-col rounded-lg border px-5 py-4 h-full">
-            <div className='flex flex-row w-full h-1/6 items-center justify-between mx-1 gap-2'>
-              <div className='flex h-full justify-start m-2 items-center'>
+            <div className='flex flex-row w-full h-1/6 items-center justify-between'>
+              <div className='flex m-2 justify-center items-center'>
                 <h2 className='text-xl font-semibold '> Overall Report</h2>
               </div>
-              <div className='flex flex-row m-2 w-1/3 justify-center items-center h-full'>
-                <div className='flex h-full justify-center items-center mb-2'>
-                  <div className='flex h-full rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center '>
-                    <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mx-1'>
-                        <h2 className='text-xs font-light '>Avg per page </h2>
-                      </div>
-                    </div>
+              <div className='flex flex-row m-2 w-1/3  justify-center items-end h-full gap-1'>
+                <div className='flex h-2/3 rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center mb-1 '>
+                  <div className='flex h-full items-center justify-start mx-1'>
+                    <p className='text-xs font-light '>Average / page </p>
                   </div>
-                  <div className='flex rounded-lg border border-gray-100 bg-gray-100 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start mx-1'>
-                        <h2 className='text-xs font-light '>Total per page</h2>
-                      </div>
-                    </div>
+                </div>
+                <div className='flex rounded-lg border border-gray-100 bg-gray-100 h-2/3 w-1/2 justify-center items-center mb-1'>
+                  <div className='flex h-full items-center justify-start mx-1'>
+                    <p className='text-xs font-light '>Total</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='flex flex-col w-full h-full mx-1 items-center justify-center gap-2'>
+            <div className='flex flex-col w-full h-5/6 items-center justify-center gap-2'>
               <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
@@ -129,49 +79,41 @@ export default function Home() {
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.error.count}
-                        </span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.error.count}
+                      </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.error.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.error.count}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
+              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <ImContrast style={{ fill: 'fuchsia' }} />
                   </div>
-                  <div className='flex h-full justify-center ml-1 items-center'>
-                    <h2 className='text-xl font-semibold'>Contrast</h2>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xl font-semibold '>Contrast</h2>
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}
+                      </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className='flex rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
+              </div><div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <IoConstructSharp style={{ fill: 'purple' }} />
@@ -182,17 +124,14 @@ export default function Home() {
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full justify-start m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}
+                      </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full m-1 items-center justify-between'>
-                      <div className='flex h-full items-center justify-start'>
-                        <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
-                      </div>
+                    <div className='flex h-full items-center justify-center'>
+                      <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
                     </div>
                   </div>
                 </div>
@@ -274,7 +213,9 @@ export default function Home() {
 
       <div className='flex flex-col gap-4 w-full'>
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
-          <div
+          <button onClick={() => {
+            IssueReport.setIssue(PageReport.error)
+          }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
               <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
@@ -295,8 +236,13 @@ export default function Home() {
                 Issues in compliance with the code.
               </p>
             </div>
-          </div>
-          <div className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-hidden">
+          </button>
+
+          {/** Contrast Issues Button */}
+
+          <button onClick={() => {
+            IssueReport.setIssue(PageReport.contrast)
+          }} className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-hidden">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
               <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
                 <ImContrast style={{ fill: 'fuchsia' }} />
@@ -318,8 +264,10 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
-          <div
+          </button>
+          <button onClick={() => {
+            IssueReport.setIssue(PageReport.alert)
+          }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
               <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
@@ -340,8 +288,10 @@ export default function Home() {
                 Possible problems in the code.
               </p>
             </div>
-          </div>
-          <div
+          </button>
+          <button onClick={() => {
+            IssueReport.setIssue(PageReport.structure)
+          }}
             className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
               <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
@@ -363,29 +313,27 @@ export default function Home() {
                 Issues with how the website is structured.
               </p>
             </div>
-          </div>
+          </button>
         </div>
 
-        {/** Page Report Issue */}
+        {/** Page Issue Report */
 
-        <div
-          className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
-          <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-            <h2 className='text-xl font-semibold '> {IssueReport.description} Report </h2>
-          </div>
-          <div className='relative flex mx-1 items-center justify-center h-64'>
-            <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-              <IssueSubtype />
-            </div>
-          </div>
-        </div>
+          /** Only show if description is '', which means none are selected */
+          IssueReport.description == '' ? null :
+            <div
+              className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
+              <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
+                <h2 className='text-xl font-semibold '> {IssueReport.description} Report </h2>
+              </div>
+              <div className='relative flex mx-1 items-center justify-center h-64'>
+                {IssueReport.subtypes ?
+                  <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
+                    {Object.values(IssueReport.subtypes).map(
+                      (subtype) => <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} xpaths={subtype.xpaths} />)}
+                  </div>
+                  : []}
+              </div>
+            </div>}
       </div >
     </main >
   )

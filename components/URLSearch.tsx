@@ -40,18 +40,20 @@ export const URLSearch = () => {
             event.preventDefault();
             const url = event.currentTarget.value;
             try {
-                const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&url=${url}`);
+                const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=3&url=${url}`);
                 const json: ApiResponse = await response.json();
                 console.log(json);
                 const { categories } = json;
                 setCategories(categories);
-                PageReport.setError(categories.error.count);
-                PageReport.setContrast(categories.contrast.count);
-                PageReport.setAlert(categories.alert.count);
-                PageReport.setStructure(categories.structure.count);
-                console.log(categories.error.count);
-                console.log(PageReport.error);
-                console.log(PageReport.contrast.count);
+                PageReport.setUrl(json.statistics.pageurl)
+                PageReport.setError({ count: categories.error.count, subtypes: categories.error.items });
+                PageReport.setContrast({ count: categories.contrast.count, subtypes: categories.contrast.items });
+                PageReport.setAlert({ count: categories.alert.count, subtypes: categories.alert.items });
+                PageReport.setStructure({ count: categories.structure.count, subtypes: categories.structure.items });
+                console.log(PageReport.url);
+                console.log(json.statistics.pageurl);
+                console.log(PageReport.error.subtypes);
+                console.log(Object.values(PageReport.error.subtypes));
                 console.log(PageReport.structure);
 
 

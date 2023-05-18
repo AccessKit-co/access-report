@@ -1,36 +1,66 @@
 import { type } from 'os';
 import { create } from 'zustand';
 
-type Issue = {
+export type Subtype = {
     description: string;
     count: number;
-    setIssue: (text: string, number: number) => void;
+    issues: string[];
+    setdescription: (text: string) => void;
+    setcount: (number: number) => void;
+    setissues: (text: string[]) => void;
+};
+
+export type Issue = {
+    description: string;
+    count: number;
+    subtypes?: Subtype[];
+    setIssue: (issue: Issue) => void;
     setIssueDescription: (text: string) => void;
     setIssueCount: (number: number) => void;
 };
 
-type PageReport = {
+export type PageReport = {
     url: string;
     error: Issue;
     contrast: Issue;
     alert: Issue;
     structure: Issue;
     setUrl: (text: string) => void;
-    setError: (number: number) => void;
-    setContrast: (number: number) => void;
-    setAlert: (number: number) => void;
-    setStructure: (number: number) => void;
+    setError: (issue: Issue) => void;
+    setContrast: (issue: Issue) => void;
+    setAlert: (issue: Issue) => void;
+    setStructure: (issue: Issue) => void;
 };
 
-
+const useSubtypeStore = create<Subtype>((set) => ({
+    description: 'Subtype',
+    count: 0,
+    issues: [],
+    setdescription(text: string) {
+        set(state => ({
+            description: text
+        }));
+    },
+    setcount(newCount: number) {
+        set(state => ({
+            count: newCount
+        }));
+    },
+    setissues(newIssues: string[]) {
+        set(state => ({
+            issues: newIssues
+        }));
+    },
+}));
 
 const useIssueStore = create<Issue>((set) => ({
-    description: 'Issue',
+    description: '',
     count: 0,
-    setIssue(text: string, number: number) {
+    setIssue(issue: Issue) {
         set(state => ({
-            description: text,
-            count: number
+            description: issue.description,
+            count: issue.count,
+            subtypes: issue.subtypes ? issue.subtypes : []
         }));
     },
     setIssueDescription(text: string) {
@@ -43,43 +73,61 @@ const useIssueStore = create<Issue>((set) => ({
             count: newCount
         }));
     },
+    setSubtypes(newSubtypes: Subtype[]) {
+        set(state => ({
+            subtypes: newSubtypes
+        }));
+    },
 }));
 
 const usePageReportStore = create<PageReport>((set) => ({
-    url: '',
+    url: 'none',
     error: { description: "Error", count: 0 },
     contrast: { description: "Contrast", count: 0 },
     alert: { description: "Alerts", count: 0 },
     structure: { description: "Structure", count: 0 },
     setUrl(text: string) {
         set(state => ({
-            ...state,
             url: text
         }));
     },
-    setError(number: number) {
+    setError(issue: Issue) {
         set(state => ({
-            error: { description: "Error", count: number }
+            error: {
+                ...state.error,
+                count: issue.count,
+                subtypes: issue.subtypes ? issue.subtypes : []
+            }
         }));
     },
-    setContrast(number: number) {
+    setContrast(issue: Issue) {
         set(state => ({
-            contrast: { description: "Contrast", count: number }
+            contrast: {
+                ...state.contrast,
+                count: issue.count,
+                subtypes: issue.subtypes ? issue.subtypes : []
+            }
         }));
     },
-    setAlert(number: number) {
+    setAlert(issue: Issue) {
         set(state => ({
-            alert: { description: "Alerts", count: number }
+            alert: {
+                ...state.alert,
+                count: issue.count,
+                subtypes: issue.subtypes ? issue.subtypes : []
+            }
+        }));
+    },
+    setStructure(issue: Issue) {
+        set(state => ({
+            structure: {
+                ...state.structure,
+                count: issue.count,
+                subtypes: issue.subtypes ? issue.subtypes : []
+            }
         }));
     }
-    ,
-    setStructure(number: number) {
-        set(state => ({
-            structure: { description: "Structure", count: number }
-        }));
-    },
-
 }));
 
-export { usePageReportStore, useIssueStore };
+export { usePageReportStore, useIssueStore, useSubtypeStore };
 
