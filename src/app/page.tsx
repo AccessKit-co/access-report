@@ -244,13 +244,14 @@ export default function Home() {
           <button onClick={() => {
             (IssueReport.description == "Contrast") ? IssueReport.setIssueDescription('') :
               IssueReport.setIssue(PageReport.contrast)
-          }} className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-hidden">
+          }}
+            className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
+              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                 <ImContrast style={{ fill: 'fuchsia' }} />
               </div>
-              <div className='flex h-full justify-start ml-1 items-center justify-center'>
-                <h2 className='text-xl font-semibold'>Contrast</h2>
+              <div className='flex h-full justify-start ml-1 items-center'>
+                <h2 className='text-xl font-semibold '>Contrast</h2>
               </div>
             </div>
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
@@ -260,11 +261,9 @@ export default function Home() {
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-              <div className=''>
-                <p className={`m-0 text-sm opacity-50 `}>
-                  Issues in visibility for people with impared vision.
-                </p>
-              </div>
+              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                Problems regarding color contrast
+              </p>
             </div>
           </button>
           <button onClick={() => {
@@ -293,7 +292,7 @@ export default function Home() {
           </button>
           <button onClick={() => {
             (IssueReport.description == "Structure") ? IssueReport.setIssueDescription('') :
-            IssueReport.setIssue(PageReport.structure)
+              IssueReport.setIssue(PageReport.structure)
           }}
             className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
