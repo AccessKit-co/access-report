@@ -214,7 +214,8 @@ export default function Home() {
       <div className='flex flex-col gap-4 w-full'>
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
           <button onClick={() => {
-            IssueReport.setIssue(PageReport.error)
+            (IssueReport.description == "Errors") ? IssueReport.setIssueDescription('') :
+              IssueReport.setIssue(PageReport.error)
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -241,7 +242,8 @@ export default function Home() {
           {/** Contrast Issues Button */}
 
           <button onClick={() => {
-            IssueReport.setIssue(PageReport.contrast)
+            (IssueReport.description == "Contrast") ? IssueReport.setIssueDescription('') :
+              IssueReport.setIssue(PageReport.contrast)
           }} className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-hidden">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
               <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
@@ -266,7 +268,7 @@ export default function Home() {
             </div>
           </button>
           <button onClick={() => {
-            IssueReport.setIssue(PageReport.alert)
+            (IssueReport.description == "Alerts") ? IssueReport.setIssueDescription('') : IssueReport.setIssue(PageReport.alert)
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
@@ -290,6 +292,7 @@ export default function Home() {
             </div>
           </button>
           <button onClick={() => {
+            (IssueReport.description == "Structure") ? IssueReport.setIssueDescription('') :
             IssueReport.setIssue(PageReport.structure)
           }}
             className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
