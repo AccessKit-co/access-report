@@ -214,7 +214,7 @@ export default function Home() {
       <div className='flex flex-col gap-4 w-full'>
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
           <button onClick={() => {
-            (IssueReport.description == "Errors") ? IssueReport.setIssueDescription('') :
+            (IssueReport.description == "Error") ? IssueReport.setIssueDescription('') :
               IssueReport.setIssue(PageReport.error)
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
