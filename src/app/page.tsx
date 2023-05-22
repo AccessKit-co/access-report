@@ -33,8 +33,8 @@ interface ApiResponse {
 }
 
 export default function Home() {
-  const PageReport = usePageReportStore();
-  const IssueReport = useIssueStore();
+  const PageStore = usePageReportStore();
+  const IssueStore = useIssueStore();
 
   return (
 
@@ -80,13 +80,13 @@ export default function Home() {
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageReport.error.count}
+                      <span className='absolute text-2xl font-semibold'> {PageStore.error.count}
                       </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageReport.error.count}</span>
+                      <span className='absolute text-2xl font-semibold'> {PageStore.error.count}</span>
                     </div>
                   </div>
                 </div>
@@ -103,13 +103,13 @@ export default function Home() {
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}
+                      <span className='absolute text-2xl font-semibold'> {PageStore.contrast.count}
                       </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageReport.contrast.count}</span>
+                      <span className='absolute text-2xl font-semibold'> {PageStore.contrast.count}</span>
                     </div>
                   </div>
                 </div>
@@ -125,13 +125,13 @@ export default function Home() {
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}
+                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
                       </span>
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageReport.structure.count}</span>
+                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}</span>
                     </div>
                   </div>
                 </div>
@@ -214,8 +214,8 @@ export default function Home() {
       <div className='flex flex-col gap-4 w-full'>
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
           <button onClick={() => {
-            (IssueReport.description == "Error") ? IssueReport.setIssueDescription('') :
-              IssueReport.setIssue(PageReport.error)
+            (IssueStore.description == "Error") ? IssueStore.setIssueDescription('') :
+              IssueStore.setIssue(PageStore.error)
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -229,7 +229,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'red' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{PageReport.error.count}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{PageStore.error.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -242,8 +242,8 @@ export default function Home() {
           {/** Contrast Issues Button */}
 
           <button onClick={() => {
-            (IssueReport.description == "Contrast") ? IssueReport.setIssueDescription('') :
-              IssueReport.setIssue(PageReport.contrast)
+            (IssueStore.description == "Contrast") ? IssueStore.setIssueDescription('') :
+              IssueStore.setIssue(PageStore.contrast)
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -257,7 +257,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'fuchsia' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{PageReport.contrast.count}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{PageStore.contrast.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -267,7 +267,7 @@ export default function Home() {
             </div>
           </button>
           <button onClick={() => {
-            (IssueReport.description == "Alerts") ? IssueReport.setIssueDescription('') : IssueReport.setIssue(PageReport.alert)
+            (IssueStore.description == "Alerts") ? IssueStore.setIssueDescription('') : IssueStore.setIssue(PageStore.alert)
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
@@ -281,7 +281,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'olive' }} />
-                <span className='absolute text-2xl font-semibold text-white'>{PageReport.alert.count}</span>
+                <span className='absolute text-2xl font-semibold text-white'>{PageStore.alert.count}</span>
               </div>
             </div>
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -291,8 +291,8 @@ export default function Home() {
             </div>
           </button>
           <button onClick={() => {
-            (IssueReport.description == "Structure") ? IssueReport.setIssueDescription('') :
-              IssueReport.setIssue(PageReport.structure)
+            (IssueStore.description == "Structure") ? IssueStore.setIssueDescription('') :
+              IssueStore.setIssue(PageStore.structure)
           }}
             className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -306,7 +306,7 @@ export default function Home() {
             <div className='flex flex-row w-full h-3/5 items-center justify-center'>
               <div className='flex relative w-full h-full items-center justify-center text-7xl'>
                 <VscCircleLargeFilled style={{ fill: 'purple' }} />
-                <span className='absolute text-2xl font-semibold text-white'> {PageReport.structure.count}
+                <span className='absolute text-2xl font-semibold text-white'> {PageStore.structure.count}
                 </span>
               </div>
             </div>
@@ -321,17 +321,17 @@ export default function Home() {
         {/** Page Issue Report */
 
           /** Only show if description is '', which means none are selected */
-          IssueReport.description == '' ? null :
+          IssueStore.description == '' ? null :
             <div
               className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
               <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-                <h2 className='text-xl font-semibold '> {IssueReport.description} Report </h2>
+                <h2 className='text-xl font-semibold '> {IssueStore.description} Report </h2>
               </div>
               <div className='relative flex mx-1 items-center justify-center h-64'>
-                {IssueReport.subtypes ?
+                {IssueStore.subtypes ?
                   <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-                    {Object.values(IssueReport.subtypes).map(
-                      (subtype) => <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} selectors={subtype.selectors} />)}
+                    {Object.values(IssueStore.subtypes).map(
+                      (subtype) => <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} selectors={subtype.selectors} url={PageStore.url} />)}
                   </div>
                   : []}
               </div>
