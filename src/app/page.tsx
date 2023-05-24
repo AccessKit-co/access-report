@@ -55,14 +55,20 @@ export default function Home() {
                 <h2 className='text-xl font-semibold '> Overall Report</h2>
               </div>
               <div className='flex flex-row m-2 w-1/3  justify-center items-end h-full gap-1'>
-                <div className='flex h-2/3 rounded-lg border border-gray-100 bg-gray-100 w-1/2 justify-center items-center mb-1 '>
+                {/** Add rounded-lg border border-gray-100 bg-gray-100 to className, when you want to add the average per page */}
+                <div className='flex h-2/3  w-1/2 justify-center items-center mb-1 '>
                   <div className='flex h-full items-center justify-start mx-1'>
+                    {/**
                     <p className='text-xs font-light '>Average / page </p>
+                     */}
                   </div>
                 </div>
-                <div className='flex rounded-lg border border-gray-100 bg-gray-100 h-2/3 w-1/2 justify-center items-center mb-1'>
+                {/** Add rounded-lg border border-gray-100 bg-gray-100 to className, when you want to add the average per page */}
+                <div className='flex h-2/3 w-1/2 justify-center items-center mb-1'>
                   <div className='flex h-full items-center justify-start mx-1'>
+                    {/**
                     <p className='text-xs font-light '>Total</p>
+                      */}
                   </div>
                 </div>
               </div>
@@ -78,10 +84,13 @@ export default function Home() {
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                  <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
+                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
+                  <div className='flex w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full items-center justify-center'>
+                      {/**
                       <span className='absolute text-2xl font-semibold'> {PageStore.error.count}
                       </span>
+                       */}
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
@@ -101,10 +110,13 @@ export default function Home() {
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                  <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
+                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
+                  <div className='flex w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full items-center justify-center'>
+                      {/**
                       <span className='absolute text-2xl font-semibold'> {PageStore.contrast.count}
                       </span>
+                       */}
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
@@ -123,10 +135,13 @@ export default function Home() {
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                  <div className='flex rounded-lg border bg-gray-300 w-1/2 justify-center items-center h-full '>
+                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
+                  <div className='flex w-1/2 justify-center items-center h-full '>
                     <div className='flex h-full items-center justify-center'>
+                      {/**
                       <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
                       </span>
+                       */}
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
