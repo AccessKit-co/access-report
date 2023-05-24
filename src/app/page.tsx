@@ -1,23 +1,14 @@
 
 "use client";
 
-import Image from 'next/image';
-import PageReport from './PageReport';
-import SiteOverallReport from './SiteOverallReport';
-import PageSelector from './PageSelector';
-import IssueReport from '/components/PageReport/IssueReport/IssueReport';
-import { useRef, useState, KeyboardEvent } from "react";
-import { AiOutlineSearch, AiFillCheckCircle } from 'react-icons/ai';
+import { AiFillCheckCircle } from 'react-icons/ai';
 import { MdError } from 'react-icons/md';
 import { VscCircleLargeFilled } from 'react-icons/vsc';
-import { ImContrast, ImCross } from 'react-icons/im';
-import { FaExclamationTriangle } from 'react-icons/fa';
+import { ImContrast, } from 'react-icons/im';
 import { IoConstructSharp } from 'react-icons/io5';
 import { FiAlertTriangle } from 'react-icons/fi';
-import { AiOutlineAim } from 'react-icons/ai';
 import { MdShield } from 'react-icons/md';
-import IssueSubtype from '/components/PageReport/IssueReport/IssueSubtype';
-import Issue from '../../components/PageReport/IssueReport/IssueC';
+import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { useIssueStore, usePageReportStore } from '../../store/PageReportStore';
 import { URLSearch } from '../../components/URLSearch';
 
@@ -75,7 +66,7 @@ export default function Home() {
             </div>
             <div className='flex flex-col w-full h-5/6 items-center justify-center gap-2'>
               <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
-                <div className='flex flex-row m-2 items-center justify-center'>
+                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <MdError style={{ fill: 'red' }} />
                   </div>
@@ -101,7 +92,7 @@ export default function Home() {
                 </div>
               </div>
               <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
-                <div className='flex flex-row m-2 items-center justify-center'>
+                <div className='flex flex-row m-2 w-1/2 items-center justify-start'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <ImContrast style={{ fill: 'fuchsia' }} />
                   </div>
@@ -125,8 +116,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div><div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
-                <div className='flex flex-row m-2 items-center justify-center'>
+              </div>
+              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
+                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <IoConstructSharp style={{ fill: 'purple' }} />
                   </div>
@@ -137,7 +129,7 @@ export default function Home() {
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
                   {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
                   <div className='flex w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full items-center justify-center'>
+                    <div className='flex w-full h-full items-center justify-center'>
                       {/**
                       <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
                       </span>
@@ -145,7 +137,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full items-center justify-center'>
+                    <div className='flex h-full w-full items-center justify-center'>
                       <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}</span>
                     </div>
                   </div>
@@ -206,7 +198,7 @@ export default function Home() {
               </div>
               */}
             </div>
-            {(PageStore.error.count >= 30) ?
+            {(PageStore.error.count >= 10) ?
               <div className='flex flex-row w-full h-4/5 items-center justify-center' >
                 <div className='flex relative w-full h-full items-center justify-center text-8xl' >
                   <MdShield style={{ fill: 'red' }} />
@@ -372,7 +364,8 @@ export default function Home() {
                 {IssueStore.subtypes ?
                   <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
                     {Object.values(IssueStore.subtypes).map(
-                      (subtype) => <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} selectors={subtype.selectors} url={PageStore.url} />)}
+                      (subtype, index) =>
+                        <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} selectors={subtype.selectors} url={PageStore.url} />)}
                   </div>
                   : []}
               </div>

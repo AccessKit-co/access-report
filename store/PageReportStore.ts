@@ -1,41 +1,58 @@
-import { type } from 'os';
 import { create } from 'zustand';
 
-export type Subtype = {
+{/** These are the raw data types */ }
+export type SubtypeState = {
     description: string;
     count: number;
-    issues: string[];
+    id: string;
+    url: string;
+    selectors: string[];
+};
+
+export type IssueState = {
+    description: string;
+    count: number;
+    subtypes: SubtypeState[];
+};
+
+export type PageReportState = {
+    url: string;
+    error: IssueState;
+    contrast: IssueState;
+    alert: IssueState;
+    structure: IssueState;
+};
+
+{/** These are the store types with the setter functions */ }
+export type SubtypeStore = SubtypeState & {
     setdescription: (text: string) => void;
     setcount: (number: number) => void;
-    setissues: (text: string[]) => void;
+    setselectors: (text: string[]) => void;
+    setid: (text: string) => void;
+    seturl: (text: string) => void;
 };
 
-export type Issue = {
-    description: string;
-    count: number;
-    subtypes?: Subtype[];
-    setIssue: (issue: Issue) => void;
+export type IssueStore = IssueState & {
+    setIssue: (issue: IssueState) => void;
     setIssueDescription: (text: string) => void;
-    setIssueCount: (number: number) => void;
+    setIssueCount: (newCount: number) => void;
+    setSubtypes: (newSubtypes: SubtypeState[]) => void;
 };
 
-export type PageReport = {
-    url: string;
-    error: Issue;
-    contrast: Issue;
-    alert: Issue;
-    structure: Issue;
+export type PageReportStore = PageReportState & {
     setUrl: (text: string) => void;
-    setError: (issue: Issue) => void;
-    setContrast: (issue: Issue) => void;
-    setAlert: (issue: Issue) => void;
-    setStructure: (issue: Issue) => void;
+    setError: (issue: IssueState) => void;
+    setContrast: (issue: IssueState) => void;
+    setAlert: (issue: IssueState) => void;
+    setStructure: (issue: IssueState) => void;
 };
 
-const useSubtypeStore = create<Subtype>((set) => ({
-    description: 'Subtype',
+const useSubtypeStore = create<SubtypeStore>((set) => ({
+    description: 'description of this subtype',
     count: 0,
-    issues: [],
+    selectors: [],
+    id: 'Subtype',
+    url: 'none',
     setdescription(text: string) {
         set(state => ({
             description: text
@@ -46,17 +63,28 @@ const useSubtypeStore = create<Subtype>((set) => ({
             count: newCount
         }));
     },
-    setissues(newIssues: string[]) {
+    setselectors(newSelectors: string[]) {
         set(state => ({
-            issues: newIssues
+            selectors: newSelectors
+        }));
+    },
+    setid(newId: string) {
+        set(state => ({
+            id: newId
+        }));
+    },
+    seturl(newUrl: string) {
+        set(state => ({
+            url: newUrl
         }));
     },
 }));
 
-const useIssueStore = create<Issue>((set) => ({
+const useIssueStore = create<IssueStore>((set) => ({
     description: '',
     count: 0,
-    setIssue(issue: Issue) {
+    subtypes: [],
+    setIssue(issue: IssueState) {
         set(state => ({
             description: issue.description,
             count: issue.count,
@@ -73,25 +101,25 @@ const useIssueStore = create<Issue>((set) => ({
             count: newCount
         }));
     },
-    setSubtypes(newSubtypes: Subtype[]) {
+    setSubtypes(newSubtypes: SubtypeState[]) {
         set(state => ({
             subtypes: newSubtypes
         }));
     },
 }));
 
-const usePageReportStore = create<PageReport>((set) => ({
+const usePageReportStore = create<PageReportStore>((set) => ({
     url: 'none',
-    error: { description: "Error", count: 0 },
-    contrast: { description: "Contrast", count: 0 },
-    alert: { description: "Alerts", count: 0 },
-    structure: { description: "Structure", count: 0 },
+    error: { description: "Error", count: 0, subtypes: [] },
+    contrast: { description: "Contrast", count: 0, subtypes: [] },
+    alert: { description: "Alerts", count: 0, subtypes: [] },
+    structure: { description: "Structure", count: 0, subtypes: [] },
     setUrl(text: string) {
         set(state => ({
             url: text
         }));
     },
-    setError(issue: Issue) {
+    setError(issue: IssueState) {
         set(state => ({
             error: {
                 ...state.error,
@@ -100,7 +128,7 @@ const usePageReportStore = create<PageReport>((set) => ({
             }
         }));
     },
-    setContrast(issue: Issue) {
+    setContrast(issue: IssueState) {
         set(state => ({
             contrast: {
                 ...state.contrast,
@@ -109,7 +137,7 @@ const usePageReportStore = create<PageReport>((set) => ({
             }
         }));
     },
-    setAlert(issue: Issue) {
+    setAlert(issue: IssueState) {
         set(state => ({
             alert: {
                 ...state.alert,
@@ -118,7 +146,7 @@ const usePageReportStore = create<PageReport>((set) => ({
             }
         }));
     },
-    setStructure(issue: Issue) {
+    setStructure(issue: IssueState) {
         set(state => ({
             structure: {
                 ...state.structure,
