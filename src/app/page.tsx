@@ -151,7 +151,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+
               {/** Number of compliant and non compliant pages (fix height, when you uncomment this section)
+              
               <div className='flex flex-row h-1/4 w-full justify-left items-center gap-2'>
                 <div className='flex rounded-lg border bg-gray-200 h-full w-1/2 justify-between'>
                   <div className='flex flex-row m-2 items-center justify-center'>
@@ -182,35 +184,56 @@ export default function Home() {
                 </div>
               </div>
                */}
+
             </div>
           </div>
         </div>
         <div className='md:col-span-1 flex flex-col gap-2 '>
           <div
-            className="group rounded-lg border px-5 py-4 transition-colors hover:dark:bg-neutral-800/30 h-3/4" >
+            className="group rounded-lg border px-5 py-4 transition-colors hover:dark:bg-neutral-800/30 h-full" >
             <div className='flex flex-row w-full h-1/5 items-center justify-center' >
+              {/** 
               <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1' >
                 <AiOutlineAim style={{ fill: 'green' }} />
               </div>
+              */}
               < div className='flex h-full justify-start mx-1 items-center' >
-                <h2 className='text-xl font-semibold ' > Overall Score </h2>
+                <h2 className='text-xl font-semibold ' > Compliance Status</h2>
               </div>
+              {/**
               < div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 ml-1' >
-                <AiOutlineAim style={{ fill: 'green' }} />
+                <AiOutlineAim style={{ fill: 'black' }} />
               </div>
+              */}
             </div>
-            <div className='flex flex-row w-full h-3/5 items-center justify-center' >
-              <div className='flex relative w-full h-full items-center justify-center text-7xl' >
-                <MdShield style={{ fill: 'green' }} />
+            {(PageStore.error.count >= 30) ?
+              <div className='flex flex-row w-full h-4/5 items-center justify-center' >
+                <div className='flex relative w-full h-full items-center justify-center text-8xl' >
+                  <MdShield style={{ fill: 'red' }} />
+                  {/**
                 < span className='absolute text-2xl font-semibold text-white' > 8 </span>
+                 */}
+                </div>
               </div>
-            </div>
+              :
+              <div className='flex flex-row w-full h-4/5 items-center justify-center' >
+                <div className='flex relative w-full h-full items-center justify-center text-8xl' >
+                  <AiFillCheckCircle style={{ fill: 'green' }} />
+                  {/**
+                < span className='absolute text-2xl font-semibold text-white' > 8 </span>
+                 */}
+                </div>
+              </div>
+            }
+            {/** (Fix height if this is ever added back)
             < div className='flex flex-row w-full h-1/5 items-center justify-center' >
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
                 A score of less than 85 is at risk of legal action.
               </p>
             </div>
+            */}
           </div>
+          {/** Status Report (Fix height if this is ever added back)
           <div
             className="flex flex-col rounded-lg border px-5 py-4 gap-1">
             <div className='flex flex-row w-full h-1/4 items-center justify-center'>
@@ -223,6 +246,7 @@ export default function Home() {
                 Non Compliant</p>
             </div>
           </div>
+           */}
         </div>
       </div>
 
