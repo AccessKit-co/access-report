@@ -1,5 +1,8 @@
 import { create } from 'zustand';
 
+
+{/** keep in mind this store only works for reporttype=4 */ }
+
 {/** These are the raw data types */ }
 export type SubtypeState = {
     description: string;

@@ -1,6 +1,8 @@
 import { create } from 'zustand';
-import { PageReportState, usePageReportStore } from './PageReportStore';
+import { IssueState, IssueStore, useIssueStore } from './PageReportStore';
 import { use } from 'react';
+
+{/** keep in mind this store only works for reporttype=4 */ }
 
 {/** These are the categories we get from the API response from the WAVE call */ }
 export type StatusState = {
@@ -18,10 +20,19 @@ export type StatisticsState = {
     waveurl?: string;
 };
 
+export type CategoriesState = {
+    error: IssueState;
+    contrast: IssueState;
+    alert: IssueState;
+    structure: IssueState;
+    aria: IssueState;
+};
+
+
 export type APIResponseState = {
     status: StatusState;
     statistics: StatisticsState;
-    categories: PageReportState;
+    categories: CategoriesState;
 };
 
 {/** These are the store types with the setter functions */ }
@@ -43,7 +54,8 @@ export type StatisticsStore = StatisticsState & {
 export type APIResponseStore = APIResponseState & {
     setStatus: (status: StatusState) => void;
     setStatistics: (statistics: StatisticsState) => void;
-    setCategories: (categories: PageReportState) => void;
+    setCategories: (categories: CategoriesState) => void;
+    setAPIResponse: (response: APIResponseState) => void;
 };
 
 {/** This is the store itself */ }
@@ -106,10 +118,48 @@ const useStatisticsStore = create<StatisticsStore>((set) => ({
     }
 }));
 
+const useCategoriesStore = create<CategoriesState>((set) => ({
+    error: useIssueStore.getState(),
+    contrast: useIssueStore.getState(),
+    alert: useIssueStore.getState(),
+    structure: useIssueStore.getState(),
+    aria: useIssueStore.getState(),
+    setError(error: IssueState) {
+        set(state => ({
+            error: error
+        }));
+    },
+    setContrast(contrast: IssueState) {
+        set(state => ({
+            contrast: contrast
+        }));
+    },
+    setAlert(alert: IssueState) {
+        set(state => ({
+            alert: alert
+        }));
+
+    },
+
+    setStructure(structure: IssueState) {
+        set(state => ({
+            structure: structure
+        }));
+    },
+    setAria(aria: IssueState) {
+        set(state => ({
+            aria: aria
+        }));
+    },
+}));
+
+
+
+
 const useAPIResponseStore = create<APIResponseStore>((set) => ({
     status: useStatusStore.getState(),
     statistics: useStatisticsStore.getState(),
-    categories: usePageReportStore.getState(),
+    categories: useCategoriesStore.getState(),
     setStatus(status: StatusState) {
         set(state => ({
             status: status
@@ -120,7 +170,7 @@ const useAPIResponseStore = create<APIResponseStore>((set) => ({
             statistics: statistics
         }));
     },
-    setCategories(categories: PageReportState) {
+    setCategories(categories: CategoriesState) {
         set(state => ({
             categories: categories
         }));
