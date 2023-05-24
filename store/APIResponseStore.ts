@@ -124,5 +124,13 @@ const useAPIResponseStore = create<APIResponseStore>((set) => ({
         set(state => ({
             categories: categories
         }));
-    }
-}));
+    },
+    setAPIResponse(response: APIResponseState) {
+        set(state => ({
+            status: response.status,
+            statistics: response.statistics,
+            categories: response.categories
+        }));
+    }));
+
+export { useAPIResponseStore, useStatusStore, useStatisticsStore };

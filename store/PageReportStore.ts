@@ -21,6 +21,7 @@ export type PageReportState = {
     contrast: IssueState;
     alert: IssueState;
     structure: IssueState;
+    aria: IssueState;
 };
 
 {/** These are the store types with the setter functions */ }
@@ -30,6 +31,7 @@ export type SubtypeStore = SubtypeState & {
     setselectors: (text: string[]) => void;
     setid: (text: string) => void;
     seturl: (text: string) => void;
+    setSubtype: (subtype: SubtypeState) => void;
 };
 
 export type IssueStore = IssueState & {
@@ -45,6 +47,8 @@ export type PageReportStore = PageReportState & {
     setContrast: (issue: IssueState) => void;
     setAlert: (issue: IssueState) => void;
     setStructure: (issue: IssueState) => void;
+    setAria: (issue: IssueState) => void;
+    setPageReport: (pageReport: PageReportState) => void;
 };
 
 const useSubtypeStore = create<SubtypeStore>((set) => ({
@@ -53,6 +57,15 @@ const useSubtypeStore = create<SubtypeStore>((set) => ({
     selectors: [],
     id: 'Subtype',
     url: 'none',
+    setSubtype(subtype: SubtypeState) {
+        set(state => ({
+            description: subtype.description,
+            count: subtype.count,
+            selectors: subtype.selectors,
+            id: subtype.id,
+            url: subtype.url
+        }));
+    },
     setdescription(text: string) {
         set(state => ({
             description: text
@@ -114,6 +127,37 @@ const usePageReportStore = create<PageReportStore>((set) => ({
     contrast: { description: "Contrast", count: 0, subtypes: [] },
     alert: { description: "Alerts", count: 0, subtypes: [] },
     structure: { description: "Structure", count: 0, subtypes: [] },
+    aria: { description: "Aria", count: 0, subtypes: [] },
+    setPageReport(pageReport: PageReportState) {
+        set(state => ({
+            url: pageReport.url,
+            error: {
+                ...state.error,
+                count: pageReport.error.count,
+                subtypes: pageReport.error.subtypes ? pageReport.error.subtypes : []
+            },
+            contrast: {
+                ...state.contrast,
+                count: pageReport.contrast.count,
+                subtypes: pageReport.contrast.subtypes ? pageReport.contrast.subtypes : []
+            },
+            alert: {
+                ...state.alert,
+                count: pageReport.alert.count,
+                subtypes: pageReport.alert.subtypes ? pageReport.alert.subtypes : []
+            },
+            structure: {
+                ...state.structure,
+                count: pageReport.structure.count,
+                subtypes: pageReport.structure.subtypes ? pageReport.structure.subtypes : []
+            },
+            aria: {
+                ...state.aria,
+                count: pageReport.aria.count,
+                subtypes: pageReport.aria.subtypes ? pageReport.aria.subtypes : []
+            }
+        }));
+    },
     setUrl(text: string) {
         set(state => ({
             url: text
@@ -154,7 +198,16 @@ const usePageReportStore = create<PageReportStore>((set) => ({
                 subtypes: issue.subtypes ? issue.subtypes : []
             }
         }));
-    }
+    },
+    setAria(issue: IssueState) {
+        set(state => ({
+            aria: {
+                ...state.aria,
+                count: issue.count,
+                subtypes: issue.subtypes ? issue.subtypes : []
+            }
+        }));
+    },
 }));
 
 export { usePageReportStore, useIssueStore, useSubtypeStore };

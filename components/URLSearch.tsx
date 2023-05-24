@@ -3,6 +3,7 @@
 import { useRef, useState, KeyboardEvent, use } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useIssueStore, usePageReportStore } from "../store/PageReportStore";
+import { useAPIResponseStore } from "../store/APIResponseStore";
 
 
 interface Category {
@@ -18,9 +19,7 @@ interface ApiResponse {
 
 export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
-    const [categories, setCategories] = useState<Category[]>([]);
-
-    const PageReport = usePageReportStore();
+    const APIResponse = useAPIResponseStore();
 
 
     const handleFocus = () => {
@@ -42,6 +41,7 @@ export const URLSearch = () => {
             try {
                 const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
                 const json: ApiResponse = await response.json();
+                APIResponse.setAPIResponse(json);
                 console.log(json);
                 const { categories } = json;
                 setCategories(categories);
