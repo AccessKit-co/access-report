@@ -68,7 +68,7 @@ export default function Home() {
               </div>
             </div>
             <div className='flex flex-col w-full h-5/6 items-center justify-center gap-2'>
-              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
+              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <MdError style={{ fill: 'red' }} />
@@ -91,7 +91,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
+              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <ImContrast style={{ fill: 'fuchsia' }} />
@@ -113,7 +113,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div><div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/4 justify-between'>
+              </div><div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-center'>
                   <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
                     <IoConstructSharp style={{ fill: 'purple' }} />
@@ -136,6 +136,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+              {/** Number of compliant and non compliant pages (fix height, when you uncomment this section)
               <div className='flex flex-row h-1/4 w-full justify-left items-center gap-2'>
                 <div className='flex rounded-lg border bg-gray-200 h-full w-1/2 justify-between'>
                   <div className='flex flex-row m-2 items-center justify-center'>
@@ -165,6 +166,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+               */}
             </div>
           </div>
         </div>
