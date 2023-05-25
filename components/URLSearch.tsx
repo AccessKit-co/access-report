@@ -1,25 +1,11 @@
 "use client";
 
-import { useRef, useState, KeyboardEvent, use } from "react";
+import { useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useIssueStore, usePageReportStore } from "../store/PageReportStore";
-
-
-interface Category {
-    id: string;
-    description: string;
-    priority: number;
-}
-
-interface ApiResponse {
-    categories: Category[];
-    // other properties from the API response if needed
-}
+import { usePageReportStore } from "../store/PageReportStore";
 
 export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
-    const [categories, setCategories] = useState<Category[]>([]);
-
     const PageReport = usePageReportStore();
 
 
@@ -40,26 +26,15 @@ export const URLSearch = () => {
             event.preventDefault();
             const url = event.currentTarget.value;
             try {
-                const response = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=3&url=${url}`);
-                const json: ApiResponse = await response.json();
-                console.log(json);
-                const { categories } = json;
-                setCategories(categories);
-                PageReport.setUrl(json.statistics.pageurl)
-                PageReport.setError({ count: categories.error.count, subtypes: categories.error.items });
-                PageReport.setContrast({ count: categories.contrast.count, subtypes: categories.contrast.items });
-                PageReport.setAlert({ count: categories.alert.count, subtypes: categories.alert.items });
-                PageReport.setStructure({ count: categories.structure.count, subtypes: categories.structure.items });
-                console.log(PageReport.url);
-                console.log(json.statistics.pageurl);
-                console.log(PageReport.error.subtypes);
-                console.log(Object.values(PageReport.error.subtypes));
-                console.log(PageReport.structure);
-
+                const query = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
+                const response = await query.json();
+                console.log(response);
+                PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria })
 
             } catch (error) {
                 console.log("Error:", error);
             }
+            console.log(PageReport);
 
         }
     };

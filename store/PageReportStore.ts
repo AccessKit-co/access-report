@@ -1,41 +1,72 @@
-import { type } from 'os';
 import { create } from 'zustand';
 
-export type Subtype = {
+
+{/** keep in mind this store only works for reporttype=4 */ }
+
+{/** These are the raw data types */ }
+export type SubtypeState = {
     description: string;
     count: number;
-    issues: string[];
+    id: string;
+    selectors: string[];
+};
+
+export type IssueState = {
+    description: string;
+    count: number;
+    items: SubtypeState[];
+};
+
+export type PageReportState = {
+    url: string;
+    error: IssueState;
+    contrast: IssueState;
+    alert: IssueState;
+    feature: IssueState;
+    structure: IssueState;
+    aria: IssueState;
+};
+
+{/** These are the store types with the setter functions */ }
+export type SubtypeStore = SubtypeState & {
     setdescription: (text: string) => void;
     setcount: (number: number) => void;
-    setissues: (text: string[]) => void;
+    setselectors: (text: string[]) => void;
+    setid: (text: string) => void;
+    setSubtype: (subtype: SubtypeState) => void;
 };
 
-export type Issue = {
-    description: string;
-    count: number;
-    subtypes?: Subtype[];
-    setIssue: (issue: Issue) => void;
+export type IssueStore = IssueState & {
+    setIssue: (issue: IssueState) => void;
     setIssueDescription: (text: string) => void;
-    setIssueCount: (number: number) => void;
+    setIssueCount: (newCount: number) => void;
+    setSubtypes: (newSubtypes: SubtypeState[]) => void;
 };
 
-export type PageReport = {
-    url: string;
-    error: Issue;
-    contrast: Issue;
-    alert: Issue;
-    structure: Issue;
+export type PageReportStore = PageReportState & {
     setUrl: (text: string) => void;
-    setError: (issue: Issue) => void;
-    setContrast: (issue: Issue) => void;
-    setAlert: (issue: Issue) => void;
-    setStructure: (issue: Issue) => void;
+    setError: (issue: IssueState) => void;
+    setContrast: (issue: IssueState) => void;
+    setAlert: (issue: IssueState) => void;
+    setFeature: (issue: IssueState) => void;
+    setStructure: (issue: IssueState) => void;
+    setAria: (issue: IssueState) => void;
+    setPageReport: (pageReport: PageReportState) => void;
 };
 
-const useSubtypeStore = create<Subtype>((set) => ({
-    description: 'Subtype',
+const useSubtypeStore = create<SubtypeStore>((set) => ({
+    description: 'description of this subtype',
     count: 0,
-    issues: [],
+    selectors: [],
+    id: 'Subtype',
+    setSubtype(subtype: SubtypeState) {
+        set(state => ({
+            description: subtype.description,
+            count: subtype.count,
+            selectors: subtype.selectors,
+            id: subtype.id,
+        }));
+    },
     setdescription(text: string) {
         set(state => ({
             description: text
@@ -46,21 +77,27 @@ const useSubtypeStore = create<Subtype>((set) => ({
             count: newCount
         }));
     },
-    setissues(newIssues: string[]) {
+    setselectors(newSelectors: string[]) {
         set(state => ({
-            issues: newIssues
+            selectors: newSelectors
+        }));
+    },
+    setid(newId: string) {
+        set(state => ({
+            id: newId
         }));
     },
 }));
 
-const useIssueStore = create<Issue>((set) => ({
+const useIssueStore = create<IssueStore>((set) => ({
     description: '',
     count: 0,
-    setIssue(issue: Issue) {
+    items: [],
+    setIssue(issue: IssueState) {
         set(state => ({
             description: issue.description,
             count: issue.count,
-            subtypes: issue.subtypes ? issue.subtypes : []
+            items: issue.items ? issue.items : []
         }));
     },
     setIssueDescription(text: string) {
@@ -73,60 +110,115 @@ const useIssueStore = create<Issue>((set) => ({
             count: newCount
         }));
     },
-    setSubtypes(newSubtypes: Subtype[]) {
+    setSubtypes(items: SubtypeState[]) {
         set(state => ({
-            subtypes: newSubtypes
+            items: items
         }));
     },
 }));
 
-const usePageReportStore = create<PageReport>((set) => ({
+const usePageReportStore = create<PageReportStore>((set) => ({
     url: 'none',
-    error: { description: "Error", count: 0 },
-    contrast: { description: "Contrast", count: 0 },
-    alert: { description: "Alerts", count: 0 },
-    structure: { description: "Structure", count: 0 },
+    error: { description: "Error", count: 0, items: [] },
+    contrast: { description: "Contrast", count: 0, items: [] },
+    alert: { description: "Alerts", count: 0, items: [] },
+    feature: { description: "Feature", count: 0, items: [] },
+    structure: { description: "Structure", count: 0, items: [] },
+    aria: { description: "Aria", count: 0, items: [] },
+    setPageReport(pageReport: PageReportState) {
+        set(state => ({
+            url: pageReport.url,
+            error: {
+                ...state.error,
+                count: pageReport.error.count,
+                items: pageReport.error.items ? pageReport.error.items : []
+            },
+            contrast: {
+                ...state.contrast,
+                count: pageReport.contrast.count,
+                subtypes: pageReport.contrast.items ? pageReport.contrast.items : []
+            },
+            alert: {
+                ...state.alert,
+                count: pageReport.alert.count,
+                items: pageReport.alert.items ? pageReport.alert.items : []
+            },
+            feature: {
+                ...state.feature,
+                count: pageReport.feature.count,
+                items: pageReport.feature.items ? pageReport.feature.items : []
+            },
+            structure: {
+                ...state.structure,
+                count: pageReport.structure.count,
+                subtypes: pageReport.structure.items ? pageReport.structure.items : []
+            },
+            aria: {
+                ...state.aria,
+                count: pageReport.aria.count,
+                items: pageReport.aria.items ? pageReport.aria.items : []
+            }
+        }));
+    },
     setUrl(text: string) {
         set(state => ({
             url: text
         }));
     },
-    setError(issue: Issue) {
+    setError(issue: IssueState) {
         set(state => ({
             error: {
                 ...state.error,
                 count: issue.count,
-                subtypes: issue.subtypes ? issue.subtypes : []
+                items: issue.items ? issue.items : []
             }
         }));
     },
-    setContrast(issue: Issue) {
+    setContrast(issue: IssueState) {
         set(state => ({
             contrast: {
                 ...state.contrast,
                 count: issue.count,
-                subtypes: issue.subtypes ? issue.subtypes : []
+                items: issue.items ? issue.items : []
             }
         }));
     },
-    setAlert(issue: Issue) {
+    setAlert(issue: IssueState) {
         set(state => ({
             alert: {
                 ...state.alert,
                 count: issue.count,
-                subtypes: issue.subtypes ? issue.subtypes : []
+                items: issue.items ? issue.items : []
             }
         }));
     },
-    setStructure(issue: Issue) {
+    setFeature(issue: IssueState) {
+        set(state => ({
+            feature: {
+                ...state.feature,
+                count: issue.count,
+                items: issue.items ? issue.items : []
+            }
+        }));
+    },
+    setStructure(issue: IssueState) {
         set(state => ({
             structure: {
                 ...state.structure,
                 count: issue.count,
-                subtypes: issue.subtypes ? issue.subtypes : []
+                items: issue.items ? issue.items : []
             }
         }));
-    }
+    },
+    setAria(issue: IssueState) {
+        set(state => ({
+            aria: {
+                ...state.aria,
+                count: issue.count,
+                items: issue.items ? issue.items : []
+            }
+        }));
+    },
 }));
 
 export { usePageReportStore, useIssueStore, useSubtypeStore };

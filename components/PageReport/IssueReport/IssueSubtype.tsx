@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Issue from "./IssueC";
-import { Subtype } from '../../store/PageReportStore';
+import { SubtypeState, usePageReportStore } from '../../../store/PageReportStore';
 
-export default function IssueSubtype(subtype: Subtype) {
+export default function IssueSubtype(subtype: SubtypeState) {
     const [isClicked, setIsClicked] = useState<boolean>(false);
+    const PageReport = usePageReportStore();
 
     const handleClick = () => {
         setIsClicked(!isClicked);
@@ -11,7 +12,7 @@ export default function IssueSubtype(subtype: Subtype) {
 
     return (
         < div className="flex flex-col rounded-lg border bg-gray-100 w-full h-48">
-            <button onClick={handleClick} className='flex flex-row w-full h-14 justify-top'>
+            <button onClick={handleClick} className='flex flex-row w-full h-12 justify-top'>
                 <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-x-clip'>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
                         <div className='flex flex-row m-2 justify-start items-center'>
@@ -39,11 +40,12 @@ export default function IssueSubtype(subtype: Subtype) {
                 </div>
             </button>
             {isClicked ?
-                <div className='relative flex flex-auto m-1 items-center justify-center h-48 '>
-                    {subtype.xpaths ?
+                <div className='relative flex flex-auto m-1 items-center justify-center h-36 '>
+                    {subtype.selectors ?
                         <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full'>
-                            {subtype.xpaths.map(
-                                (code) => <Issue text={code} />
+                            {subtype.selectors.map(
+                                (selector) =>
+                                    <Issue selector={selector} />
                             )}
 
                         </div>
