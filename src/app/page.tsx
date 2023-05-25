@@ -34,8 +34,8 @@ export default function Home() {
       {/** Header for login and Logo */}
 
       <div className="flex flex-row items-start justify-start h-16 w-full">
-        <div className="flex flex-row items-center justify-start m-2 h-12 w-full">
-          <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+        <div className="flex flex-row items-center justify-start my-2 h-12 w-full">
+          <div className='flex flex-row my-2 items-center justify-start w-1/2'>
             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
               <Image src='/AccessKitLogo.svg' alt="Logo" width={44} height={40} />
             </div>
@@ -379,7 +379,7 @@ export default function Home() {
               </div>
               <div className='relative flex mx-1 items-center justify-center h-64'>
                 {IssueStore.items ?
-                  <div className='flex flex-col gap-4 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
+                  <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
                     {Object.values(IssueStore.items).map(
                       (item: SubtypeState, index: number) =>
                         <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
