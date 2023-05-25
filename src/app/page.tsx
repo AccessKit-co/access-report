@@ -29,7 +29,7 @@ export default function Home() {
   const IssueStore = useIssueStore();
 
   return (
-    <main className="min-h-screen flex-col items-center gap-4 px-8 py-4">
+    <main className="min-h-screen flex-col items-center gap-4 px-8 py-4 scrollbar-hide">
 
       {/** Header for login and Logo */}
 
