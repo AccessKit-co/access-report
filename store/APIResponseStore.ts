@@ -25,6 +25,7 @@ export type CategoriesState = {
     contrast: IssueState;
     alert: IssueState;
     structure: IssueState;
+    feature: IssueState;
     aria: IssueState;
 };
 
@@ -49,6 +50,14 @@ export type StatisticsStore = StatisticsState & {
     setAllItemCount: (count: number) => void;
     setTotalElements: (elements: number) => void;
     setWaveUrl: (url: string) => void;
+};
+export type CategoriesStore = CategoriesState & {
+    setError: (issue: IssueState) => void;
+    setContrast: (issue: IssueState) => void;
+    setAlert: (issue: IssueState) => void;
+    setFeature: (issue: IssueState) => void;
+    setStructure: (issue: IssueState) => void;
+    setAria: (issue: IssueState) => void;
 };
 
 export type APIResponseStore = APIResponseState & {
@@ -119,11 +128,21 @@ const useStatisticsStore = create<StatisticsStore>((set) => ({
 }));
 
 const useCategoriesStore = create<CategoriesState>((set) => ({
-    error: useIssueStore.getState(),
-    contrast: useIssueStore.getState(),
-    alert: useIssueStore.getState(),
-    structure: useIssueStore.getState(),
-    aria: useIssueStore.getState(),
+    error: { description: "Error", count: 0, items: [] },
+    contrast: { description: "Contrast", count: 0, items: [] },
+    alert: { description: "Alerts", count: 0, items: [] },
+    feature: { description: "Feature", count: 0, items: [] },
+    structure: { description: "Structure", count: 0, items: [] },
+    aria: { description: "Aria", count: 0, items: [] },
+    setCategories(categories: CategoriesState) {
+        set(state => ({
+            error: categories.error,
+            contrast: categories.contrast,
+            alert: categories.alert,
+            structure: categories.structure,
+            aria: categories.aria
+        }));
+    },
     setError(error: IssueState) {
         set(state => ({
             error: error
@@ -138,9 +157,12 @@ const useCategoriesStore = create<CategoriesState>((set) => ({
         set(state => ({
             alert: alert
         }));
-
     },
-
+    setFeature(feature: IssueState) {
+        set(state => ({
+            feature: feature
+        }));
+    },
     setStructure(structure: IssueState) {
         set(state => ({
             structure: structure
@@ -157,9 +179,29 @@ const useCategoriesStore = create<CategoriesState>((set) => ({
 
 
 const useAPIResponseStore = create<APIResponseStore>((set) => ({
-    status: useStatusStore.getState(),
-    statistics: useStatisticsStore.getState(),
-    categories: useCategoriesStore.getState(),
+    status: {
+        success: false,
+        httpsStatusCode: 0
+    },
+    statistics: {
+        pageTitle: '',
+        pageUrl: ''
+    },
+    categories: {
+        error: { description: "Error", count: 0, items: [] },
+        contrast: { description: "Contrast", count: 0, items: [] },
+        alert: { description: "Alerts", count: 0, items: [] },
+        feature: { description: "Feature", count: 0, items: [] },
+        structure: { description: "Structure", count: 0, items: [] },
+        aria: { description: "Aria", count: 0, items: [] }
+    },
+    setAPIResponse(response: APIResponseState) {
+        set(state => ({
+            status: response.status,
+            statistics: response.statistics,
+            categories: response.categories
+        }));
+    },
     setStatus(status: StatusState) {
         set(state => ({
             status: status
@@ -175,12 +217,6 @@ const useAPIResponseStore = create<APIResponseStore>((set) => ({
             categories: categories
         }));
     },
-    setAPIResponse(response: APIResponseState) {
-        set(state => ({
-            status: response.status,
-            statistics: response.statistics,
-            categories: response.categories
-        }));
-    }));
+}));
 
 export { useAPIResponseStore, useStatusStore, useStatisticsStore };

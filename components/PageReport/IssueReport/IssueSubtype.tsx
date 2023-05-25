@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Issue from "./IssueC";
-import { SubtypeState } from '../../../store/PageReportStore';
+import { SubtypeState, usePageReportStore } from '../../../store/PageReportStore';
 
 export default function IssueSubtype(subtype: SubtypeState) {
     const [isClicked, setIsClicked] = useState<boolean>(false);
+    const PageReport = usePageReportStore();
 
     const handleClick = () => {
         setIsClicked(!isClicked);
@@ -43,8 +44,8 @@ export default function IssueSubtype(subtype: SubtypeState) {
                     {subtype.selectors ?
                         <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full'>
                             {subtype.selectors.map(
-                                (selector: string, index: number) =>
-                                    <Issue key={index} code={selector} url={subtype.url} />
+                                (selector) =>
+                                    <Issue selector={selector} />
                             )}
 
                         </div>

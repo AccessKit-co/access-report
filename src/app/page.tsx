@@ -361,11 +361,11 @@ export default function Home() {
                 <h2 className='text-xl font-semibold '> {IssueStore.description} Report </h2>
               </div>
               <div className='relative flex mx-1 items-center justify-center h-64'>
-                {IssueStore.subtypes ?
+                {IssueStore.items ?
                   <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-                    {Object.values(IssueStore.subtypes).map(
-                      (subtype, index) =>
-                        <IssueSubtype description={subtype.description} count={subtype.count} id={subtype.id} selectors={subtype.selectors} url={PageStore.url} />)}
+                    {Object.values(IssueStore.items).map(
+                      (item) =>
+                        <IssueSubtype description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
                   </div>
                   : []}
               </div>

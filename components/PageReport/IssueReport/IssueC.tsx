@@ -1,18 +1,21 @@
 import { useState } from "react";
 
-export default function Issue(issue: { code: string, url: string }) {
+interface IssueProps {
+    selector: string;
+}
+
+export default function Issue({ selector }: IssueProps) {
     const [isClicked, setIsClicked] = useState<boolean>(false);
 
     const handleClick = () => {
         setIsClicked(!isClicked);
-        console.log(isClicked);
     };
 
     return (
         < div className="flex flex-col rounded-lg border bg-gray-100 w-full h-20">
             <button onClick={handleClick} className='flex flex-row w-full h-8 justify-top'>
                 <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-start transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-x-clip'>
-                    <p className='text-xs font-light text-left truncate'>{issue.code}{issue.url}</p>
+                    <p className='text-xs font-light text-left truncate'>{selector}</p>
                 </div>
             </button>
             {isClicked ?
