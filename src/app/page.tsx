@@ -29,8 +29,10 @@ export default function Home() {
   const IssueStore = useIssueStore();
 
   return (
-
     <main className="min-h-screen flex-col items-center gap-4 px-8 py-4">
+
+      {/** Header for login and Logo */}
+
       <div className="flex flex-row items-start justify-start h-16 w-full">
         <div className="flex flex-row items-center justify-start m-2 h-12 w-full">
           <div className='flex flex-row m-2 items-center justify-start w-1/2'>
@@ -192,9 +194,12 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/** Compliance Status Component*/}
+
         <div className='md:col-span-1 flex flex-col gap-2 '>
           <div
-            className="group rounded-lg border px-5 py-4 transition-colors hover:dark:bg-neutral-800/30 h-full" >
+            className="group rounded-lg border px-5 py-4 h-full" >
             <div className='flex flex-row w-full h-1/5 items-center justify-center' >
               {/** 
               <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1' >
