@@ -44,8 +44,8 @@ export default function IssueSubtype(subtype: SubtypeState) {
                     {subtype.selectors ?
                         <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full'>
                             {subtype.selectors.map(
-                                (selector) =>
-                                    <Issue selector={selector} />
+                                (selector: string, index: number) =>
+                                    <Issue key={index} selector={selector} />
                             )}
 
                         </div>

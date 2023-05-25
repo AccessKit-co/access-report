@@ -9,7 +9,7 @@ import { IoConstructSharp } from 'react-icons/io5';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { MdShield } from 'react-icons/md';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
-import { useIssueStore, usePageReportStore } from '../../store/PageReportStore';
+import { SubtypeState, useIssueStore, usePageReportStore } from '../../store/PageReportStore';
 import { URLSearch } from '../../components/URLSearch';
 
 interface Category {
@@ -364,8 +364,8 @@ export default function Home() {
                 {IssueStore.items ?
                   <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
                     {Object.values(IssueStore.items).map(
-                      (item) =>
-                        <IssueSubtype description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
+                      (item: SubtypeState, index: number) =>
+                        <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
                   </div>
                   : []}
               </div>
