@@ -11,7 +11,7 @@ import { MdShield } from 'react-icons/md';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { SubtypeState, useIssueStore, usePageReportStore } from '../../store/PageReportStore';
 import { URLSearch } from '../../components/URLSearch';
-import Logo from '../../public/AccessKitLogo.svg';
+import Image from 'next/image';
 
 interface Category {
   id: string;
@@ -30,16 +30,15 @@ export default function Home() {
 
   return (
 
-
-    <main className="min-h-screen flex-col items-center gap-4 px-8 py-2">
+    <main className="min-h-screen flex-col items-center gap-4 px-8 py-4">
       <div className="flex flex-row items-start justify-start h-16 w-full">
         <div className="flex flex-row items-center justify-start m-2 h-12 w-full">
           <div className='flex flex-row m-2 items-center justify-start w-1/2'>
             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-              <img src={Logo} alt="Logo" />
+              <Image src='/AccessKitLogo.svg' alt="Logo" width={44} height={40} />
             </div>
             <div className='flex h-full justify-start ml-1 items-center'>
-              <h2 className='text-3xl font-semibold '>AccessKit</h2>
+              <h2 className='text-2xl font-medium font-sans '>AccessKit</h2>
             </div>
           </div>
         </div>
@@ -375,7 +374,7 @@ export default function Home() {
               </div>
               <div className='relative flex mx-1 items-center justify-center h-64'>
                 {IssueStore.items ?
-                  <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
+                  <div className='flex flex-col gap-4 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
                     {Object.values(IssueStore.items).map(
                       (item: SubtypeState, index: number) =>
                         <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
