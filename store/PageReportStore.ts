@@ -136,7 +136,7 @@ const usePageReportStore = create<PageReportStore>((set) => ({
             contrast: {
                 ...state.contrast,
                 count: pageReport.contrast.count,
-                subtypes: pageReport.contrast.items ? pageReport.contrast.items : []
+                items: pageReport.contrast.items ? pageReport.contrast.items : []
             },
             alert: {
                 ...state.alert,
@@ -151,7 +151,7 @@ const usePageReportStore = create<PageReportStore>((set) => ({
             structure: {
                 ...state.structure,
                 count: pageReport.structure.count,
-                subtypes: pageReport.structure.items ? pageReport.structure.items : []
+                items: pageReport.structure.items ? pageReport.structure.items : []
             },
             aria: {
                 ...state.aria,
