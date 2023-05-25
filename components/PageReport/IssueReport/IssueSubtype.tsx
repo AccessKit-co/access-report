@@ -15,7 +15,7 @@ export default function IssueSubtype(subtype: SubtypeState) {
             <button onClick={handleClick} className='flex flex-row w-full h-12 justify-top'>
                 <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-x-clip'>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
-                        <div className='flex flex-row m-2 justify-start items-center'>
+                        <div className='flex flex-row m-2 gitjustify-start items-center'>
                             <div className='flex h-full justify-start mx-1 items-center'>
                                 <h2 className='text-xl font-semibold'>{subtype.id}</h2>
                             </div>

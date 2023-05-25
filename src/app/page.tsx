@@ -11,6 +11,7 @@ import { MdShield } from 'react-icons/md';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { SubtypeState, useIssueStore, usePageReportStore } from '../../store/PageReportStore';
 import { URLSearch } from '../../components/URLSearch';
+import Logo from '../../public/AccessKitLogo.svg';
 
 interface Category {
   id: string;
@@ -30,7 +31,19 @@ export default function Home() {
   return (
 
 
-    <main className="min-h-screen flex-col items-center gap-4 p-12">
+    <main className="min-h-screen flex-col items-center gap-4 px-8 py-2">
+      <div className="flex flex-row items-start justify-start h-16 w-full">
+        <div className="flex flex-row items-center justify-start m-2 h-12 w-full">
+          <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+            <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+              <img src={Logo} alt="Logo" />
+            </div>
+            <div className='flex h-full justify-start ml-1 items-center'>
+              <h2 className='text-3xl font-semibold '>AccessKit</h2>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/** Searchbar Component */}
       <URLSearch />
