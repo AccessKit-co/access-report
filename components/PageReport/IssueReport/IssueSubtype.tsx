@@ -11,11 +11,11 @@ export default function IssueSubtype(subtype: SubtypeState) {
     };
 
     return (
-        < div className="flex flex-col rounded-lg border bg-gray-100 w-full h-48">
+        < div className="flex flex-col rounded-lg border bg-gray-100 w-full h-48 gap-2">
             <button onClick={handleClick} className='flex flex-row w-full h-12 justify-top'>
-                <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-x-clip'>
+                <div className='flex flex-row rounded-lg border bg-gray-200 h-full w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-x-clip'>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
-                        <div className='flex flex-row m-2 justify-start items-center'>
+                        <div className='flex flex-row m-2 gitjustify-start items-center'>
                             <div className='flex h-full justify-start mx-1 items-center'>
                                 <h2 className='text-xl font-semibold'>{subtype.id}</h2>
                             </div>
@@ -40,7 +40,7 @@ export default function IssueSubtype(subtype: SubtypeState) {
                 </div>
             </button>
             {isClicked ?
-                <div className='relative flex flex-auto m-1 items-center justify-center h-36 '>
+                <div className='relative flex flex-auto mx-1 mb-1 items-center justify-center h-36'>
                     {subtype.selectors ?
                         <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full'>
                             {subtype.selectors.map(
@@ -49,7 +49,7 @@ export default function IssueSubtype(subtype: SubtypeState) {
                             )}
 
                         </div>
-                        : []}
+                        : null}
                 </div> : null
             }
         </div >
