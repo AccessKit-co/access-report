@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 
-
 {/** keep in mind this store only works for reporttype=4 */ }
 
 {/** These are the raw data types */ }
@@ -25,6 +24,15 @@ export type PageReportState = {
     feature: IssueState;
     structure: IssueState;
     aria: IssueState;
+};
+
+{/** These are for maintaining which issue type is selected to be displayed on the Issue Report */ }
+export type IssueStateSelected = {
+    selected: string;
+};
+
+export type IssueStateSelectedStore = IssueStateSelected & {
+    setSelected: (selected: string) => void;
 };
 
 {/** These are the store types with the setter functions */ }
@@ -53,6 +61,8 @@ export type PageReportStore = PageReportState & {
     setAria: (issue: IssueState) => void;
     setPageReport: (pageReport: PageReportState) => void;
 };
+
+{/** These are the stores */ }
 
 const useSubtypeStore = create<SubtypeStore>((set) => ({
     description: 'description of this subtype',
@@ -217,6 +227,16 @@ const usePageReportStore = create<PageReportStore>((set) => ({
                 count: issue.count,
                 items: issue.items ? issue.items : []
             }
+        }));
+    },
+}));
+
+{/** This is the store for dealing with which button you clicked */ }
+const useIssueStateSelectStore = create<IssueStateSelectedStore>((set) => ({
+    selected: '',
+    setSelected(selected: string) {
+        set(state => ({
+            selected: selected
         }));
     },
 }));
