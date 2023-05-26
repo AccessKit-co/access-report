@@ -3,10 +3,13 @@
 import { useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
+import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
+import { Page } from "puppeteer";
 
 export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const PageReport = usePageReportStore();
+    const IssueState = useIssueStateSelectStore();
 
 
     const handleFocus = () => {
@@ -29,13 +32,13 @@ export const URLSearch = () => {
                 const query = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
                 const response = await query.json();
                 console.log(response);
-                PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria })
+                PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                IssueState.setSelected("error");
+
 
             } catch (error) {
                 console.log("Error:", error);
             }
-            console.log(PageReport);
-
         }
     };
 

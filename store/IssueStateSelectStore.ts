@@ -7,12 +7,12 @@ export type IssueStateSelected = {
     selected: string;
 };
 
-export type IssueStateSelectedStore = IssueStateSelected & {
+export type IssueStateSelectStore = IssueStateSelected & {
     setSelected: (selected: string) => void;
 };
 
 {/** This is the store */ }
-const useIssueStateSelectStore = create<IssueStateSelectedStore>((set) => ({
+const useIssueStateSelectStore = create<IssueStateSelectStore>((set) => ({
     selected: '',
     setSelected(selected: string) {
         set(state => ({
@@ -20,3 +20,5 @@ const useIssueStateSelectStore = create<IssueStateSelectedStore>((set) => ({
         }));
     },
 }));
+
+export { useIssueStateSelectStore };
