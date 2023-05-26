@@ -10,8 +10,10 @@ import { FiAlertTriangle } from 'react-icons/fi';
 import { MdShield } from 'react-icons/md';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { SubtypeState, useIssueStore, usePageReportStore } from '../../store/PageReportStore';
+import { useIssueStateSelectStore, IssueStateSelected } from '../../store/IssueStateSelectStore';
 import { URLSearch } from '../../components/URLSearch';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface Category {
   id: string;
@@ -26,10 +28,10 @@ interface ApiResponse {
 
 export default function Home() {
   const PageStore = usePageReportStore();
-  const IssueStore = useIssueStore();
+  const IssueState = useIssueStateSelectStore();
 
   return (
-    <main className="min-h-screen flex-col items-center gap-4 px-8 py-4">
+    <main className="min-h-screen flex-col items-center gap-4 px-8 py-4 scrollbar-hide">
 
       {/** Header for login and Logo */}
 
@@ -264,8 +266,8 @@ export default function Home() {
       <div className='flex flex-col gap-4 w-full'>
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
           <button onClick={() => {
-            (IssueStore.description == "Error") ? IssueStore.setIssueDescription('') :
-              IssueStore.setIssue(PageStore.error)
+            (IssueState.selected == "error") ? IssueState.setSelected('') :
+              IssueState.setSelected("error")
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -292,8 +294,8 @@ export default function Home() {
           {/** Contrast Issues Button */}
 
           <button onClick={() => {
-            (IssueStore.description == "Contrast") ? IssueStore.setIssueDescription('') :
-              IssueStore.setIssue(PageStore.contrast)
+            (IssueState.selected == "contrast") ? IssueState.setSelected('') :
+              IssueState.setSelected("contrast")
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -317,7 +319,8 @@ export default function Home() {
             </div>
           </button>
           <button onClick={() => {
-            (IssueStore.description == "Alerts") ? IssueStore.setIssueDescription('') : IssueStore.setIssue(PageStore.alert)
+            (IssueState.selected == "alert") ? IssueState.setSelected('') :
+              IssueState.setSelected("alert")
           }}
             className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
@@ -341,8 +344,8 @@ export default function Home() {
             </div>
           </button>
           <button onClick={() => {
-            (IssueStore.description == "Structure") ? IssueStore.setIssueDescription('') :
-              IssueStore.setIssue(PageStore.structure)
+            (IssueState.selected == "structure") ? IssueState.setSelected('') :
+              IssueState.setSelected("structure")
           }}
             className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
             <div className='flex flex-row w-full h-1/5 items-center justify-center'>
@@ -371,16 +374,16 @@ export default function Home() {
         {/** Page Issue Report */
 
           /** Only show if description is '', which means none are selected */
-          IssueStore.description == '' ? null :
+          IssueState.selected == '' ? null :
             <div
               className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
               <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-                <h2 className='text-xl font-semibold '> {IssueStore.description} Report </h2>
+                <h2 className='text-xl font-semibold '> {(PageStore as any)[IssueState.selected].description} Report </h2>
               </div>
               <div className='relative flex mx-1 items-center justify-center h-64'>
-                {IssueStore.items ?
+                {(PageStore as any)[IssueState.selected].items ?
                   <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-                    {Object.values(IssueStore.items).map(
+                    {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
                       (item: SubtypeState, index: number) =>
                         <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
                   </div>

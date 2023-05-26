@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Issue from "./IssueC";
 import { SubtypeState, usePageReportStore } from '../../../store/PageReportStore';
 
 export default function IssueSubtype(subtype: SubtypeState) {
     const [isClicked, setIsClicked] = useState<boolean>(false);
-    const PageReport = usePageReportStore();
 
     const handleClick = () => {
         setIsClicked(!isClicked);
     };
+
+    useEffect(() => {
+        setIsClicked(false);
+    }, [subtype]);
+
 
     return (
         < div className="flex flex-col rounded-lg border bg-gray-100 w-full h-48 gap-2">
