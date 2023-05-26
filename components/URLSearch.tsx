@@ -4,7 +4,6 @@ import { useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
 import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
-import { Page } from "puppeteer";
 
 export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);

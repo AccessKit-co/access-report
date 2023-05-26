@@ -9,11 +9,10 @@ import { IoConstructSharp } from 'react-icons/io5';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { MdShield } from 'react-icons/md';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
-import { SubtypeState, useIssueStore, usePageReportStore } from '../../store/PageReportStore';
-import { useIssueStateSelectStore, IssueStateSelected } from '../../store/IssueStateSelectStore';
+import { SubtypeState, usePageReportStore } from '../../store/PageReportStore';
+import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
 import { URLSearch } from '../../components/URLSearch';
 import Image from 'next/image';
-import { useState } from 'react';
 
 interface Category {
   id: string;
