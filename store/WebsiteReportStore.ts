@@ -27,6 +27,7 @@ export type WebsiteReportStore = WebsiteReport & {
     setXmlSiteMap: (text: string[]) => void;
     setStatus: (status: boolean) => void;
     setSiteReports: (siteReports: PageReportState[]) => void;
+    addSiteReport: (siteReport: PageReportState) => void;
     setTotalErrors: (totalErrors: number) => void;
     setTotalContrasts: (totalContrasts: number) => void;
     setTotalAlerts: (totalAlerts: number) => void;
@@ -78,6 +79,11 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
     setSiteReports: (siteReports: PageReportState[]) => {
         set(state => ({
             siteReports: siteReports
+        }));
+    },
+    addSiteReport: (siteReport: PageReportState) => {
+        set(state => ({
+            siteReports: [...state.siteReports, siteReport]
         }));
     },
     setTotalErrors: (totalErrors: number) => {

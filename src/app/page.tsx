@@ -52,31 +52,13 @@ export default function Home() {
 
       {/** Site Overall Review Component */}
 
-      <div className="w-full grid md:grid-cols-4 gap-2 text-center justify-center mb-4">
-        <div className='md:col-span-3'>
+      <div className="w-full flex flex-row gap-2 text-center justify-center mb-4 w-1/2">
+        <div className='flex rounded-lg border'>
           <div
-            className="flex flex-col rounded-lg border px-5 py-4 h-full">
-            <div className='flex flex-row w-full h-1/6 items-center justify-between'>
+            className="flex flex-col rounded-lg border px-5 py-4 h-full w-1/2">
+            <div className='flex flex-row w-full h-1/6 items-center justify-center'>
               <div className='flex m-2 justify-center items-center'>
                 <h2 className='text-xl font-semibold '> Overall Report</h2>
-              </div>
-              <div className='flex flex-row m-2 w-1/3  justify-center items-end h-full gap-1'>
-                {/** Add rounded-lg border border-gray-100 bg-gray-100 to className, when you want to add the average per page */}
-                <div className='flex h-2/3  w-1/2 justify-center items-center mb-1 '>
-                  <div className='flex h-full items-center justify-start mx-1'>
-                    {/**
-                    <p className='text-xs font-light '>Average / page </p>
-                     */}
-                  </div>
-                </div>
-                {/** Add rounded-lg border border-gray-100 bg-gray-100 to className, when you want to add the average per page */}
-                <div className='flex h-2/3 w-1/2 justify-center items-center mb-1'>
-                  <div className='flex h-full items-center justify-start mx-1'>
-                    {/**
-                    <p className='text-xs font-light '>Total</p>
-                      */}
-                  </div>
-                </div>
               </div>
             </div>
             <div className='flex flex-col w-full h-5/6 items-center justify-center gap-2'>
@@ -194,56 +176,55 @@ export default function Home() {
 
             </div>
           </div>
-        </div>
 
-        {/** Compliance Status Component*/}
+          {/** Compliance Status Component*/}
 
-        <div className='md:col-span-1 flex flex-col gap-2 '>
-          <div
-            className="group rounded-lg border px-5 py-4 h-full" >
-            <div className='flex flex-row w-full h-1/5 items-center justify-center' >
-              {/** 
+          <div className='flex flex-col gap-2  w-1/2'>
+            <div
+              className="group px-5 py-4 h-full" >
+              <div className='flex flex-row w-full h-1/5 items-center justify-center' >
+                {/** 
               <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1' >
                 <AiOutlineAim style={{ fill: 'green' }} />
               </div>
               */}
-              < div className='flex h-full justify-start mx-1 items-center' >
-                <h2 className='text-xl font-semibold ' > Compliance Status</h2>
-              </div>
-              {/**
+                < div className='flex h-full justify-start mx-1 items-center' >
+                  <h2 className='text-xl font-semibold ' > Compliance Status</h2>
+                </div>
+                {/**
               < div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 ml-1' >
                 <AiOutlineAim style={{ fill: 'black' }} />
               </div>
               */}
-            </div>
-            {(PageStore.error.count >= 10) ?
-              <div className='flex flex-row w-full h-4/5 items-center justify-center' >
-                <div className='flex relative w-full h-full items-center justify-center text-8xl' >
-                  <MdShield style={{ fill: 'red' }} />
-                  {/**
+              </div>
+              {(PageStore.error.count >= 10) ?
+                <div className='flex flex-row w-full h-4/5 items-center justify-center' >
+                  <div className='flex relative w-full h-full items-center justify-center text-8xl' >
+                    <MdShield style={{ fill: 'red' }} />
+                    {/**
                 < span className='absolute text-2xl font-semibold text-white' > 8 </span>
                  */}
+                  </div>
                 </div>
-              </div>
-              :
-              <div className='flex flex-row w-full h-4/5 items-center justify-center' >
-                <div className='flex relative w-full h-full items-center justify-center text-8xl' >
-                  <AiFillCheckCircle style={{ fill: 'green' }} />
-                  {/**
+                :
+                <div className='flex flex-row w-full h-4/5 items-center justify-center' >
+                  <div className='flex relative w-full h-full items-center justify-center text-8xl' >
+                    <AiFillCheckCircle style={{ fill: 'green' }} />
+                    {/**
                 < span className='absolute text-2xl font-semibold text-white' > 8 </span>
                  */}
+                  </div>
                 </div>
-              </div>
-            }
-            {/** (Fix height if this is ever added back)
+              }
+              {/** (Fix height if this is ever added back)
             < div className='flex flex-row w-full h-1/5 items-center justify-center' >
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
                 A score of less than 85 is at risk of legal action.
               </p>
             </div>
             */}
-          </div>
-          {/** Status Report (Fix height if this is ever added back)
+            </div>
+            {/** Status Report (Fix height if this is ever added back)
           <div
             className="flex flex-col rounded-lg border px-5 py-4 gap-1">
             <div className='flex flex-row w-full h-1/4 items-center justify-center'>
@@ -257,6 +238,7 @@ export default function Home() {
             </div>
           </div>
            */}
+          </div>
         </div>
       </div>
 
