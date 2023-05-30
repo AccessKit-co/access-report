@@ -4,10 +4,11 @@
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { MdError } from 'react-icons/md';
 import { VscCircleLargeFilled } from 'react-icons/vsc';
-import { ImContrast, } from 'react-icons/im';
+import { ImContrast, ImTree, } from 'react-icons/im';
 import { IoConstructSharp } from 'react-icons/io5';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { MdShield } from 'react-icons/md';
+import { CgEditContrast } from 'react-icons/cg';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { SubtypeState, usePageReportStore } from '../../store/PageReportStore';
 import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
@@ -52,23 +53,23 @@ export default function Home() {
 
       {/** Site Overall Review Component */}
 
-      <div className="w-full flex flex-row gap-2 text-center justify-center mb-4 w-1/2">
-        <div className='flex rounded-lg border'>
+      <div className="w-full flex flex-row gap-2 text-center justify-center mb-4 w-1/2 h-40">
+        <div className='flex rounded-lg border-2'>
           <div
-            className="flex flex-col rounded-lg border px-5 py-4 h-full w-1/2">
-            <div className='flex flex-row w-full h-1/6 items-center justify-center'>
+            className="flex flex-col rounded-lg border-2 m-2 gap-4 w-1/2">
+            <div className='flex flex-row mx-1 h-1/6 items-center justify-center'>
               <div className='flex m-2 justify-center items-center'>
-                <h2 className='text-xl font-semibold '> Overall Report</h2>
+                <h2 className='text-l font-semibold '> Overall Report</h2>
               </div>
             </div>
-            <div className='flex flex-col w-full h-5/6 items-center justify-center gap-2'>
-              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
+            <div className='flex flex-col h-4/6 items- justify-center gap-1 mx-2'>
+              <div className='flex flex-row rounded-sm border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-start w-1/2'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
+                  <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
                     <MdError style={{ fill: 'red' }} />
                   </div>
                   <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Errors</h2>
+                    <h2 className='text-sm font-semi '>Errors</h2>
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
@@ -81,20 +82,20 @@ export default function Home() {
                        */}
                     </div>
                   </div>
-                  <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
+                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageStore.error.count}</span>
+                      <span className='absolute text-xl font-semibold text-red-500'> {PageStore.error.count}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
+              <div className='flex flex-row rounded-sm border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 w-1/2 items-center justify-start'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <ImContrast style={{ fill: 'fuchsia' }} />
+                  <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
+                    <CgEditContrast style={{ fill: 'fuchsia' }} />
                   </div>
                   <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Contrast</h2>
+                    <h2 className='text-sm font-semi'>Contrast</h2>
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
@@ -107,20 +108,20 @@ export default function Home() {
                        */}
                     </div>
                   </div>
-                  <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
+                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageStore.contrast.count}</span>
+                      <span className='absolute text-xl font-semibold text-fuchsia-500'> {PageStore.contrast.count}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='flex flex-row rounded-lg border bg-gray-200 w-full h-1/3 justify-between'>
+              <div className='flex flex-row rounded-sm border bg-gray-200 w-full h-1/4 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-start w-1/2'>
-                  <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                    <IoConstructSharp style={{ fill: 'purple' }} />
+                  <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
+                    <ImTree style={{ fill: '#FFCE30' }} />
                   </div>
                   <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-xl font-semibold '>Structure</h2>
+                    <h2 className='text-sm font-semi '>Structure</h2>
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
@@ -133,9 +134,9 @@ export default function Home() {
                        */}
                     </div>
                   </div>
-                  <div className='flex rounded-lg border bg-gray-300 ml-1 h-full w-1/2 justify-center items-center'>
+                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}</span>
+                      <span className='absolute text-xl font-semibold text-yellow-400'> {PageStore.structure.count}</span>
                     </div>
                   </div>
                 </div>
@@ -179,52 +180,55 @@ export default function Home() {
 
           {/** Compliance Status Component*/}
 
-          <div className='flex flex-col gap-2  w-1/2'>
-            <div
-              className="group px-5 py-4 h-full" >
-              <div className='flex flex-row w-full h-1/5 items-center justify-center' >
-                {/** 
+          <div className="flex flex-col m-2 w-1/2">
+            <div className='flex flex-row w-full h-1/5 items-center justify-center' >
+              {/** 
               <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1' >
                 <AiOutlineAim style={{ fill: 'green' }} />
               </div>
               */}
-                < div className='flex h-full justify-start mx-1 items-center' >
-                  <h2 className='text-xl font-semibold ' > Compliance Status</h2>
-                </div>
-                {/**
+              < div className='flex h-full justify-center mx-1 items-center' >
+                <h2 className='text-xl font-semibold ' > Status</h2>
+              </div>
+              {/**
               < div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 ml-1' >
                 <AiOutlineAim style={{ fill: 'black' }} />
               </div>
               */}
+            </div>
+            {(PageStore.error.count >= 10) ?
+              <div className='flex flex-row w-full h-4/5 items-center justify-center' >
+                <div className='flex relative w-full h-full items-center justify-center text-8xl' >
+                  <MdShield style={{ fill: 'red' }} />
+                  {/**
+                < span className='absolute text-2xl font-semibold text-white' > 8 </span>
+                 */}
+                </div>
               </div>
-              {(PageStore.error.count >= 10) ?
-                <div className='flex flex-row w-full h-4/5 items-center justify-center' >
-                  <div className='flex relative w-full h-full items-center justify-center text-8xl' >
-                    <MdShield style={{ fill: 'red' }} />
-                    {/**
-                < span className='absolute text-2xl font-semibold text-white' > 8 </span>
-                 */}
+              :
+
+              <div className='flex flex-row w-full h-4/5 items-center justify-center' >
+                <div className='flex m-1 w-full rounded-lg border bg-gray-200 '>
+                  <div className='flex flex-row items-center justify-start m-2'>
+                    <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125'>
+                      <AiFillCheckCircle style={{ fill: 'green' }} />
+                    </div>
+                    <div className='flex h-full justify-start ml-1 items-center'>
+                      <h2 className='text-l font-semibold '>Compliant</h2>
+                    </div>
                   </div>
                 </div>
-                :
-                <div className='flex flex-row w-full h-4/5 items-center justify-center' >
-                  <div className='flex relative w-full h-full items-center justify-center text-8xl' >
-                    <AiFillCheckCircle style={{ fill: 'green' }} />
-                    {/**
-                < span className='absolute text-2xl font-semibold text-white' > 8 </span>
-                 */}
-                  </div>
-                </div>
-              }
-              {/** (Fix height if this is ever added back)
+              </div>
+            }
+            {/** (Fix height if this is ever added back)
             < div className='flex flex-row w-full h-1/5 items-center justify-center' >
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
                 A score of less than 85 is at risk of legal action.
               </p>
             </div>
             */}
-            </div>
-            {/** Status Report (Fix height if this is ever added back)
+          </div>
+          {/** Status Report (Fix height if this is ever added back)
           <div
             className="flex flex-col rounded-lg border px-5 py-4 gap-1">
             <div className='flex flex-row w-full h-1/4 items-center justify-center'>
@@ -238,7 +242,6 @@ export default function Home() {
             </div>
           </div>
            */}
-          </div>
         </div>
       </div>
 
