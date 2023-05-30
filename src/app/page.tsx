@@ -52,21 +52,20 @@ export default function Home() {
       <URLSearch />
 
       {/** Site Overall Review Component */}
-
-      <div className="w-full flex flex-row gap-2 text-center justify-center mb-4 w-1/2 h-40">
-        <div className='flex rounded-lg border-2'>
+      <div className="w-full flex flex-row gap-2 text-center justify-center w-1/2 h-36">
+        <div className='flex rounded-md border-2 m-2'>
           <div
-            className="flex flex-col rounded-lg border-2 m-2 gap-4 w-1/2">
-            <div className='flex flex-row mx-1 h-1/6 items-center justify-center'>
+            className="flex flex-col rounded-md bg-gray-200 border-2 m-2 gap-1 w-1/2">
+            <div className='flex flex-row mx-1 h-1/4 items-center justify-center'>
               <div className='flex m-2 justify-center items-center'>
                 <h2 className='text-l font-semibold '> Overall Report</h2>
               </div>
             </div>
-            <div className='flex flex-col h-4/6 items- justify-center gap-1 mx-2'>
-              <div className='flex flex-row rounded-sm border bg-gray-200 w-full h-1/4 justify-between'>
+            <div className='flex flex-col h-4/6 items-center justify-center mx-2'>
+              <div className='flex flex-row rounded border bg-gray-300 w-full h-1/3 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-start w-1/2'>
-                  <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
-                    <MdError style={{ fill: 'red' }} />
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                    <MdError style={{ fill: '#ff000e' }} />
                   </div>
                   <div className='flex h-full justify-start ml-1 items-center'>
                     <h2 className='text-sm font-semi '>Errors</h2>
@@ -84,15 +83,15 @@ export default function Home() {
                   </div>
                   <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-red-500'> {PageStore.error.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#ff000e]'> {PageStore.error.count}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='flex flex-row rounded-sm border bg-gray-200 w-full h-1/4 justify-between'>
+              <div className='flex flex-row rounded border bg-gray-300 w-full h-1/3 justify-between'>
                 <div className='flex flex-row m-2 w-1/2 items-center justify-start'>
-                  <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
-                    <CgEditContrast style={{ fill: 'fuchsia' }} />
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                    <ImContrast style={{ fill: '#60A5FA' }} />
                   </div>
                   <div className='flex h-full justify-start ml-1 items-center'>
                     <h2 className='text-sm font-semi'>Contrast</h2>
@@ -110,15 +109,15 @@ export default function Home() {
                   </div>
                   <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-fuchsia-500'> {PageStore.contrast.count}</span>
+                      <span className='absolute text-xl font-semibold text-blue-400'> {PageStore.contrast.count}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='flex flex-row rounded-sm border bg-gray-200 w-full h-1/4 justify-between'>
+              <div className='flex flex-row rounded border bg-gray-300 w-full h-1/3 justify-between'>
                 <div className='flex flex-row m-2 items-center justify-start w-1/2'>
-                  <div className='flex h-full items-center justify-center text-xl group-hover:scale-125 mr-1'>
-                    <ImTree style={{ fill: '#FFCE30' }} />
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                    <ImTree style={{ fill: '#cc0087' }} />
                   </div>
                   <div className='flex h-full justify-start ml-1 items-center'>
                     <h2 className='text-sm font-semi '>Structure</h2>
@@ -136,7 +135,7 @@ export default function Home() {
                   </div>
                   <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-yellow-400'> {PageStore.structure.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
                     </div>
                   </div>
                 </div>
@@ -181,14 +180,14 @@ export default function Home() {
           {/** Compliance Status Component*/}
 
           <div className="flex flex-col m-2 w-1/2">
-            <div className='flex flex-row w-full h-1/5 items-center justify-center' >
+            <div className='flex flex-row w-full h-1/3 items-center justify-center' >
               {/** 
               <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1' >
                 <AiOutlineAim style={{ fill: 'green' }} />
               </div>
               */}
               < div className='flex h-full justify-center mx-1 items-center' >
-                <h2 className='text-xl font-semibold ' > Status</h2>
+                <h2 className='text-2xl font-semibold ' > Status</h2>
               </div>
               {/**
               < div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 ml-1' >
@@ -197,7 +196,7 @@ export default function Home() {
               */}
             </div>
             {(PageStore.error.count >= 10) ?
-              <div className='flex flex-row w-full h-4/5 items-center justify-center' >
+              <div className='flex flex-row w-full h-2/3 items-center justify-center' >
                 <div className='flex relative w-full h-full items-center justify-center text-8xl' >
                   <MdShield style={{ fill: 'red' }} />
                   {/**
@@ -207,7 +206,7 @@ export default function Home() {
               </div>
               :
 
-              <div className='flex flex-row w-full h-4/5 items-center justify-center' >
+              <div className='flex flex-row w-full h-2/3 items-center justify-center' >
                 <div className='flex m-1 w-full rounded-lg border bg-gray-200 '>
                   <div className='flex flex-row items-center justify-start m-2'>
                     <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125'>
@@ -355,25 +354,25 @@ export default function Home() {
           </button>
         </div>
 
-        {/** Page Issue Report */
+        {/** Page Issue Report */}
 
-          /** Only show if description is '', which means none are selected */
-          IssueState.selected == '' ? null :
-            <div
-              className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
-              <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-                <h2 className='text-xl font-semibold '> {(PageStore as any)[IssueState.selected].description} Report </h2>
-              </div>
-              <div className='relative flex mx-1 items-center justify-center h-64'>
-                {(PageStore as any)[IssueState.selected].items ?
-                  <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-                    {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
-                      (item: SubtypeState, index: number) =>
-                        <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
-                  </div>
-                  : []}
-              </div>
-            </div>}
+        {/** Only show if description is '', which means none are selected */}
+        {IssueState.selected == '' ? null :
+          <div
+            className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
+            <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
+              <h2 className='text-xl font-semibold '> {(PageStore as any)[IssueState.selected].description} Report </h2>
+            </div>
+            <div className='relative flex mx-1 items-center justify-center h-64'>
+              {(PageStore as any)[IssueState.selected].items ?
+                <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
+                  {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
+                    (item: SubtypeState, index: number) =>
+                      <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
+                </div>
+                : []}
+            </div>
+          </div>}
       </div >
     </main >
   )
