@@ -244,9 +244,25 @@ export default function Home() {
         </div>
       </div>
 
+      {/** Page Report Component 2.0 */}
+
+      <div className="w-full flex gap-2 text-center justify-center w-full h-80">
+        <div className='flex flex-row rounded-md border-2 bg-gray-200 gap-2 w-full'>
+          <div className='flex flex w-1/5 items-center justify-center'>
+            <div className='flex flex-col rounded-md bg-gray-300 border-2 items-center justify-center w-full h-full'>
+            </div>
+
+          </div>
+          <div className='flex w-4/5 items-center justify-center'>
+            <div className='flex flex-col rounded-md bg-gray-300 border-2 items-center justify-center w-full h-full'>
+            </div>
+          </div>
+        </div>
+      </div >
+
       {/** Page Report Component */}
 
-      <div className='flex flex-col gap-4 w-full'>
+      < div className='flex flex-col gap-4 w-full' >
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
           <button onClick={() => {
             (IssueState.selected == "error") ? IssueState.setSelected('') :
@@ -357,22 +373,24 @@ export default function Home() {
         {/** Page Issue Report */}
 
         {/** Only show if description is '', which means none are selected */}
-        {IssueState.selected == '' ? null :
-          <div
-            className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
-            <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-              <h2 className='text-xl font-semibold '> {(PageStore as any)[IssueState.selected].description} Report </h2>
+        {
+          IssueState.selected == '' ? null :
+            <div
+              className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
+              <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
+                <h2 className='text-xl font-semibold '> {(PageStore as any)[IssueState.selected].description} Report </h2>
+              </div>
+              <div className='relative flex mx-1 items-center justify-center h-64'>
+                {(PageStore as any)[IssueState.selected].items ?
+                  <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
+                    {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
+                      (item: SubtypeState, index: number) =>
+                        <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
+                  </div>
+                  : []}
+              </div>
             </div>
-            <div className='relative flex mx-1 items-center justify-center h-64'>
-              {(PageStore as any)[IssueState.selected].items ?
-                <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-                  {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
-                    (item: SubtypeState, index: number) =>
-                      <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
-                </div>
-                : []}
-            </div>
-          </div>}
+        }
       </div >
     </main >
   )
