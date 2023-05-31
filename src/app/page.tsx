@@ -247,15 +247,138 @@ export default function Home() {
       {/** Page Report Component 2.0 */}
 
       <div className="w-full flex gap-2 text-center justify-center w-full h-80">
-        <div className='flex flex-row rounded-md border-2 bg-gray-200 gap-2 w-full'>
-          <div className='flex flex w-1/5 items-center justify-center'>
-            <div className='flex flex-col rounded-md bg-gray-300 border-2 items-center justify-center w-full h-full'>
+        <div className='flex flex-row divide-x rounded-md border-2 w-full'>
+          <div className='flex w-1/5 bg-[#F4F8FB] items-center justify-center'>
+            <div className='flex flex-col items-center justify-top w-full h-full'>
+              <div className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
+                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                    <MdError style={{ color: 'red' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-sm font-semi '>Errors</h2>
+                  </div>
+                </div>
+                <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
+                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
+                  <div className='flex w-1/2 justify-center items-center h-full '>
+                    <div className='flex w-full h-full items-center justify-center'>
+                      {/**
+                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
+                      </span>
+                       */}
+                    </div>
+                  </div>
+                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
+                    <div className='flex h-full w-full items-center justify-center'>
+                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.error.count}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
+                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                    <ImContrast style={{ fill: '#60A5FA' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-sm font-semi '>Contrast</h2>
+                  </div>
+                </div>
+                <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
+                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
+                  <div className='flex w-1/2 justify-center items-center h-full '>
+                    <div className='flex w-full h-full items-center justify-center'>
+                      {/**
+                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
+                      </span>
+                       */}
+                    </div>
+                  </div>
+                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
+                    <div className='flex h-full w-full items-center justify-center'>
+                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
+                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                    <FiAlertTriangle style={{ color: 'olive' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-sm font-semi '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
+                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
+                  <div className='flex w-1/2 justify-center items-center h-full '>
+                    <div className='flex w-full h-full items-center justify-center'>
+                      {/**
+                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
+                      </span>
+                       */}
+                    </div>
+                  </div>
+                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
+                    <div className='flex h-full w-full items-center justify-center'>
+                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
+                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                    <ImTree style={{ fill: '#cc0087' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-sm font-semi '>Structure</h2>
+                  </div>
+                </div>
+                <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
+                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
+                  <div className='flex w-1/2 justify-center items-center h-full '>
+                    <div className='flex w-full h-full items-center justify-center'>
+                      {/**
+                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
+                      </span>
+                       */}
+                    </div>
+                  </div>
+                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
+                    <div className='flex h-full w-full items-center justify-center'>
+                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
           <div className='flex w-4/5 items-center justify-center'>
-            <div className='flex flex-col rounded-md bg-gray-300 border-2 items-center justify-center w-full h-full'>
+            <div className='flex flex-col items-center justify-center w-full h-full'>
+              {
+                IssueState.selected == '' ? null :
+                  <div
+                    className="flex flex-col px-5 py-4 w-full h-full">
+                    <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
+                      <h2 className='text-xl font-semibold '> {(PageStore as any)[IssueState.selected].description} Report </h2>
+                    </div>
+                    <div className='relative flex mx-1 items-center justify-center h-64'>
+                      {(PageStore as any)[IssueState.selected].items ?
+                        <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
+                          {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
+                            (item: SubtypeState, index: number) =>
+                              <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
+                        </div>
+                        : []}
+                    </div>
+                  </div>
+              }
             </div>
+
           </div>
         </div>
       </div >
