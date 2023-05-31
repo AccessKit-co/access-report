@@ -7,7 +7,7 @@ import { VscCircleLargeFilled } from 'react-icons/vsc';
 import { ImContrast, ImTree, } from 'react-icons/im';
 import { IoConstructSharp } from 'react-icons/io5';
 import { FiAlertTriangle } from 'react-icons/fi';
-import { MdShield } from 'react-icons/md';
+import { FiAlertCircle } from 'react-icons/fi';
 import { CgEditContrast } from 'react-icons/cg';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { SubtypeState, usePageReportStore } from '../../store/PageReportStore';
@@ -29,6 +29,14 @@ interface ApiResponse {
 export default function Home() {
   const PageStore = usePageReportStore();
   const IssueState = useIssueStateSelectStore();
+
+  const handleIssueState = (selecting: string) => {
+    if (IssueState.selected == selecting) {
+      IssueState.setSelected(''); // deselect
+    }
+    IssueState.setSelected(selecting);
+  };
+
 
   return (
     <main className="min-h-screen flex-col items-center gap-4 px-8 py-4 scrollbar-hide">
@@ -53,194 +61,93 @@ export default function Home() {
 
       {/** Site Overall Review Component */}
       <div className="w-full flex flex-row gap-2 text-center justify-center w-1/2 h-36">
-        <div className='flex rounded-md border-2 m-2'>
+        <div className='flex rounded-md border-2 my-2'>
           <div
-            className="flex flex-col rounded-md bg-gray-200 border-2 m-2 gap-1 w-1/2">
+            className="flex flex-col rounded-md bg-gray-200 border-2 m-2 gap-1 w-2/3">
             <div className='flex flex-row mx-1 h-1/4 items-center justify-center'>
               <div className='flex m-2 justify-center items-center'>
-                <h2 className='text-l font-semibold '> Overall Report</h2>
+                <h2 className='text-sm font-semibold '> Overall Report</h2>
               </div>
             </div>
-            <div className='flex flex-col h-4/6 items-center justify-center mx-2'>
+            <div className='flex flex-col h-4/6 items-center justify-center w-full'>
               <div className='flex flex-row rounded border bg-gray-300 w-full h-1/3 justify-between'>
-                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
-                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                    <MdError style={{ fill: '#ff000e' }} />
+                <div className='flex flex-row items-center justify-start w-3/4'>
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 m-1'>
+                    <FiAlertCircle style={{ color: '#FF000E' }} />
                   </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-sm font-semi '>Errors</h2>
+                  <div className='flex h-full justify-start m-1 items-center'>
+                    <h2 className='text-xs font-semi '>Errors</h2>
                   </div>
                 </div>
-                <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
-                  <div className='flex w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full items-center justify-center'>
-                      {/**
-                      <span className='absolute text-2xl font-semibold'> {PageStore.error.count}
-                      </span>
-                       */}
-                    </div>
-                  </div>
-                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#ff000e]'> {PageStore.error.count}</span>
-                    </div>
+                <div className='flex flex-row mx-1 w-1/4 justify-center items-center'>
+                  <div className='flex h-full w-full items-center justify-center'>
+                    <span className='absolute text-l font-semibold text-[#FF000E]'> {PageStore.error.count}</span>
                   </div>
                 </div>
               </div>
               <div className='flex flex-row rounded border bg-gray-300 w-full h-1/3 justify-between'>
-                <div className='flex flex-row m-2 w-1/2 items-center justify-start'>
-                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                    <ImContrast style={{ fill: '#60A5FA' }} />
+                <div className='flex flex-row items-center justify-start w-3/4'>
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 m-1'>
+                    <ImContrast style={{ color: '#60A5FA' }} />
                   </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-sm font-semi'>Contrast</h2>
+                  <div className='flex h-full justify-start m-1 items-center'>
+                    <h2 className='text-xs font-semi '>Contrast</h2>
                   </div>
                 </div>
-                <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
-                  <div className='flex w-1/2 justify-center items-center h-full '>
-                    <div className='flex h-full items-center justify-center'>
-                      {/**
-                      <span className='absolute text-2xl font-semibold'> {PageStore.contrast.count}
-                      </span>
-                       */}
-                    </div>
-                  </div>
-                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-blue-400'> {PageStore.contrast.count}</span>
-                    </div>
+                <div className='flex flex-row mx-1 w-1/4 justify-center items-center'>
+                  <div className='flex h-full w-full items-center justify-center'>
+                    <span className='absolute text-l font-semibold text-[#60A5FA]'> {PageStore.contrast.count}</span>
                   </div>
                 </div>
               </div>
               <div className='flex flex-row rounded border bg-gray-300 w-full h-1/3 justify-between'>
-                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
-                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                <div className='flex flex-row items-center justify-start w-3/4'>
+                  <div className='flex h-full items-center justify-center text-l group-hover:scale-125 m-1'>
                     <ImTree style={{ fill: '#cc0087' }} />
                   </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-sm font-semi '>Structure</h2>
+                  <div className='flex h-full justify-start m-1 items-center'>
+                    <h2 className='text-xs font-semi '>Structure</h2>
                   </div>
                 </div>
-                <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
-                  <div className='flex w-1/2 justify-center items-center h-full '>
-                    <div className='flex w-full h-full items-center justify-center'>
-                      {/**
-                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
-                      </span>
-                       */}
-                    </div>
-                  </div>
-                  <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
-                    <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
-                    </div>
+                <div className='flex flex-row mx-1 w-1/4 justify-center items-center'>
+                  <div className='flex h-full w-full items-center justify-center'>
+                    <span className='absolute text-l font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
                   </div>
                 </div>
               </div>
-
-              {/** Number of compliant and non compliant pages (fix height, when you uncomment this section)
-              
-              <div className='flex flex-row h-1/4 w-full justify-left items-center gap-2'>
-                <div className='flex rounded-lg border bg-gray-200 h-full w-1/2 justify-between'>
-                  <div className='flex flex-row m-2 items-center justify-center'>
-                    <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                      <AiFillCheckCircle style={{ fill: 'green' }} />
-                    </div>
-                    <div className='flex h-full justify-start ml-1 items-center'>
-                      <h2 className='text-xl font-semibold text-green-500'>Compliant</h2>
-                    </div>
-
-                  </div>
-                  <div className='flex rounded-lg border bg-gray-300 m-2 w-1/4 justify-center items-center'>
-                    <p className='text-xl font-bold'>0</p>
-                  </div>
-                </div>
-                <div className='flex flex-row h-full w-1/2 rounded-lg border bg-gray-200  justify-between '>
-                  <div className='flex flex-row m-2 items-center justify-center'>
-                    <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                      <ImCross style={{ fill: 'red' }} />
-                    </div>
-                    <div className='flex h-full justify-start ml-1 items-center'>
-                      <h2 className='text-xl font-semibold text-red-500'>Non Compliant</h2>
-                    </div>
-                  </div>
-                  <div className='flex rounded-lg border bg-gray-300 m-2 w-1/4 justify-center items-center'>
-                    <p className='text-xl font-bold'>1</p>
-                  </div>
-                </div>
-              </div>
-               */}
-
             </div>
           </div>
 
           {/** Compliance Status Component*/}
 
-          <div className="flex flex-col m-2 w-1/2">
+          <div className="flex flex-col m-2 w-1/3">
             <div className='flex flex-row w-full h-1/3 items-center justify-center' >
-              {/** 
-              <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1' >
-                <AiOutlineAim style={{ fill: 'green' }} />
-              </div>
-              */}
               < div className='flex h-full justify-center mx-1 items-center' >
-                <h2 className='text-2xl font-semibold ' > Status</h2>
+                <h2 className='text-xl font-semibold ' > Status</h2>
               </div>
-              {/**
-              < div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 ml-1' >
-                <AiOutlineAim style={{ fill: 'black' }} />
-              </div>
-              */}
             </div>
             {(PageStore.error.count >= 10) ?
               <div className='flex flex-row w-full h-2/3 items-center justify-center' >
                 <div className='flex relative w-full h-full items-center justify-center text-8xl' >
                   <MdShield style={{ fill: 'red' }} />
-                  {/**
-                < span className='absolute text-2xl font-semibold text-white' > 8 </span>
-                 */}
                 </div>
               </div>
               :
 
               <div className='flex flex-row w-full h-2/3 items-center justify-center' >
-                <div className='flex m-1 w-full rounded-lg border bg-gray-200 '>
+                <div className='flex m-1 rounded-lg border bg-gray-200 '>
                   <div className='flex flex-row items-center justify-start m-2'>
                     <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125'>
                       <AiFillCheckCircle style={{ fill: 'green' }} />
                     </div>
                     <div className='flex h-full justify-start ml-1 items-center'>
-                      <h2 className='text-l font-semibold '>Compliant</h2>
+                      <h2 className='text-sm font-semibold '>Compliant</h2>
                     </div>
                   </div>
                 </div>
               </div>
             }
-            {/** (Fix height if this is ever added back)
-            < div className='flex flex-row w-full h-1/5 items-center justify-center' >
-              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                A score of less than 85 is at risk of legal action.
-              </p>
-            </div>
-            */}
           </div>
-          {/** Status Report (Fix height if this is ever added back)
-          <div
-            className="flex flex-col rounded-lg border px-5 py-4 gap-1">
-            <div className='flex flex-row w-full h-1/4 items-center justify-center'>
-              <div className='flex h-full justify-start mx-1 items-center'>
-                <h2 className='text-xl font-semibold '>Status</h2>
-              </div>
-            </div>
-            <div className='flex w-full h-3/4 m-1 items-center justify-center rounded-lg border bg-gray-200'>
-              <p className='text-red-500 text-l font-black'>
-                Non Compliant</p>
-            </div>
-          </div>
-           */}
         </div>
       </div>
 
@@ -250,7 +157,8 @@ export default function Home() {
         <div className='flex flex-row divide-x rounded-md border-2 w-full'>
           <div className='flex w-1/5 bg-[#F4F8FB] items-center justify-center'>
             <div className='flex flex-col items-center justify-top w-full h-full'>
-              <div className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
+
+              <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
                 <div className='flex flex-row m-2 items-center justify-start w-1/2'>
                   <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
                     <MdError style={{ color: 'red' }} />
@@ -275,9 +183,10 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
-                <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+              </button>
+
+              <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-8 bg-gray-200 items-center justify-between'>
+                <div className='flex flex-row m-2 items-center justify-start w-2/3'>
                   <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
                     <ImContrast style={{ fill: '#60A5FA' }} />
                   </div>
@@ -286,29 +195,21 @@ export default function Home() {
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                  {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
-                  <div className='flex w-1/2 justify-center items-center h-full '>
-                    <div className='flex w-full h-full items-center justify-center'>
-                      {/**
-                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
-                      </span>
-                       */}
-                    </div>
-                  </div>
                   <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.contrast.count}</span>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
+              </button>
+
+              <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
                 <div className='flex flex-row m-2 items-center justify-start w-1/2'>
                   <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
                     <FiAlertTriangle style={{ color: 'olive' }} />
                   </div>
                   <div className='flex h-full justify-start ml-1 items-center'>
-                    <h2 className='text-sm font-semi '>Structure</h2>
+                    <h2 className='text-sm font-semi '>Alerts</h2>
                   </div>
                 </div>
                 <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
@@ -323,12 +224,13 @@ export default function Home() {
                   </div>
                   <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.alert.count}</span>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
+              </button>
+
+              <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
                 <div className='flex flex-row m-2 items-center justify-start w-1/2'>
                   <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
                     <ImTree style={{ fill: '#cc0087' }} />
@@ -353,10 +255,12 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
             </div>
-
           </div>
+
+          {/** Main Issue Report 2.0 */}
+
           <div className='flex w-4/5 items-center justify-center'>
             <div className='flex flex-col items-center justify-center w-full h-full'>
               {
