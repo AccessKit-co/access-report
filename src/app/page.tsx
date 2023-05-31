@@ -88,7 +88,7 @@ export default function Home() {
               <div className='flex flex-row rounded border bg-gray-300 w-full h-1/3 justify-between'>
                 <div className='flex flex-row items-center justify-start w-3/4'>
                   <div className='flex h-full items-center justify-center text-l group-hover:scale-125 m-1'>
-                    <ImContrast style={{ color: '#60A5FA' }} />
+                    <ImContrast style={{ color: '#0073E6' }} />
                   </div>
                   <div className='flex h-full justify-start m-1 items-center'>
                     <h2 className='text-xs font-semi '>Contrast</h2>
@@ -96,14 +96,14 @@ export default function Home() {
                 </div>
                 <div className='flex flex-row mx-1 w-1/4 justify-center items-center'>
                   <div className='flex h-full w-full items-center justify-center'>
-                    <span className='absolute text-l font-semibold text-[#60A5FA]'> {PageStore.contrast.count}</span>
+                    <span className='absolute text-l font-semibold text-[#0073E6]'> {PageStore.contrast.count}</span>
                   </div>
                 </div>
               </div>
               <div className='flex flex-row rounded border bg-gray-300 w-full h-1/3 justify-between'>
                 <div className='flex flex-row items-center justify-start w-3/4'>
                   <div className='flex h-full items-center justify-center text-l group-hover:scale-125 m-1'>
-                    <ImTree style={{ fill: '#CC0087' }} />
+                    <ImTree style={{ fill: '#27CE56' }} />
                   </div>
                   <div className='flex h-full justify-start m-1 items-center'>
                     <h2 className='text-xs font-semi '>Structure</h2>
@@ -111,7 +111,7 @@ export default function Home() {
                 </div>
                 <div className='flex flex-row mx-1 w-1/4 justify-center items-center'>
                   <div className='flex h-full w-full items-center justify-center'>
-                    <span className='absolute text-l font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
+                    <span className='absolute text-l font-semibold text-[#27CE56]'> {PageStore.structure.count}</span>
                   </div>
                 </div>
               </div>
