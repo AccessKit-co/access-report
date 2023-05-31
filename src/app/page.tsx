@@ -39,7 +39,7 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen flex-col items-center gap-4 px-8 py-4 scrollbar-hide">
+    <main className="min-h-screen w-screen flex-col items-center gap-4 px-8 py-4 scrollbar-hide">
 
       {/** Header for login and Logo */}
 
@@ -60,12 +60,12 @@ export default function Home() {
       <URLSearch />
 
       {/** Site Overall Review Component */}
-      <div className="w-full flex flex-row gap-2 text-center justify-center w-1/2 h-36">
-        <div className='flex rounded-md border-2 my-2'>
+      <div className="w-full flex gap-2 text-center justify-center w-1/2 h-32">
+        <div className='flex flex-row justify-between rounded-md border-2 my-2'>
           <div
-            className="flex flex-col rounded-md bg-gray-200 border-2 m-2 gap-1 w-2/3">
+            className="flex flex-col rounded-xs bg-gray-200 border-2 gap-1 w-3/5">
             <div className='flex flex-row mx-1 h-1/4 items-center justify-center'>
-              <div className='flex m-2 justify-center items-center'>
+              <div className='flex justify-center items-center'>
                 <h2 className='text-sm font-semibold '> Overall Report</h2>
               </div>
             </div>
@@ -120,12 +120,25 @@ export default function Home() {
 
           {/** Compliance Status Component*/}
 
-          <div className="flex flex-col m-2 w-1/3">
-            <div className='flex flex-row w-full h-1/3 items-center justify-center' >
+          <div className="flex flex-col w-2/5 items-center justify-center mx-3">
+            <div className='flex w-full mx-1 h-1/4 items-center justify-center' >
               < div className='flex h-full justify-center mx-1 items-center' >
-                <h2 className='text-xl font-semibold ' > Status</h2>
+                <h2 className='text-l font-semibold ' > Status</h2>
               </div>
             </div>
+            <div className='flex flex-row w-full h-3/4 items-center justify-center' >
+              <div className='flex m-1 rounded-lg border bg-gray-200 '>
+                <div className='flex flex-row items-center justify-start m-1'>
+                  <div className='flex h-full items-center justify-center text-xl group-hover:scale-125'>
+                    <AiFillCheckCircle style={{ fill: 'green' }} />
+                  </div>
+                  <div className='flex h-full justify-start ml-1 items-center'>
+                    <h2 className='text-xs font-semi '>Non Compliant</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/** 
             {(PageStore.error.count >= 10) ?
               <div className='flex flex-row w-full h-2/3 items-center justify-center' >
                 <div className='flex relative w-full h-full items-center justify-center text-8xl' >
@@ -147,6 +160,7 @@ export default function Home() {
                 </div>
               </div>
             }
+            */}
           </div>
         </div>
       </div>
