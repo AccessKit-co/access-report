@@ -60,13 +60,17 @@ export default function Home() {
       <URLSearch />
 
       {/** Site Overall Review Component */}
-      <div className="w-full flex gap-2 text-center justify-center w-full h-32">
-        <div className='flex flex-row justify-between rounded-md border-2 my-2 w-72'>
+      {PageStore.url == '' ? <div className="flex items-center justify-center w-full h-8">
+        <h2 className='text-xl font-medium font-sans '>{PageStore.url} </h2>
+      </div> : ''}
+
+      < div className="w-full flex flex-col gap-2 text-center items-center justify-center w-full h-32">
+        <div className='flex flex-row justify-between rounded-md border-2 w-96 m-1'>
           <div
             className="flex flex-col bg-gray-200 w-1/2">
             <div className='flex flex-row mx-1 h-1/4 items-center justify-center'>
               <div className='flex justify-center items-center'>
-                <h2 className='text-sm font-semibold '> Webpage Report</h2>
+                <h2 className=' font-semibold '> Webpage Report</h2>
               </div>
             </div>
             <div className='flex flex-col  m-1 items-center justify-center'>
@@ -76,7 +80,7 @@ export default function Home() {
                     <FiAlertCircle style={{ color: '#FF000E' }} />
                   </div>
                   <div className='flex h-full justify-start m-1 items-center'>
-                    <h2 className='text-xs font-semi '>Errors</h2>
+                    <h2 className='text-sm font-semi '>Errors</h2>
                   </div>
                 </div>
                 <div className='flex flex-row mx-1 w-1/4 justify-center items-center'>
@@ -91,7 +95,7 @@ export default function Home() {
                     <ImContrast style={{ color: '#0073E6' }} />
                   </div>
                   <div className='flex h-full justify-start m-1 items-center'>
-                    <h2 className='text-xs font-semi '>Contrast</h2>
+                    <h2 className='text-sm font-semi '>Contrast</h2>
                   </div>
                 </div>
                 <div className='flex flex-row mx-1 w-1/4 justify-center items-center'>
@@ -106,7 +110,7 @@ export default function Home() {
                     <ImTree style={{ fill: '#27CE56' }} />
                   </div>
                   <div className='flex h-full justify-start m-1 items-center'>
-                    <h2 className='text-xs font-semi '>Structure</h2>
+                    <h2 className='text-sm font-semi '>Structure</h2>
                   </div>
                 </div>
                 <div className='flex flex-row mx-1 w-1/4 justify-center items-center'>
@@ -127,23 +131,23 @@ export default function Home() {
               </div>
             </div>
 
-            <div className='flex flex-col h-3/4 m-1 items-center justify-center'>
+            <div className='flex flex-col h-3/4 mx-3 items-center justify-center'>
               {(PageStore.error.count >= 10) ?
                 <div className='flex flex-row rounded-lg border bg-gray-300 w-full h-1/2 items-center justify-center'>
-                  <div className='flex h-full w-1/6 items-center justify-center text-xl group-hover:scale-125'>
+                  <div className='flex h-full w-1/4 items-center justify-center text-xl group-hover:scale-125'>
                     <MdShield style={{ fill: '#FF000E' }} />
                   </div>
-                  <div className='flex h-full w-5/6 justify-center items-center'>
-                    <h2 className='text-sm font-semibold'>Non Compliant</h2>
+                  <div className='flex h-full w-3/4 justify-start items-center'>
+                    <h2 className='text-l font-semibold'>Non Compliant</h2>
                   </div>
                 </div>
                 :
                 <div className='flex flex-row rounded-lg border bg-gray-300 w-full h-1/2 items-center justify-center'>
-                  <div className='flex h-full w-1/6 items-center justify-center text-xl group-hover:scale-125'>
+                  <div className='flex h-full w-1/4 items-center justify-center text-2xl group-hover:scale-125'>
                     <AiFillCheckCircle style={{ fill: 'green' }} />
                   </div>
-                  <div className='flex h-full w-5/6 justify-center items-center'>
-                    <h2 className='text-sm font-semibold'>Compliant</h2>
+                  <div className='flex h-full w-3/4 justify-center items-center'>
+                    <h2 className='text-l font-semibold'>Compliant</h2>
                   </div>
                 </div>}
             </div>
