@@ -165,67 +165,67 @@ export default function Home() {
 
         <div className="w-full flex gap-2 text-center justify-center w-full h-96">
           <div className='flex flex-row divide-x rounded-md border-2 w-full'>
-            <div className='flex w-48 bg-[#F0F9FF] items-center justify-center'>
+            <div className='flex w-48 shrink-0 bg-[#F0F9FF] items-center justify-center'>
               <div className='flex flex-col items-center justify-top w-full h-full'>
 
-                <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-8 items-center justify-start'>
+                <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FFF0F0] px-2'>
                   <div className='flex flex-row m-1 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <FiAlertCircle style={{ color: 'FF000E' }} />
+                      <FiAlertCircle style={{ color: '#FF000E' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
-                      <h2 className='text-sm font-medium font-sans'>Errors</h2>
+                      <h2 className='text-sm font-semibold font-sans'>Errors</h2>
                     </div>
                   </div>
-                  <div className='flex w-1/3 h-full p-1 justify-center items-center'>
+                  <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
                     <div className='flex w-full h-full border-2 border-[#F2DDDD] bg-[#FFF6F6] rounded items-center justify-center '>
                       <span className='text-xl font-semibold text-[#EA0404]'>{PageStore.error.count} </span>
                     </div>
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-8 items-center justify-start'>
+                <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#F8F0FF] px-2'>
                   <div className='flex flex-row m-1 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
                       <ImContrast style={{ color: '#0073E6' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
-                      <h2 className='text-sm font-medium font-sans'>Contrast</h2>
+                      <h2 className='text-sm font-semibold font-sans'>Contrast</h2>
                     </div>
                   </div>
-                  <div className='flex w-1/3 h-full p-1 justify-center items-center'>
+                  <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
                     <div className='flex w-full h-full border-2 border-[#D8E8F5] bg-[#F6F9FF] rounded items-center justify-center '>
                       <span className='text-xl font-semibold text-[#0073E6]'>{PageStore.contrast.count} </span>
                     </div>
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-8 items-center justify-start'>
+                <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FFF5F0] px-2'>
                   <div className='flex flex-row m-1 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <FiAlertTriangle style={{ color: 'E37C20' }} />
+                      <FiAlertTriangle style={{ color: '#E37C20' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
-                      <h2 className='text-sm font-medium font-sans'>Alerts</h2>
+                      <h2 className='text-sm font-semibold font-sans'>Alerts</h2>
                     </div>
                   </div>
-                  <div className='flex w-1/3 h-full p-1 justify-center items-center'>
+                  <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
                     <div className='flex w-full h-full border-2 border-[#FFDEAC] bg-[#FFF1DD] rounded items-center justify-center '>
                       <span className='text-xl font-semibold text-[#E37C20]'>{PageStore.alert.count} </span>
                     </div>
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-8 items-center justify-start'>
+                <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#F8FFF0] px-2'>
                   <div className='flex flex-row m-1 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <ImTree style={{ color: '27CE56' }} />
+                      <ImTree style={{ color: '#27CE56' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
                       <h2 className='text-sm font-semibold font-sans'>Structure</h2>
                     </div>
                   </div>
-                  <div className='flex w-1/3 h-full p-1 justify-center items-center'>
+                  <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
                     <div className='flex w-full h-full border-2 border-[#B2ECB1] bg-[#F8FFF1] rounded items-center justify-center '>
                       <span className='text-xl font-semibold text-[#27CE56]'>{PageStore.structure.count} </span>
                     </div>

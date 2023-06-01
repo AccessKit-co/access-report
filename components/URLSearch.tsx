@@ -44,7 +44,7 @@ export const URLSearch = () => {
 
     return (
         <div className="items-center flex flex-col justify-center w-full h-full">
-            <div className="flex w-96 h-12 rounded-lg border-2 justify-center items-center m-1">
+            <div className="flex w-[24rem] h-12 rounded border-2 justify-center items-center m-1">
                 <div className="flex flex-row items-center justify-start w-full h-full ">
                     <div className="flex w-1/6 items-center justify-center " ref={clickPoint}>
                         <AiOutlineSearch className="text-xl " />
