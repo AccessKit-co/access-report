@@ -4,7 +4,6 @@ import { useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
 import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
-import { Page } from "puppeteer";
 
 export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
@@ -34,6 +33,7 @@ export const URLSearch = () => {
                 console.log(response);
                 PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
                 IssueState.setSelected("error");
+                console.log(PageReport.url);
 
 
             } catch (error) {
@@ -43,21 +43,24 @@ export const URLSearch = () => {
     };
 
     return (
-        <div className="items-center flex justify-center w-full h-full mb-4">
-            <div className="relative flex flex-row w-full h-full rounded-lg border border-gray-200">
-                <div className="w-1/12 left-3 items-center" ref={clickPoint}>
-                    <AiOutlineSearch className="text-xl text-gray-600" />
+        <div className="items-center flex flex-col justify-center w-full h-full">
+            <div className="flex w-[24rem] h-12 rounded border-2 justify-center items-center m-1">
+                <div className="flex flex-row items-center justify-start w-full h-full ">
+                    <div className="flex w-1/6 items-center justify-center " ref={clickPoint}>
+                        <AiOutlineSearch className="text-xl " />
+                    </div>
+                    <input
+                        type="text"
+                        className="flex text-gray-900 text-xs items-center w-full ml-4  h-full justify-center font-sans "
+                        placeholder="Search for your webpage..."
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        onKeyDown={handleKeyDown}
+                    />
                 </div>
-                <input
-                    type="text"
-                    className="block p-4 pl-10 w-full h-full text-gray-900 bg-gray-50 focus:pl-3 mx-2"
-                    placeholder="Search for your website..."
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    onKeyDown={handleKeyDown}
-                />
             </div>
-        </div>
+        </div >
+
     );
 };
 

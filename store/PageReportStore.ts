@@ -26,15 +26,6 @@ export type PageReportState = {
     aria: IssueState;
 };
 
-{/** These are for maintaining which issue type is selected to be displayed on the Issue Report */ }
-export type IssueStateSelected = {
-    selected: string;
-};
-
-export type IssueStateSelectedStore = IssueStateSelected & {
-    setSelected: (selected: string) => void;
-};
-
 {/** These are the store types with the setter functions */ }
 export type SubtypeStore = SubtypeState & {
     setdescription: (text: string) => void;
@@ -227,16 +218,6 @@ const usePageReportStore = create<PageReportStore>((set) => ({
                 count: issue.count,
                 items: issue.items ? issue.items : []
             }
-        }));
-    },
-}));
-
-{/** This is the store for dealing with which button you clicked */ }
-const useIssueStateSelectStore = create<IssueStateSelectedStore>((set) => ({
-    selected: '',
-    setSelected(selected: string) {
-        set(state => ({
-            selected: selected
         }));
     },
 }));
