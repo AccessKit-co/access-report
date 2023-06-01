@@ -158,48 +158,6 @@ export default function Home() {
                   </div>}
               </div>
             </div>
-            {/** 
-          <div className="flex flex-col w-1/2 items-center justify-center">
-            <div className='flex w-full mx-1 h-1/4 items-center justify-center' >
-              < div className='flex h-full justify-center mx-1 items-center' >
-                <h2 className='text-l font-semibold ' > Status</h2>
-              </div>
-            </div>
-            <div className='flex flex-row m-2 h-3/4 items-center justify-center' >
-              <div className='flex w rounded-lg border bg-gray-200 '>
-                <div className='flex flex-row items-center justify-start m-1'>
-                  <div className='flex h-full items-center justify-center text-xl group-hover:scale-125'>
-                    {/** <AiFillCheckCircle style={{ fill: 'green' }} /> 
-                  </div>
-                  <div className='flex h-full justify-start ml-1 items-center'>
-                    {/**  <h2 className='text-xs font-semi '>Non Compliant</h2> 
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/** 
-            {(PageStore.error.count >= 10) ?
-              <div className='flex flex-row w-full h-2/3 items-center justify-center' >
-                <div className='flex relative w-full h-full items-center justify-center text-8xl' >
-                  <MdShield style={{ fill: 'red' }} />
-                </div>
-              </div>
-              :
-
-              <div className='flex flex-row w-full h-2/3 items-center justify-center' >
-                <div className='flex m-1 rounded-lg border bg-gray-200 '>
-                  <div className='flex flex-row items-center justify-start m-2'>
-                    <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125'>
-                      <AiFillCheckCircle style={{ fill: 'green' }} />
-                    </div>
-                    <div className='flex h-full justify-start ml-1 items-center'>
-                      <h2 className='text-sm font-semibold '>Compliant</h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            }
-            */}
           </div>
         </div>
 
