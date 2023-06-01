@@ -163,106 +163,71 @@ export default function Home() {
 
         {/** Page Report Component 2.0 */}
 
-        <div className="w-full flex gap-2 text-center justify-center w-full h-80">
+        <div className="w-full flex gap-2 text-center justify-center w-full h-96">
           <div className='flex flex-row divide-x rounded-md border-2 w-full'>
-            <div className='flex w-1/5 bg-[#F4F8FB] items-center justify-center'>
+            <div className='flex w-36 bg-[#F0F9FF] items-center justify-center'>
               <div className='flex flex-col items-center justify-top w-full h-full'>
 
-                <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
-                  <div className='flex flex-row m-2 items-center justify-start w-1/2'>
-                    <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <MdError style={{ color: 'red' }} />
-                    </div>
-                    <div className='flex h-full justify-start ml-1 items-center'>
-                      <h2 className='text-sm font-semi '>Errors</h2>
-                    </div>
-                  </div>
-                  <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                    {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
-                    <div className='flex w-1/2 justify-center items-center h-full '>
-                      <div className='flex w-full h-full items-center justify-center'>
-                        {/**
-                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
-                      </span>
-                       */}
-                      </div>
-                    </div>
-                    <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
-                      <div className='flex h-full w-full items-center justify-center'>
-                        <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.error.count}</span>
-                      </div>
-                    </div>
-                  </div>
-                </button>
-
-                <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-8 bg-gray-200 items-center justify-between'>
+                <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-8 items-center justify-start'>
                   <div className='flex flex-row m-2 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <ImContrast style={{ fill: '#60A5FA' }} />
+                      <FiAlertCircle style={{ color: 'FF000E' }} />
                     </div>
-                    <div className='flex h-full justify-start ml-1 items-center'>
-                      <h2 className='text-sm font-semi '>Contrast</h2>
+                    <div className='flex h-full justify-start items-center'>
+                      <h2 className='text-sm font-medium font-sans'>Errors</h2>
                     </div>
                   </div>
-                  <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                    <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
-                      <div className='flex h-full w-full items-center justify-center'>
-                        <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.contrast.count}</span>
-                      </div>
+                  <div className='flex w-1/3 h-full p-1 justify-center items-center'>
+                    <div className='flex w-full h-full border-2 border-[#F2DDDD] bg-[#FFF6F6] rounded items-center justify-center '>
+                      <span className='text-xl font-semibold text-[#EA0404]'>{PageStore.error.count} </span>
                     </div>
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
-                  <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+                <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-8 items-center justify-start'>
+                  <div className='flex flex-row m-2 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <FiAlertTriangle style={{ color: 'olive' }} />
+                      <ImContrast style={{ color: '0073E6' }} />
                     </div>
-                    <div className='flex h-full justify-start ml-1 items-center'>
-                      <h2 className='text-sm font-semi '>Alerts</h2>
+                    <div className='flex h-full justify-start items-center'>
+                      <h2 className='text-sm font-medium font-sans'>Contrast</h2>
                     </div>
                   </div>
-                  <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                    {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
-                    <div className='flex w-1/2 justify-center items-center h-full '>
-                      <div className='flex w-full h-full items-center justify-center'>
-                        {/**
-                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
-                      </span>
-                       */}
-                      </div>
-                    </div>
-                    <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
-                      <div className='flex h-full w-full items-center justify-center'>
-                        <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.alert.count}</span>
-                      </div>
+                  <div className='flex w-1/3 h-full p-1 justify-center items-center'>
+                    <div className='flex w-full h-full border-2 border-[#D8E8F5] bg-[#F6F9FF] rounded items-center justify-center '>
+                      <span className='text-xl font-semibold text-[#0073E6]'>{PageStore.contrast.count} </span>
                     </div>
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-8 bg-gray-200 items-center justify-start'>
-                  <div className='flex flex-row m-2 items-center justify-start w-1/2'>
+                <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-8 items-center justify-start'>
+                  <div className='flex flex-row m-2 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <ImTree style={{ fill: '#cc0087' }} />
+                      <FiAlertTriangle style={{ color: 'E37C20' }} />
                     </div>
-                    <div className='flex h-full justify-start ml-1 items-center'>
-                      <h2 className='text-sm font-semi '>Structure</h2>
+                    <div className='flex h-full justify-start items-center'>
+                      <h2 className='text-sm font-medium font-sans'>Alerts</h2>
                     </div>
                   </div>
-                  <div className='flex flex-row m-2 w-1/3 justify-center items-center'>
-                    {/** Add rounded-lg border border-gray-300 bg-gray-100 to className, when you want to add the average per page */}
-                    <div className='flex w-1/2 justify-center items-center h-full '>
-                      <div className='flex w-full h-full items-center justify-center'>
-                        {/**
-                      <span className='absolute text-2xl font-semibold'> {PageStore.structure.count}
-                      </span>
-                       */}
-                      </div>
+                  <div className='flex w-1/3 h-full p-1 justify-center items-center'>
+                    <div className='flex w-full h-full border-2 border-[#FFDEAC] bg-[#FFF1DD] rounded items-center justify-center '>
+                      <span className='text-xl font-semibold text-[#E37C20]'>{PageStore.alert.count} </span>
                     </div>
-                    <div className='flex ml-1 h-full w-1/2 justify-center items-center'>
-                      <div className='flex h-full w-full items-center justify-center'>
-                        <span className='absolute text-xl font-semibold text-[#cc0087]'> {PageStore.structure.count}</span>
-                      </div>
+                  </div>
+                </button>
+
+                <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-8 items-center justify-start'>
+                  <div className='flex flex-row m-2 items-center justify-start w-2/3'>
+                    <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                      <ImTree style={{ color: '27CE56' }} />
+                    </div>
+                    <div className='flex h-full justify-start items-center'>
+                      <h2 className='text-sm font-medium font-sans'>Structure</h2>
+                    </div>
+                  </div>
+                  <div className='flex w-1/3 h-full p-1 justify-center items-center'>
+                    <div className='flex w-full h-full border-2 border-[#B2ECB1] bg-[#F8FFF1] rounded items-center justify-center '>
+                      <span className='text-xl font-semibold text-[#27CE56]'>{PageStore.structure.count} </span>
                     </div>
                   </div>
                 </button>
