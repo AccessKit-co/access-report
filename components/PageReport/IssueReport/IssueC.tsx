@@ -13,10 +13,9 @@ export default function Issue({ selector }: IssueProps) {
     };
 
     return (
-        < div className="flex flex-col border-y border-gray-400 w-full h-full">
+        < div className="flex flex-col w-full h-full">
             <button onClick={handleClick} className='flex flex-row w-full min-w-[48rem] shrink-0 h-fit justify-top overflow-clip'>
-                <VscDebugBreakpointLog className='flex w-1/8 h-full p-1 justify-center items-center text-2xl' />
-
+                <VscDebugBreakpointLog className='flex w-1/8 h-full p-1 justify-center items-center text-3xl' />
                 <div className='flex w-7/8 justify-start overflow-x-clip'>
                     <p className='text-xs font-light text-left truncate'>{selector}</p>
                 </div>

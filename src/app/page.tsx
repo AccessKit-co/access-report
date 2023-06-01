@@ -164,7 +164,7 @@ export default function Home() {
 
         {/** Page Report Component 2.0 */}
 
-        <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] min-h-[30rem] overflow-clip">
+        <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] min-h-[28rem] overflow-clip">
           <div className='flex flex-row divide-x rounded-md border-2 w-full h-full'>
             <div className='flex w-[12rem] shrink-0 bg-[#F0F9FF] items-center justify-center'>
               <div className='flex flex-col items-center justify-top w-full h-full'>
@@ -252,9 +252,9 @@ export default function Home() {
                           <p className='text-xs font-extralight text-gray-400 justify-start items-center'> Issues in compliance with the code. </p>
                         </div>
                       </div>
-                      <div className='relative flex items-center justify-start h-[30rem] w-full'>
+                      <div className='flex items-center overflow-y-auto scroll-smooth overflow-clip justify-start h-[24rem] w-full'>
                         {(PageStore as any)[IssueState.selected].items ?
-                          <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-full justify-start items-center'>
+                          <div className='flex flex-col scroll-smooth w-full items-top justify-center gap-2'>
                             {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
                               (item: SubtypeState, index: number) =>
                                 <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
