@@ -164,7 +164,7 @@ export default function Home() {
 
         {/** Page Report Component 2.0 */}
 
-        <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] h-[36rem]">
+        <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] min-h-[30rem] overflow-clip">
           <div className='flex flex-row divide-x rounded-md border-2 w-full h-full'>
             <div className='flex w-[12rem] shrink-0 bg-[#F0F9FF] items-center justify-center'>
               <div className='flex flex-col items-center justify-top w-full h-full'>

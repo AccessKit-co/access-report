@@ -15,9 +15,9 @@ export default function IssueSubtype(subtype: SubtypeState) {
 
 
     return (
-        < div className="flex flex-col rounded-lg border-[#F0F9FF] bg-[#F0F9FF] w-full h-48 gap-2">
-            <button onClick={handleClick} className='flex flex-row w-full h-12 justify-top p-1'>
-                <div className='flex flex-row rounded  h-full w-full justify-between overflow-x-clip'>
+        < div className="flex flex-col rounded-lg border w-full h-48 divide-y overflow-clip">
+            <button onClick={handleClick} className='flex flex-row w-full h-16 justify-top p-1 bg-[#F0F9FF]'>
+                <div className='flex flex-row  h-full w-full justify-between overflow-x-clip '>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
                         <div className='flex flex-col h-full w-full justify-start items-center'>
                             <div className='flex h-full w-full justify-start mx-1 items-center'>
@@ -37,9 +37,9 @@ export default function IssueSubtype(subtype: SubtypeState) {
                 </div>
             </button>
             {isClicked ?
-                <div className='relative flex flex-auto mx-1 mb-1 items-center justify-center h-36'>
+                <div className='relative flex flex-auto items-center justify-center h-32 overflow-clip overflow-y-scroll'>
                     {subtype.selectors ?
-                        <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full'>
+                        <div className='flex flex-col overflow-y-clip overflow-x-clip scrollbar-hide w-full gap-1'>
                             {subtype.selectors.map(
                                 (selector: string, index: number) =>
                                     <Issue key={index} selector={selector} />

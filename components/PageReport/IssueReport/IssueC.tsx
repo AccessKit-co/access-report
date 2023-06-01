@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { VscDebugBreakpointLog } from 'react-icons/vsc';
 
 interface IssueProps {
     selector: string;
@@ -12,20 +13,23 @@ export default function Issue({ selector }: IssueProps) {
     };
 
     return (
-        < div className="flex flex-col rounded-lg border bg-gray-100 w-full h-20">
-            <button onClick={handleClick} className='flex flex-row w-full h-8 justify-top'>
-                <div className='flex flex-row rounded-lg border bg-gray-200 w-full justify-start transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-x-clip'>
+        < div className="flex flex-col border-y border-gray-400 w-full h-full">
+            <button onClick={handleClick} className='flex flex-row w-full min-w-[48rem] shrink-0 h-fit justify-top overflow-clip'>
+                <VscDebugBreakpointLog className='flex w-1/8 h-full p-1 justify-center items-center text-2xl' />
+
+                <div className='flex w-7/8 justify-start overflow-x-clip'>
                     <p className='text-xs font-light text-left truncate'>{selector}</p>
                 </div>
             </button>
+            {/**  Image  
             {isClicked ?
                 <div className='relative flex flex-auto m-1 items-center justify-center h-50 '>
                     <div className='flex flex-col gap-1 overflow-y-scroll overflow-x-clip scrollbar-hide w-full'>
-                        {/**  Image  */}
 
                     </div>
                 </div> : null
-            }
+        }
+        */}
         </div >
     );
 }
