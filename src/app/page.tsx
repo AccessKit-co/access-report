@@ -64,13 +64,13 @@ export default function Home() {
         <h2 className='text-xl font-medium font-sans '>{PageStore.url} </h2>
       </div> : ''}
 
-      < div className="w-full flex flex-col gap-2 text-center items-center justify-center w-full h-32">
-        <div className='flex flex-row justify-between rounded-md border-2 w-96 m-1'>
+      < div className="w-full flex flex-col gap-2 text-center items-center justify-center w-full h-32 my-2">
+        <div className='flex flex-row justify-between rounded-md border-2 w-96'>
           <div
             className="flex flex-col bg-gray-200 w-1/2">
             <div className='flex flex-row mx-1 h-1/4 items-center justify-center'>
               <div className='flex justify-center items-center'>
-                <h2 className=' font-semibold '> Webpage Report</h2>
+                <h2 className=' text-l font-semibold '> Report</h2>
               </div>
             </div>
             <div className='flex flex-col  m-1 items-center justify-center'>
@@ -127,7 +127,7 @@ export default function Home() {
             className="flex flex-col w-1/2">
             <div className='flex flex-row mx-1 h-1/4 items-center justify-center'>
               <div className='flex justify-center items-center'>
-                <h2 className='text-sm font-semibold '> Status</h2>
+                <h2 className=' text-l font-semibold '> Compliance Status</h2>
               </div>
             </div>
 
