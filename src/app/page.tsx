@@ -242,7 +242,7 @@ export default function Home() {
                 {
                   IssueState.selected == '' ? null :
                     <div
-                      className="flex flex-col w-full h-full">
+                      className="flex flex-col w-full h-full justify-start items-center">
                       <div className='flex flex-col w-full h-12 items-center justify-start'>
                         <div className='flex flex-row w-full h-8 items-center justify-start'>
                           <h2 className='font-semibold text-xl'> {(PageStore as any)[IssueState.selected].description} Report </h2>
@@ -252,9 +252,9 @@ export default function Home() {
                           <p className='text-xs font-extralight text-gray-400 justify-start items-center'> Issues in compliance with the code. </p>
                         </div>
                       </div>
-                      <div className='relative flex items-center justify-center h-80'>
+                      <div className='relative flex items-center justify-start h-80'>
                         {(PageStore as any)[IssueState.selected].items ?
-                          <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
+                          <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64 justify-start items-center'>
                             {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
                               (item: SubtypeState, index: number) =>
                                 <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
@@ -267,139 +267,6 @@ export default function Home() {
 
             </div>
           </div>
-        </div >
-
-        {/** Page Report Component */}
-
-        < div className='flex flex-col gap-4 w-full' >
-          <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-2 text-center justify-center w-full">
-            <button onClick={() => {
-              (IssueState.selected == "error") ? IssueState.setSelected('') :
-                IssueState.setSelected("error")
-            }}
-              className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-              <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-                <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                  <MdError style={{ fill: 'red' }} />
-                </div>
-                <div className='flex h-full justify-start ml-1 items-center'>
-                  <h2 className='text-xl font-semibold '>Errors</h2>
-                </div>
-              </div>
-              <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-                <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-                  <VscCircleLargeFilled style={{ fill: 'red' }} />
-                  <span className='absolute text-2xl font-semibold text-white'>{PageStore.error.count}</span>
-                </div>
-              </div>
-              <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                  Issues in compliance with the code.
-                </p>
-              </div>
-            </button>
-
-            {/** Contrast Issues Button */}
-
-            <button onClick={() => {
-              (IssueState.selected == "contrast") ? IssueState.setSelected('') :
-                IssueState.setSelected("contrast")
-            }}
-              className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-              <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-                <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                  <ImContrast style={{ fill: 'fuchsia' }} />
-                </div>
-                <div className='flex h-full justify-start ml-1 items-center'>
-                  <h2 className='text-xl font-semibold '>Contrast</h2>
-                </div>
-              </div>
-              <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-                <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-                  <VscCircleLargeFilled style={{ fill: 'fuchsia' }} />
-                  <span className='absolute text-2xl font-semibold text-white'>{PageStore.contrast.count}</span>
-                </div>
-              </div>
-              <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                  Problems regarding color contrast
-                </p>
-              </div>
-            </button>
-            <button onClick={() => {
-              (IssueState.selected == "alert") ? IssueState.setSelected('') :
-                IssueState.setSelected("alert")
-            }}
-              className="group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-              <div className='flex flex-row w-full h-1/5 items-center justify-center space-x-2'>
-                <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                  <FiAlertTriangle style={{ color: 'olive' }} />
-                </div>
-                <div className='flex h-full justify-start ml-1 items-center'>
-                  <h2 className='text-xl font-semibold'>Alerts</h2>
-                </div>
-              </div>
-              <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-                <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-                  <VscCircleLargeFilled style={{ fill: 'olive' }} />
-                  <span className='absolute text-2xl font-semibold text-white'>{PageStore.alert.count}</span>
-                </div>
-              </div>
-              <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-                <p className={`m-0 text-sm opacity-50`}>
-                  Possible problems in the code.
-                </p>
-              </div>
-            </button>
-            <button onClick={() => {
-              (IssueState.selected == "structure") ? IssueState.setSelected('') :
-                IssueState.setSelected("structure")
-            }}
-              className="h-full group rounded-lg border px-5 py-4 transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30">
-              <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-                <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
-                  <IoConstructSharp style={{ fill: 'purple' }} />
-                </div>
-                <div className='flex h-full justify-start ml-1 items-center'>
-                  <h2 className='text-xl font-semibold '>Structure</h2>
-                </div>
-              </div>
-              <div className='flex flex-row w-full h-3/5 items-center justify-center'>
-                <div className='flex relative w-full h-full items-center justify-center text-7xl'>
-                  <VscCircleLargeFilled style={{ fill: 'purple' }} />
-                  <span className='absolute text-2xl font-semibold text-white'> {PageStore.structure.count}
-                  </span>
-                </div>
-              </div>
-              <div className='flex flex-row w-full h-1/5 items-center justify-center'>
-                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                  Issues with how the website is structured.
-                </p>
-              </div>
-            </button>
-          </div>
-
-          {/** Page Issue Report */}
-
-          {/** Only show if description is '', which means none are selected */}
-          {
-            IssueState.selected == '' ? null :
-              <div
-                className="flex flex-col rounded-lg border bg-gray-100 px-5 py-4 w-full h-80">
-                <div className='flex flex-row w-full h-16 items-center justify-start mx-3 mb-3'>
-                  <h2 className='text-xl font-semibold '> {(PageStore as any)[IssueState.selected].description} Report </h2>
-                </div>
-                <div className='relative flex mx-1 items-center justify-center h-64'>
-                  {(PageStore as any)[IssueState.selected].items ?
-                    <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64'>
-                      {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
-                        (item: SubtypeState, index: number) =>
-                          <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
-                    </div>
-                    : []}
-                </div>
-              </div>
-          }
         </div >
       </div>
     </main >
