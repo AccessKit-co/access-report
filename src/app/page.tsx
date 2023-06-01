@@ -51,7 +51,7 @@ export default function Home() {
               <Image src='/AccessKitLogoNoBg.svg' alt="Logo" width={32} height={32} />
             </div>
             <div className='flex h-full justify-start items-center m-0.5'>
-              <h2 className='text-2xl font-medium font-sans '>AccessKit</h2>
+              <h2 className='text-2xl font-medium '>AccessKit</h2>
             </div>
           </div>
 
@@ -117,7 +117,7 @@ export default function Home() {
                       <ImTree style={{ fill: '#27CE56' }} />
                     </div>
                     <div className='flex h-full justify-start m-1 items-center'>
-                      <h2 className='text-sm font-semibold font-sans '>Structure</h2>
+                      <h2 className='text-sm font-semibold '>Structure</h2>
                     </div>
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
@@ -175,7 +175,7 @@ export default function Home() {
                       <FiAlertCircle style={{ color: '#FF000E' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
-                      <h2 className='text-sm font-semibold font-sans'>Errors</h2>
+                      <h2 className='text-sm font-semibold '>Errors</h2>
                     </div>
                   </div>
                   <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
@@ -191,7 +191,7 @@ export default function Home() {
                       <ImContrast style={{ color: '#0073E6' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
-                      <h2 className='text-sm font-semibold font-sans'>Contrast</h2>
+                      <h2 className='text-sm font-semibold '>Contrast</h2>
                     </div>
                   </div>
                   <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
@@ -207,7 +207,7 @@ export default function Home() {
                       <FiAlertTriangle style={{ color: '#E37C20' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
-                      <h2 className='text-sm font-semibold font-sans'>Alerts</h2>
+                      <h2 className='text-sm font-semibold'>Alerts</h2>
                     </div>
                   </div>
                   <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
@@ -223,7 +223,7 @@ export default function Home() {
                       <ImTree style={{ color: '#27CE56' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
-                      <h2 className='text-sm font-semibold font-sans'>Structure</h2>
+                      <h2 className='text-sm font-semibold '>Structure</h2>
                     </div>
                   </div>
                   <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
@@ -252,9 +252,9 @@ export default function Home() {
                           <p className='text-xs font-extralight text-gray-400 justify-start items-center'> Issues in compliance with the code. </p>
                         </div>
                       </div>
-                      <div className='flex items-center overflow-y-auto scroll-smooth overflow-clip justify-start h-[24rem] w-full'>
+                      <div className='flex flex-col items-center overflow-y-auto scroll-smooth overflow-clip justify-start h-[24rem] w-full'>
                         {(PageStore as any)[IssueState.selected].items ?
-                          <div className='flex flex-col scroll-smooth w-full items-top justify-center gap-2'>
+                          <div className='flex flex-col w-full items-top justify-center gap-2'>
                             {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
                               (item: SubtypeState, index: number) =>
                                 <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
