@@ -39,13 +39,13 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen w-screen flex-col items-center gap-4 px-8 py-4 scrollbar-hide">
+    <main className="min-h-screen w-screen flex-col items-center gap-4 px-8 scrollbar-hide">
 
       {/** Header for login and Logo */}
 
-      <div className="flex flex-row items-start justify-start h-16 w-full">
-        <div className="flex flex-row items-center justify-start my-2 h-12 w-full">
-          <div className='flex flex-row my-2 items-center justify-start w-1/2'>
+      <div className="flex flex-col items-center justify-center h-64 w-full bg-gradient-to-b from-[#F4F8FB] via-[#F4F8FB] via-50% to-transparent to-50%">
+        <div className="flex flex-row items-center justify-center h-12 w-screen bg-transparent">
+          <div className='flex flex-row my-2 items-center justify-center w-1/2'>
             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 mr-1'>
               <Image src='/AccessKitLogo.svg' alt="Logo" width={44} height={40} />
             </div>
@@ -53,16 +53,18 @@ export default function Home() {
               <h2 className='text-2xl font-medium font-sans '>AccessKit</h2>
             </div>
           </div>
+
         </div>
+
+        {/** Searchbar Component */}
+        <URLSearch />
       </div>
-
-      {/** Searchbar Component */}
-      <URLSearch />
-
       {/** Site Overall Review Component */}
-      {PageStore.url == '' ? <div className="flex items-center justify-center w-full h-8">
-        <h2 className='text-xl font-medium font-sans '>{PageStore.url} </h2>
-      </div> : ''}
+      {
+        PageStore.url == '' ? <div className="flex items-center justify-center w-full h-8">
+          <h2 className='text-xl font-medium font-sans '>{PageStore.url} </h2>
+        </div> : ''
+      }
 
       < div className="w-full flex flex-col gap-2 text-center items-center justify-center w-full h-32 my-2">
         <div className='flex flex-row justify-between rounded-md border-2 w-96'>

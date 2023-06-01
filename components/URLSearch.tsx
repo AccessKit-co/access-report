@@ -45,9 +45,9 @@ export const URLSearch = () => {
     return (
         <div className="items-center flex flex-col justify-center w-full h-full">
             <div className="flex w-96 h-8 rounded-lg border-2 justify-center items-center m-2">
-                <div className="flex flex-row items-center justify-start w-full h-full">
-                    <div className="flex w-1/6 items-center justify-center" ref={clickPoint}>
-                        <AiOutlineSearch className="text-xl" />
+                <div className="flex flex-row items-center justify-start w-full h-full ">
+                    <div className="flex w-1/6 items-center justify-center bg-red-500" ref={clickPoint}>
+                        <AiOutlineSearch className="text-xl bg-red-500" />
                     </div>
                     <input
                         type="text"
