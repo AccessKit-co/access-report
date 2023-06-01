@@ -13,15 +13,18 @@ export default function Issue({ selector }: IssueProps) {
     };
 
     return (
-        < div className="flex flex-col w-full h-full border">
-            <button onClick={handleClick} h-12 className='flex flex-row w-full min-w-[48rem] justify-start overflow-clip'>
-                <div className='flex w-1/8 h-full p-1 justify-center items-center text-l'>
-                    <VscDebugBreakpointLog className='flex w-1/6 h-full p-1 justify-center' />
+        < div className="flex flex-col w-full h-full border border-[0.5px]">
+            <button onClick={handleClick} h-8 className='flex flex-row w-full min-w-[48rem] justify-start overflow-clip'>
+                <div className='flex w-1/6 h-full p-1 justify-center items-center text-l'>
+                    <VscDebugBreakpointLog className='flex h-full p-1 justify-center items-center' />
                 </div>
-                <div className='flex w-3/4 h-full justify-start overflow-clip'>
+                <div className='flex flex-col w-4/6 h-8 justify-start truncate'>
                     <p className='text-xs font-light text-left truncate'>{selector}</p>
                 </div>
-                <div className='flex w-1/8 shrink-0 h-full p-1 justify-center items-center'>
+                <div className='flex w-1/6 shrink-0 h-full justify-center items-center p-1'>
+                    <div className='flex w-[4rem] shrink-0 border-2 bg-gray-200 rounded items-center justify-center px-1 hover:bg-gray-400'>
+                        <p className='text-xs font-light'>Show</p>
+                    </div>
                 </div>
 
             </button>
