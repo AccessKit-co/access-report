@@ -15,30 +15,23 @@ export default function IssueSubtype(subtype: SubtypeState) {
 
 
     return (
-        < div className="flex flex-col rounded-lg border bg-gray-100 w-full h-48 gap-2">
-            <button onClick={handleClick} className='flex flex-row w-full h-12 justify-top'>
-                <div className='flex flex-row rounded-lg border bg-gray-200 h-full w-full justify-between transition-colors hover:border-gray-300 hover:dark:bg-neutral-800/30 overflow-x-clip'>
+        < div className="flex flex-col rounded-lg border-[#F0F9FF] bg-[#F0F9FF] w-full h-48 gap-2">
+            <button onClick={handleClick} className='flex flex-row w-full h-12 justify-top p-1'>
+                <div className='flex flex-row rounded  h-full w-full justify-between overflow-x-clip'>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
-                        <div className='flex flex-row m-2 gitjustify-start items-center'>
-                            <div className='flex h-full justify-start mx-1 items-center'>
+                        <div className='flex flex-col h-full w-full justify-start items-center'>
+                            <div className='flex h-full w-full justify-start mx-1 items-center'>
                                 <h2 className='text-xl font-semibold'>{subtype.id}</h2>
                             </div>
-                            <div className='flex h-full justify-start mx-1 items-center'>
-                                <h2 className='text-xl font-light'> | </h2>
-                            </div>
                             <div className='flex items-center justify-start overflow-x-clip'>
-                                <p className='text-sm font-light text-left truncate'>{subtype.description}
+                                <p className='text-xs font-extralight text-left text-gray-400 truncate'>{subtype.description}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div className='flex w-1/6 justify-center items-center flex-shrink-0'>
-                        <div className='flex rounded-lg border bg-gray-300 m-2 w-full items-center justify-center'>
-                            <div className='flex h-full m-1 items-center justify-between'>
-                                <div className='flex h-full items-center justify-start mx-1'>
-                                    <p className='text-xl font-bold'>{subtype.count}</p>
-                                </div>
-                            </div>
+                    <div className='flex w-1/8 shrink-0 h-full p-1 justify-center items-center'>
+                        <div className='flex w-full h-full border-2 bg-[#E5D0FF] rounded items-center justify-center p-1 '>
+                            <span className='text-l font-semibold'>{subtype.count} </span>
                         </div>
                     </div>
                 </div>

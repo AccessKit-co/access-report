@@ -164,8 +164,8 @@ export default function Home() {
 
         {/** Page Report Component 2.0 */}
 
-        <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] h-96">
-          <div className='flex flex-row divide-x rounded-md border-2 w-full'>
+        <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] h-[36rem]">
+          <div className='flex flex-row divide-x rounded-md border-2 w-full h-full'>
             <div className='flex w-[12rem] shrink-0 bg-[#F0F9FF] items-center justify-center'>
               <div className='flex flex-col items-center justify-top w-full h-full'>
 
@@ -243,7 +243,7 @@ export default function Home() {
                   IssueState.selected == '' ? null :
                     <div
                       className="flex flex-col w-full h-full justify-start items-center">
-                      <div className='flex flex-col w-full h-12 items-center justify-start'>
+                      <div className='flex flex-col w-full h-16 items-center justify-start'>
                         <div className='flex flex-row w-full h-8 items-center justify-start'>
                           <h2 className='font-semibold text-xl'> {(PageStore as any)[IssueState.selected].description} Report </h2>
                           <AiFillInfoCircle style={{ color: '#F2994A' }} className='ml-2 text-xl' alt- />
@@ -252,9 +252,9 @@ export default function Home() {
                           <p className='text-xs font-extralight text-gray-400 justify-start items-center'> Issues in compliance with the code. </p>
                         </div>
                       </div>
-                      <div className='relative flex items-center justify-start h-80'>
+                      <div className='relative flex items-center justify-start h-[30rem] w-full'>
                         {(PageStore as any)[IssueState.selected].items ?
-                          <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-64 justify-start items-center'>
+                          <div className='flex flex-col gap-2 overflow-y-scroll overflow-x-clip scrollbar-hide w-full h-full justify-start items-center'>
                             {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
                               (item: SubtypeState, index: number) =>
                                 <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
