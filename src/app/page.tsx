@@ -66,8 +66,8 @@ export default function Home() {
 
         {/** Site Overall Review Component */}
         {
-          (PageStore.url == 'none') ? '' : <div className="flex items-center justify-center w-full h-8">
-            <h2 className='text-xl font-medium font-sans '>{PageStore.url} </h2>
+          (PageStore.url == 'none') ? '' : <div className="flex items-center justify-center w-[20rem] h-8 overflow-clip">
+            <h2 className='text-xl font-medium font-sans truncate'>{PageStore.url} </h2>
           </div>
         }
 
@@ -237,7 +237,7 @@ export default function Home() {
 
             {/** Main Issue Report 2.0 */}
 
-            <div className='flex w-4/5 h-full items-center justify-center'>
+            <div className='flex grow h-full items-center justify-center min-w-[24rem]'>
               <div className='flex flex-col items-center justify-center w-full h-full p-2'>
                 {
                   IssueState.selected == '' ? null :
@@ -254,7 +254,7 @@ export default function Home() {
                       </div>
                       <div className='flex flex-col items-center overflow-y-auto scroll-smooth overflow-clip justify-start h-[24rem] w-full'>
                         {(PageStore as any)[IssueState.selected].items ?
-                          <div className='flex flex-col w-full items-top justify-center gap-2'>
+                          <div className='flex flex-col items-top justify-center gap-2 w-full'>
                             {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
                               (item: SubtypeState, index: number) =>
                                 <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
