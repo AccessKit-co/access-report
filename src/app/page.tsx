@@ -174,7 +174,7 @@ export default function Home() {
                 <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FFF0F0] px-2'>
                   <div className='flex flex-row m-1 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <FiAlertCircle style={{ color: '#FF000E' }} />
+                      <FiAlertCircle style={{ color: '#EA0404' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
                       <h2 className='text-sm font-semibold '>Errors</h2>
@@ -190,31 +190,15 @@ export default function Home() {
                 <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#F8F0FF] px-2'>
                   <div className='flex flex-row m-1 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <ImContrast style={{ color: '#0073E6' }} />
+                      <ImContrast style={{ color: '#F2994A' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
                       <h2 className='text-sm font-semibold '>Contrast</h2>
                     </div>
                   </div>
                   <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
-                    <div className='flex w-full h-full border-2 border-[#D8E8F5] bg-[#F6F9FF] rounded items-center justify-center '>
-                      <span className='text-l font-semibold text-[#0073E6]'>{PageStore.contrast.count} </span>
-                    </div>
-                  </div>
-                </button>
-
-                <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FFF5F0] px-2'>
-                  <div className='flex flex-row m-1 items-center justify-start w-2/3'>
-                    <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <FiAlertTriangle style={{ color: '#E37C20' }} />
-                    </div>
-                    <div className='flex h-full justify-start items-center'>
-                      <h2 className='text-sm font-semibold'>Alerts</h2>
-                    </div>
-                  </div>
-                  <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
                     <div className='flex w-full h-full border-2 border-[#FFDEAC] bg-[#FFF1DD] rounded items-center justify-center '>
-                      <span className='text-l font-semibold text-[#E37C20]'>{PageStore.alert.count} </span>
+                      <span className='text-l font-semibold text-[#F2994A]'>{PageStore.contrast.count} </span>
                     </div>
                   </div>
                 </button>
@@ -222,18 +206,36 @@ export default function Home() {
                 <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#F8FFF0] px-2'>
                   <div className='flex flex-row m-1 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <ImTree style={{ color: '#27CE56' }} />
+                      <ImTree style={{ color: '#C54C82' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
                       <h2 className='text-sm font-semibold '>Structure</h2>
                     </div>
                   </div>
                   <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
-                    <div className='flex w-full h-full border-2 border-[#B2ECB1] bg-[#F8FFF1] rounded items-center justify-center '>
-                      <span className='text-l font-semibold text-[#27CE56]'>{PageStore.structure.count} </span>
+                    <div className='flex w-full h-full border-2 border-[#EC729C] bg-[#F4AEBA] rounded items-center justify-center '>
+                      <span className='text-l font-semibold text-[#C54C82]'>{PageStore.structure.count} </span>
                     </div>
                   </div>
                 </button>
+
+                <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FFF5F0] px-2'>
+                  <div className='flex flex-row m-1 items-center justify-start w-2/3'>
+                    <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                      <FiAlertTriangle style={{ color: '#27CE56' }} />
+                    </div>
+                    <div className='flex h-full justify-start items-center'>
+                      <h2 className='text-sm font-semibold'>Alerts</h2>
+                    </div>
+                  </div>
+                  <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
+                    <div className='flex w-full h-full border-2 border-[#B2ECB1] bg-[#F8FFF1] rounded items-center justify-center '>
+                      <span className='text-l font-semibold text-[#27CE56]'>{PageStore.alert.count} </span>
+                    </div>
+                  </div>
+                </button>
+
+
               </div>
             </div>
 
