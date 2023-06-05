@@ -13,7 +13,7 @@ export default function Issue({ selector }: IssueProps) {
     };
 
     return (
-        < div className="flex flex-col w-full h-full border-t-1 border">
+        < div className="flex flex-col w-full border-t-1 border">
             <button onClick={handleClick} className='flex flex-row w-full h-10 min-w-[48rem] justify-start items-center overflow-clip p-1'>
                 <div className='flex w-1/8 h-full justify-start p-1'>
                     <VscDebugBreakpointLog size='0.6rem' />

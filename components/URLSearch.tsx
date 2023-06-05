@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, KeyboardEvent } from "react";
+import { useState, useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
 import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
@@ -9,17 +9,20 @@ export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const PageReport = usePageReportStore();
     const IssueState = useIssueStateSelectStore();
+    const [isFocused, setIsFocused] = useState<boolean>(false);
 
 
     const handleFocus = () => {
         if (clickPoint.current) {
             clickPoint.current.style.display = "none";
+            setIsFocused(true);
         }
     };
 
     const handleBlur = () => {
         if (clickPoint.current) {
             clickPoint.current.style.display = "block";
+            setIsFocused(false);
         }
     };
 
@@ -43,15 +46,15 @@ export const URLSearch = () => {
     };
 
     return (
-        <div className="items-center flex flex-col justify-center w-full h-full">
-            <div className="flex w-[24rem] h-12 rounded-lg border-2 justify-center items-center m-1">
+        <div className="items-center flex flex-col justify-center w-full h-full ">
+            <div className="flex w-full h-full rounded border-2 justify-center items-center ">
                 <div className="flex flex-row items-center justify-start w-full h-full ">
-                    <div className="flex w-1/6 items-center justify-center " ref={clickPoint}>
-                        <AiOutlineSearch className="text-xl " />
+                    <div className="flex h-full items-center justify-center" ref={clickPoint}>
+                        <AiOutlineSearch className=" h-full text-xl " />
                     </div>
                     <input
                         type="text"
-                        className="flex text-gray-900 text-xs items-center w-full ml-4  h-full justify-center font-sans truncate"
+                        className="flex text-gray-900 text-xs items-center h-full w-full justify-center font-sans truncate border-none"
                         placeholder="Search for your webpage..."
                         onFocus={handleFocus}
                         onBlur={handleBlur}

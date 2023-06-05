@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Issue from "./IssueC";
 import { SubtypeState, usePageReportStore } from '../../../store/PageReportStore';
+import { AiFillInfoCircle } from "react-icons/ai";
 
 export default function IssueSubtype(subtype: SubtypeState) {
     const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -20,11 +21,12 @@ export default function IssueSubtype(subtype: SubtypeState) {
                 <div className='flex flex-row  h-full w-full justify-between overflow-x-clip '>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
                         <div className='flex flex-col h-full w-full justify-start items-center'>
-                            <div className='flex h-full w-full justify-start mx-1 items-center'>
+                            <div className='flex flex-row gap-1 h-full w-full justify-start mx-1 items-center'>
                                 <h2 className='text-l font-semibold'>{subtype.id}</h2>
+                                <AiFillInfoCircle style={{ color: '#F2994A' }} aria-label="deez nuts" />
                             </div>
                             <div className='flex items-center justify-start overflow-x-clip'>
-                                <p className='text-xs font-extralight text-left text-gray-400 truncate'>{subtype.description}
+                                <p className='text-xs font-extralight text-left text-gray-500 truncate'>{subtype.description}
                                 </p>
                             </div>
                         </div>

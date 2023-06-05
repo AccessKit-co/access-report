@@ -40,7 +40,7 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen w-screen flex-col items-center scrollbar-hide">
+    <main className="min-h-screen min-w-[28rem] w-screen flex-col items-center scrollbar-hide">
 
       {/** Header for login and Logo */}
 
@@ -48,17 +48,19 @@ export default function Home() {
         <div className="flex flex-row items-center justify-center h-3/4 w-full">
           <div className='flex flex-row my-2 items-center justify-center w-1/2'>
             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 m-0.5'>
-              <Image src='/AccessKitLogoNoBg.svg' alt="Logo" width={32} height={32} />
+              <Image src='/AccessKitLogoNoBg.svg' alt="AccessKit Logo" width={32} height={32} />
             </div>
             <div className='flex h-full justify-start items-center m-0.5'>
-              <h2 className='text-2xl font-medium '>AccessKit</h2>
+              <h1 className='text-2xl font-medium '>AccessKit</h1>
             </div>
           </div>
 
         </div>
         <div className="flex items-center justify-center h-1/4 w-full">
           {/** Searchbar Component */}
-          <URLSearch />
+          <div className="flex w-[24rem] h-[1.5rem] justify-center items-center bg-[#FFFFFF]">
+            <URLSearch />
+          </div>
         </div>
       </div>
 
@@ -246,7 +248,6 @@ export default function Home() {
                       <div className='flex flex-col w-full h-16 items-center justify-start'>
                         <div className='flex flex-row w-full h-8 items-center justify-start'>
                           <h2 className='font-semibold text-xl'> {(PageStore as any)[IssueState.selected].description} Report </h2>
-                          <AiFillInfoCircle style={{ color: '#F2994A' }} className='ml-2 text-xl' alt- />
                         </div>
                         <div className='flex flex-row w-full h-4 items-center justify-start text-sm'>
                           <p className='text-xs font-extralight text-gray-400 justify-start items-center'> Issues in compliance with the code. </p>
