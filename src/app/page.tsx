@@ -103,7 +103,7 @@ export default function Home() {
                 <div className='flex flex-row w-full h-1/3 justify-between'>
                   <div className='flex flex-row items-center justify-start w-4/5'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 m-1'>
-                      <ImContrast style={{ color: "#0186DF" }} />
+                      <ImContrast style={{ color: "#EF6CB6" }} />
                     </div>
                     <div className='flex h-full justify-start m-1 items-center'>
                       <h2 className='text-sm font-semibold '>Contrast</h2>
@@ -111,14 +111,14 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#0186DF]'> {PageStore.contrast.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#EF6CB6]'> {PageStore.contrast.count}</span>
                     </div>
                   </div>
                 </div>
                 <div className='flex flex-row w-full h-1/3 justify-between'>
                   <div className='flex flex-row items-center justify-start w-4/5'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 m-1'>
-                      <ImTree style={{ fill: '#2DB470' }} />
+                      <ImTree style={{ fill: '#5F46C3' }} />
                     </div>
                     <div className='flex h-full justify-start m-1 items-center'>
                       <h2 className='text-sm font-semibold '>Structure</h2>
@@ -126,7 +126,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#2DB470]'> {PageStore.structure.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#5F46C3]'> {PageStore.structure.count}</span>
                     </div>
                   </div>
                 </div>
@@ -189,41 +189,41 @@ export default function Home() {
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#D6EFFF] px-1'>
+                <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FDECF5] px-1'>
                   <div className='flex flex-row gap-1 m-1 items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <ImContrast style={{ color: '#0186DF' }} />
+                      <ImContrast style={{ color: '#EF6CB6' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
                       <h2 className='text-sm font-semibold '>Contrast</h2>
                     </div>
                   </div>
                   <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
-                    <div className='flex w-full h-full border-2 border-[#9AD6FE] bg-[#D7EFFF] rounded items-center justify-center '>
-                      <span className='text-l font-semibold text-[#0186DF]'>{PageStore.contrast.count} </span>
+                    <div className='flex w-full h-full border-2 border-[#F7B6DB] bg-[#FCD9EA] rounded items-center justify-center '>
+                      <span className='text-l font-semibold text-[#EF6CB6]'>{PageStore.contrast.count} </span>
                     </div>
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#CEF3E0] px-1'>
+                <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#F2F0FA] px-1'>
                   <div className='flex flex-row gap-1 m-1 items-center justify-start w-2/3'>
-                    <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
-                      <ImTree style={{ color: '#2DB470' }} />
+                    <div className='flex h-full items-center justify-center text-l  mr-1'>
+                      <ImTree style={{ color: '#5F46C3' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
                       <h2 className='text-sm font-semibold '>Structure</h2>
                     </div>
                   </div>
                   <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
-                    <div className='flex w-full h-full border-2 border-[#6CDAA3] bg-[#BEEFD6] rounded items-center justify-center '>
-                      <span className='text-l font-semibold text-[#2DB470]'>{PageStore.structure.count} </span>
+                    <div className='flex w-full h-full border-2 border-[#CAC1EB] bg-[#E5E0F5] rounded items-center justify-center '>
+                      <span className='text-l font-semibold text-[#5F46C3]'>{PageStore.structure.count} </span>
                     </div>
                   </div>
                 </button>
 
                 <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FFEFD6] px-1'>
                   <div className='flex flex-row gap-1 m-1 items-center justify-start w-2/3'>
-                    <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
+                    <div className='flex h-full items-center justify-center text-l  mr-1'>
                       <FiAlertTriangle style={{ color: '#FF9505' }} />
                     </div>
                     <div className='flex h-full justify-start items-center'>
