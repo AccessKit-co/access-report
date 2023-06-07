@@ -167,13 +167,18 @@ export default function Home() {
 
         {/** Page Report Component 2.0 */}
 
-        <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] min-h-[28rem] overflow-clip">
+        <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] h-[28rem] overflow-clip">
           <div className='flex flex-row divide-x rounded-md border-2 w-full h-full'>
             <div className='flex w-[10rem] shrink-0 bg-[#F0F9FF] items-center justify-center'>
               <div className='flex flex-col items-center justify-top w-full h-full'>
 
-                <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FEEBEB] px-1'>
-                  <div className='flex flex-row gap-1 m-1 items-center justify-start w-2/3'>
+                <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FEEBEB] px-1'
+                  style={{
+                    backgroundColor: IssueState.selected == "error" ? 'white' : '',
+                    borderRight: IssueState.selected == "error" ? '2px solid blue' : '',
+                  }}
+                >
+                  <div className='flex flex-row gap-1 p-1 h-full items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l group-hover:scale-125 mr-1'>
                       <FiAlertCircle style={{ color: '#EA0404' }} />
                     </div>
@@ -188,8 +193,13 @@ export default function Home() {
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#C2E8FF] px-1'>
-                  <div className='flex flex-row gap-1 m-1 items-center justify-start w-2/3'>
+                <button onClick={() => { handleIssueState("contrast") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#C2E8FF] px-1'
+                  style={{
+                    backgroundColor: IssueState.selected == "contrast" ? 'white' : '',
+                    borderRight: IssueState.selected == "contrast" ? '2px solid blue' : '',
+                  }}
+                >
+                  <div className='flex flex-row gap-1 p-1 h-full items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l  mr-1'>
                       <ImContrast style={{ color: '#008AE0' }} />
                     </div>
@@ -204,8 +214,13 @@ export default function Home() {
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#CEF3E0] px-1'>
-                  <div className='flex flex-row gap-1 m-1 items-center justify-start w-2/3'>
+                <button onClick={() => { handleIssueState("structure") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#CEF3E0] px-1'
+                  style={{
+                    backgroundColor: IssueState.selected == "structure" ? 'white' : '',
+                    borderRight: IssueState.selected == "structure" ? '2px solid blue' : '',
+                  }}
+                >
+                  <div className='flex flex-row gap-1 p-1 h-full items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l  mr-1'>
                       <ImTree style={{ color: '#2CB56E' }} />
                     </div>
@@ -220,8 +235,13 @@ export default function Home() {
                   </div>
                 </button>
 
-                <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FFEFD6] px-1'>
-                  <div className='flex flex-row gap-1 m-1 items-center justify-start w-2/3'>
+                <button onClick={() => { handleIssueState("alert") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FFEFD6] px-1'
+                  style={{
+                    backgroundColor: IssueState.selected == "alert" ? 'white' : '',
+                    borderRight: IssueState.selected == "alert" ? '2px solid blue' : '',
+                  }}
+                >
+                  <div className='flex flex-row gap-1 p-1 h-full items-center justify-start w-2/3'>
                     <div className='flex h-full items-center justify-center text-l  mr-1'>
                       <FiAlertTriangle style={{ color: '#FF9505' }} />
                     </div>
@@ -245,7 +265,7 @@ export default function Home() {
             <div className='flex grow h-full items-center justify-center min-w-[24rem]'>
               <div className='flex flex-col items-center justify-center w-full h-full p-2'>
                 {
-                  IssueState.selected == '' ? null :
+                  IssueState.selected == '' ? '' :
                     <div
                       className="flex flex-col w-full h-full justify-start items-center">
                       <div className='flex flex-col w-full h-16 items-center justify-start'>
