@@ -1,14 +1,10 @@
 "use client";
 
-import { useState, useRef, KeyboardEvent } from "react";
+import { useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { usePageReportStore } from "../store/PageReportStore";
-import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
 
-export const URLSearch = () => {
+export const XMLFinder = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
-    const PageReport = usePageReportStore();
-    const IssueState = useIssueStateSelectStore();
 
 
     const handleFocus = () => {
@@ -28,14 +24,24 @@ export const URLSearch = () => {
             event.preventDefault();
             const url = event.currentTarget.value;
             try {
-                const query = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-                const response = await query.json();
-                console.log(response);
-                PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-                IssueState.setSelected("error");
-                console.log(PageReport.url);
+                console.log(url)
+                const response = await fetch(`${url}/sitemap.xml`);
+                const data = await response.text();
+                console.log(url);
 
+                // parse the XML test into an XML Document
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(data, 'text/xml');
+                console.log(xml);
 
+                // Get the first <url> element
+                const urlElement = xml.getElementsByTagName("url")[3];
+
+                // Get the <loc> element within the first <url> element
+                const locElement = urlElement.getElementsByTagName("loc")[0];
+
+                // Log the text content of the <loc> element
+                console.log(locElement.textContent);
             } catch (error) {
                 console.log("Error:", error);
             }
@@ -43,7 +49,7 @@ export const URLSearch = () => {
     };
 
     return (
-        <div className="items-center flex flex-col justify-center w-full h-full ">
+        <div className="items-center flex flex-col justify-center w-full h-8 ">
             <div className="flex w-full h-full rounded border-2 justify-center items-center ">
                 <div className="flex flex-row items-center justify-start w-full h-full ">
                     <div className="flex h-full items-center justify-center" ref={clickPoint}>
@@ -60,7 +66,5 @@ export const URLSearch = () => {
                 </div>
             </div>
         </div >
-
     );
 };
-

@@ -34,12 +34,6 @@ export type WebsiteReportStore = WebsiteReport & {
     setTotalFeatures: (totalFeatures: number) => void;
     setTotalStructures: (totalStructures: number) => void;
     setTotalArias: (totalArias: number) => void;
-    setAverageErrors: (averageErrors: number) => void;
-    setAverageContrasts: (averageContrasts: number) => void;
-    setAverageAlerts: (averageAlerts: number) => void;
-    setAverageFeatures: (averageFeatures: number) => void;
-    setAverageStructures: (averageStructures: number) => void;
-    setAverageArias: (averageArias: number) => void;
     setWebsiteReport: (websiteReport: WebsiteReport) => void;
 };
 
@@ -88,75 +82,46 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
     },
     setTotalErrors: (totalErrors: number) => {
         set(state => ({
-            totalErrors: totalErrors
+            totalErrors: totalErrors,
+            averageErrors: totalErrors / state.siteReports.length
         }));
     }
     ,
     setTotalContrasts: (totalContrasts: number) => {
         set(state => ({
-            totalContrasts: totalContrasts
+            totalContrasts: totalContrasts,
+            averageContrasts: totalContrasts / state.siteReports.length
         }));
     }
     ,
     setTotalAlerts: (totalAlerts: number) => {
         set(state => ({
-            totalAlerts: totalAlerts
+            totalAlerts: totalAlerts,
+            averageAlerts: totalAlerts / state.siteReports.length
         }));
     }
     ,
     setTotalFeatures: (totalFeatures: number) => {
         set(state => ({
-            totalFeatures: totalFeatures
+            totalFeatures: totalFeatures,
+            averageFeatures: totalFeatures / state.siteReports.length
         }));
     }
     ,
     setTotalStructures: (totalStructures: number) => {
         set(state => ({
-            totalStructures: totalStructures
+            totalStructures: totalStructures,
+            averageStructures: totalStructures / state.siteReports.length
         }));
     }
     ,
     setTotalArias: (totalArias: number) => {
         set(state => ({
-            totalArias: totalArias
+            totalArias: totalArias,
+            averageArias: totalArias / state.siteReports.length
         }));
     }
     ,
-    setAverageErrors: (averageErrors: number) => {
-        set(state => ({
-            averageErrors: averageErrors
-        }));
-    }
-    ,
-    setAverageContrasts: (averageContrasts: number) => {
-        set(state => ({
-            averageContrasts: averageContrasts
-        }));
-    }
-    ,
-    setAverageAlerts: (averageAlerts: number) => {
-        set(state => ({
-            averageAlerts: averageAlerts
-        }));
-    }
-    ,
-    setAverageFeatures: (averageFeatures: number) => {
-        set(state => ({
-            averageFeatures: averageFeatures
-        }));
-    }
-    ,
-    setAverageStructures: (averageStructures: number) => {
-        set(state => ({
-            averageStructures: averageStructures
-        }));
-    }
-    ,
-    setAverageArias: (averageArias: number) => {
-        set(state => ({
-            averageArias: averageArias
-        }));
-    },
     setWebsiteReport: (websiteReport: WebsiteReport) => {
         set(state => ({
             rootUrl: websiteReport.rootUrl,
@@ -169,12 +134,12 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
             totalFeatures: websiteReport.totalFeatures,
             totalStructures: websiteReport.totalStructures,
             totalArias: websiteReport.totalArias,
-            averageErrors: websiteReport.averageErrors,
-            averageContrasts: websiteReport.averageContrasts,
-            averageAlerts: websiteReport.averageAlerts,
-            averageFeatures: websiteReport.averageFeatures,
-            averageStructures: websiteReport.averageStructures,
-            averageArias: websiteReport.averageArias
+            averageErrors: websiteReport.totalErrors / websiteReport.siteReports.length,
+            averageContrasts: websiteReport.totalContrasts / websiteReport.siteReports.length,
+            averageAlerts: websiteReport.totalAlerts / websiteReport.siteReports.length,
+            averageFeatures: websiteReport.totalFeatures / websiteReport.siteReports.length,
+            averageStructures: websiteReport.totalStructures / websiteReport.siteReports.length,
+            averageArias: websiteReport.totalArias / websiteReport.siteReports.length,
         }));
     },
 }));

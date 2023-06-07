@@ -14,6 +14,7 @@ import { SubtypeState, usePageReportStore } from '../../store/PageReportStore';
 import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
 import { URLSearch } from '../../components/URLSearch';
 import Image from 'next/image';
+import { XMLFinder } from '../../components/xmlFinder';
 
 interface Category {
   id: string;
@@ -273,7 +274,7 @@ export default function Home() {
                           <h2 className='font-semibold text-xl'> {(PageStore as any)[IssueState.selected].description} Report </h2>
                         </div>
                         <div className='flex flex-row w-full h-4 items-center justify-start text-sm'>
-                          <p className='text-xs font-extralight text-gray-400 justify-start items-center'> Issues in compliance with the code. </p>
+                          <p className='text-xs font-extralight text-gray-400 justify-start items-center'> {(PageStore as any)[IssueState.selected].description} </p>
                         </div>
                       </div>
                       <div className='flex flex-col items-center overflow-y-auto scroll-smooth overflow-clip justify-start h-[24rem] w-full'>
@@ -292,6 +293,7 @@ export default function Home() {
             </div>
           </div>
         </div >
+        <XMLFinder />
       </div>
     </main >
   )
