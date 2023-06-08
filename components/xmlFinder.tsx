@@ -2,10 +2,11 @@
 
 import { useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useWebsiteReportStore, WebsiteReport } from "../store/WebsiteReportStore";
 
 export const XMLFinder = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
-
+    const WebsiteReportStore = useWebsiteReportStore();
 
     const handleFocus = () => {
         if (clickPoint.current) {
@@ -19,6 +20,22 @@ export const XMLFinder = () => {
         }
     };
 
+    const query = async (url: string, n: number) => {
+        try {
+            console.log("query" + n)
+            console.log(url)
+            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
+            const query = await APIcall.json();
+            console.log(query);
+            WebsiteReportStore.addSiteReport({ url: url, error: query.categories.error, structure: query.categories.structure, alert: query.categories.alert, feature: query.categories.feature, contrast: query.categories.contrast, aria: query.categories.aria });
+            console.log(WebsiteReportStore.siteReports)
+
+        } catch (error) {
+            console.log("Error:", error);
+        }
+
+    };
+
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
@@ -27,7 +44,6 @@ export const XMLFinder = () => {
                 console.log(url)
                 const response = await fetch(`${url}/sitemap.xml`);
                 const data = await response.text();
-                console.log(url);
 
                 // parse the XML test into an XML Document
                 const parser = new DOMParser();
@@ -36,11 +52,13 @@ export const XMLFinder = () => {
 
                 // Get the first <url> element
                 const urlList = xml.getElementsByTagName("url");
-                for (let i = 0; i < urlList.length; i++) {
+                for (let i = 0; i < 10; i++) {
                     const urlElement = urlList[i];
                     const locElement = urlElement.getElementsByTagName("loc")[0];
                     console.log(locElement.textContent);
+                    await query(locElement.textContent!.trim(), i);
                 }
+                console.log(WebsiteReportStore.siteReports)
             } catch (error) {
                 console.log("Error:", error);
             }
