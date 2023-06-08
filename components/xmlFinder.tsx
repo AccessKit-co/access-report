@@ -35,13 +35,12 @@ export const XMLFinder = () => {
                 console.log(xml);
 
                 // Get the first <url> element
-                const urlElement = xml.getElementsByTagName("url")[3];
-
-                // Get the <loc> element within the first <url> element
-                const locElement = urlElement.getElementsByTagName("loc")[0];
-
-                // Log the text content of the <loc> element
-                console.log(locElement.textContent);
+                const urlList = xml.getElementsByTagName("url");
+                for (let i = 0; i < urlList.length; i++) {
+                    const urlElement = urlList[i];
+                    const locElement = urlElement.getElementsByTagName("loc")[0];
+                    console.log(locElement.textContent);
+                }
             } catch (error) {
                 console.log("Error:", error);
             }
