@@ -4,11 +4,13 @@ import { useState, useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
 import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
+import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 
 export const URLSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const PageReport = usePageReportStore();
     const IssueState = useIssueStateSelectStore();
+    const WebsiteReportStore = useWebsiteReportStore();
 
 
     const handleFocus = () => {
@@ -28,12 +30,20 @@ export const URLSearch = () => {
             event.preventDefault();
             const url = event.currentTarget.value;
             try {
-                const query = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-                const response = await query.json();
+                const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
+                const response = await APIcall.json();
                 console.log(response);
+                console.log(url);
                 PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
                 IssueState.setSelected("error");
+
+                WebsiteReportStore.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                console.log("nuts");
+                console.log(WebsiteReportStore.pageReports)
+                console.log(PageReport);
                 console.log(PageReport.url);
+
+
 
 
             } catch (error) {

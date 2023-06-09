@@ -6,7 +6,7 @@ export type WebsiteReport = {
     rootUrl: string;
     xmlSiteMap: string[];
     status: boolean;
-    siteReports: PageReportState[];
+    pageReports: PageReportState[];
     totalErrors: number;
     totalContrasts: number;
     totalAlerts: number;
@@ -26,8 +26,8 @@ export type WebsiteReportStore = WebsiteReport & {
     setRootUrl: (text: string) => void;
     setXmlSiteMap: (text: string[]) => void;
     setStatus: (status: boolean) => void;
-    setSiteReports: (siteReports: PageReportState[]) => void;
-    addSiteReport: (siteReport: PageReportState) => void;
+    setPageReports: (pageReports: PageReportState[]) => void;
+    addPageReport: (pageReport: PageReportState) => void;
     setTotalErrors: (totalErrors: number) => void;
     setTotalContrasts: (totalContrasts: number) => void;
     setTotalAlerts: (totalAlerts: number) => void;
@@ -41,7 +41,7 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
     rootUrl: '',
     xmlSiteMap: [],
     status: false,
-    siteReports: [],
+    pageReports: [],
     totalErrors: 0,
     totalContrasts: 0,
     totalAlerts: 0,
@@ -70,55 +70,88 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
             status: status
         }));
     },
-    setSiteReports: (siteReports: PageReportState[]) => {
+    setPageReports: (pageReports: PageReportState[]) => {
         set(state => ({
-            siteReports: siteReports
+            pageReports: pageReports
         }));
     },
-    addSiteReport: (siteReport: PageReportState) => {
+    addPageReport: (pageReport: PageReportState) => {
         set(state => ({
-            siteReports: [...state.siteReports, siteReport]
+            ...state,
+            pageReports: [...state.pageReports, {
+                url: pageReport.url,
+                error: {
+                    description: pageReport.error.description,
+                    count: pageReport.error.count,
+                    items: pageReport.error.items ? pageReport.error.items : []
+                },
+                contrast: {
+                    description: pageReport.contrast.description,
+                    count: pageReport.contrast.count,
+                    items: pageReport.contrast.items ? pageReport.contrast.items : []
+                },
+                alert: {
+                    description: pageReport.alert.description,
+                    count: pageReport.alert.count,
+                    items: pageReport.alert.items ? pageReport.alert.items : []
+                },
+                feature: {
+                    description: pageReport.feature.description,
+                    count: pageReport.feature.count,
+                    items: pageReport.feature.items ? pageReport.feature.items : []
+                },
+                structure: {
+                    description: pageReport.structure.description,
+                    count: pageReport.structure.count,
+                    items: pageReport.structure.items ? pageReport.structure.items : []
+                },
+                aria: {
+                    description: pageReport.aria.description,
+                    count: pageReport.aria.count,
+                    items: pageReport.aria.items ? pageReport.aria.items : []
+                }
+            }]
         }));
     },
     setTotalErrors: (totalErrors: number) => {
         set(state => ({
             totalErrors: totalErrors,
-            averageErrors: totalErrors / state.siteReports.length
+            averageErrors: totalErrors / state.pageReports.length
         }));
     }
     ,
     setTotalContrasts: (totalContrasts: number) => {
         set(state => ({
             totalContrasts: totalContrasts,
-            averageContrasts: totalContrasts / state.siteReports.length
+            averageContrasts: totalContrasts / state.pageReports.length
         }));
     }
     ,
     setTotalAlerts: (totalAlerts: number) => {
         set(state => ({
             totalAlerts: totalAlerts,
-            averageAlerts: totalAlerts / state.siteReports.length
+            averageAlerts: totalAlerts / state.pageReports.length
         }));
     }
     ,
     setTotalFeatures: (totalFeatures: number) => {
         set(state => ({
             totalFeatures: totalFeatures,
-            averageFeatures: totalFeatures / state.siteReports.length
+            averageFeatures: totalFeatures / state.pageReports.length
         }));
     }
     ,
     setTotalStructures: (totalStructures: number) => {
         set(state => ({
             totalStructures: totalStructures,
-            averageStructures: totalStructures / state.siteReports.length
+            averageStructures: totalStructures / state.pageReports.length
         }));
     }
     ,
     setTotalArias: (totalArias: number) => {
         set(state => ({
             totalArias: totalArias,
-            averageArias: totalArias / state.siteReports.length
+            averageArias: totalArias / state.pageReports.length
         }));
     }
     ,
@@ -127,19 +160,19 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
             rootUrl: websiteReport.rootUrl,
             xmlSiteMap: websiteReport.xmlSiteMap,
             status: websiteReport.status,
-            siteReports: websiteReport.siteReports,
+            pageReports: websiteReport.pageReports,
             totalErrors: websiteReport.totalErrors,
             totalContrasts: websiteReport.totalContrasts,
             totalAlerts: websiteReport.totalAlerts,
             totalFeatures: websiteReport.totalFeatures,
             totalStructures: websiteReport.totalStructures,
             totalArias: websiteReport.totalArias,
-            averageErrors: websiteReport.totalErrors / websiteReport.siteReports.length,
-            averageContrasts: websiteReport.totalContrasts / websiteReport.siteReports.length,
-            averageAlerts: websiteReport.totalAlerts / websiteReport.siteReports.length,
-            averageFeatures: websiteReport.totalFeatures / websiteReport.siteReports.length,
-            averageStructures: websiteReport.totalStructures / websiteReport.siteReports.length,
-            averageArias: websiteReport.totalArias / websiteReport.siteReports.length,
+            averageErrors: websiteReport.totalErrors / websiteReport.pageReports.length,
+            averageContrasts: websiteReport.totalContrasts / websiteReport.pageReports.length,
+            averageAlerts: websiteReport.totalAlerts / websiteReport.pageReports.length,
+            averageFeatures: websiteReport.totalFeatures / websiteReport.pageReports.length,
+            averageStructures: websiteReport.totalStructures / websiteReport.pageReports.length,
+            averageArias: websiteReport.totalArias / websiteReport.pageReports.length,
         }));
     },
 }));

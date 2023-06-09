@@ -2,11 +2,12 @@
 
 import { useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useWebsiteReportStore, WebsiteReport } from "../store/WebsiteReportStore";
+import { useWebsiteReportStore, usePageReportStore, PageReportState } from "../store/PageReportStore";
 
 export const XMLFinder = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const WebsiteReportStore = useWebsiteReportStore();
+    const PageReport = usePageReportStore();
 
     const handleFocus = () => {
         if (clickPoint.current) {
@@ -24,11 +25,40 @@ export const XMLFinder = () => {
         try {
             console.log("query" + n)
             console.log(url)
+
             const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-            const query = await APIcall.json();
-            console.log(query);
-            WebsiteReportStore.addSiteReport({ url: url, error: query.categories.error, structure: query.categories.structure, alert: query.categories.alert, feature: query.categories.feature, contrast: query.categories.contrast, aria: query.categories.aria });
-            console.log(WebsiteReportStore.siteReports)
+            const response = await APIcall.json();
+            console.log(response);
+            console.log(url);
+            PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+
+            WebsiteReportStore.addPageReport({ url: PageReport.url, error: PageReport.error, structure: PageReport.structure, alert: PageReport.alert, feature: PageReport.feature, contrast: PageReport.contrast, aria: PageReport.aria });
+            console.log("nuts");
+            console.log(WebsiteReportStore.pageReports)
+            console.log(PageReport);
+            console.log(PageReport.url);
+
+            {/* 
+        const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
+            const response = await APIcall.json();
+            console.log(response);
+            PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+            console.log(PageReport);
+            console.log("deez");
+
+            WebsiteReportStore.addPageReport(PageReport);
+            console.log("nuts");
+            console.log(WebsiteReportStore.pageReports)
+
+            WebsiteReportStore.addPageReport({ url: url, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+            console.log("nuts");
+            console.log(WebsiteReportStore.pageReports)
+
+            WebsiteReportStore.addPageReport({ url: PageReport.url, error: PageReport.error, structure: PageReport.structure, alert: PageReport.alert, feature: PageReport.feature, contrast: PageReport.contrast, aria: PageReport.aria });
+            console.log("nuts");
+            console.log(WebsiteReportStore.pageReports)
+
+    **/}
 
         } catch (error) {
             console.log("Error:", error);
@@ -52,13 +82,13 @@ export const XMLFinder = () => {
 
                 // Get the first <url> element
                 const urlList = xml.getElementsByTagName("url");
-                for (let i = 0; i < 10; i++) {
+                for (let i = 0; i < 3; i++) {
                     const urlElement = urlList[i];
                     const locElement = urlElement.getElementsByTagName("loc")[0];
                     console.log(locElement.textContent);
                     await query(locElement.textContent!.trim(), i);
                 }
-                console.log(WebsiteReportStore.siteReports)
+                console.log(WebsiteReportStore.pageReports)
             } catch (error) {
                 console.log("Error:", error);
             }
