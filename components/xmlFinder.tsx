@@ -2,7 +2,7 @@
 
 import { useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useWebsiteReportStore, usePageReportStore, PageReportState } from "../store/PageReportStore";
+import { useWebsiteReportStore, usePageReportStore } from "../store/PageReportStore";
 
 export const XMLFinder = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
@@ -24,41 +24,14 @@ export const XMLFinder = () => {
     const query = async (url: string, n: number) => {
         try {
             console.log("query" + n)
-            console.log(url)
+            console.log(`${url}`)
 
             const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
             const response = await APIcall.json();
             console.log(response);
             console.log(url);
             PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-
-            WebsiteReportStore.addPageReport({ url: PageReport.url, error: PageReport.error, structure: PageReport.structure, alert: PageReport.alert, feature: PageReport.feature, contrast: PageReport.contrast, aria: PageReport.aria });
-            console.log("nuts");
-            console.log(WebsiteReportStore.pageReports)
             console.log(PageReport);
-            console.log(PageReport.url);
-
-            {/* 
-        const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-            const response = await APIcall.json();
-            console.log(response);
-            PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-            console.log(PageReport);
-            console.log("deez");
-
-            WebsiteReportStore.addPageReport(PageReport);
-            console.log("nuts");
-            console.log(WebsiteReportStore.pageReports)
-
-            WebsiteReportStore.addPageReport({ url: url, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-            console.log("nuts");
-            console.log(WebsiteReportStore.pageReports)
-
-            WebsiteReportStore.addPageReport({ url: PageReport.url, error: PageReport.error, structure: PageReport.structure, alert: PageReport.alert, feature: PageReport.feature, contrast: PageReport.contrast, aria: PageReport.aria });
-            console.log("nuts");
-            console.log(WebsiteReportStore.pageReports)
-
-    **/}
 
         } catch (error) {
             console.log("Error:", error);
@@ -86,9 +59,21 @@ export const XMLFinder = () => {
                     const urlElement = urlList[i];
                     const locElement = urlElement.getElementsByTagName("loc")[0];
                     console.log(locElement.textContent);
-                    await query(locElement.textContent!.trim(), i);
+                    try {
+                        console.log("query" + i)
+                        console.log(locElement.textContent!.trim())
+
+                        const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
+                        const response = await APIcall.json();
+                        console.log(response);
+                        PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                        console.log(PageReport);
+
+                    } catch (error) {
+                        console.log("Error:", error);
+                    }
                 }
-                console.log(WebsiteReportStore.pageReports)
+
             } catch (error) {
                 console.log("Error:", error);
             }

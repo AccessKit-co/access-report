@@ -25,6 +25,49 @@ export const URLSearch = () => {
         }
     };
 
+    const query = async (url: string, n: number) => {
+        try {
+            console.log("query" + n)
+            console.log(`${url}`)
+
+            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
+            const response = await APIcall.json();
+            console.log(response);
+            console.log(url);
+            PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+            console.log(PageReport);
+
+        } catch (error) {
+            console.log("Error:", error);
+        }
+
+    };
+
+    const query2 = async (url: string, n: number) => {
+        try {
+            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
+            const response = await APIcall.json();
+            console.log(response);
+            console.log(url);
+            PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+            IssueState.setSelected("error");
+
+            {/*
+            WebsiteReportStore.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+
+            console.log(WebsiteReportStore.pageReports)
+        **/}
+            console.log(PageReport);
+            console.log(PageReport.url);
+
+
+
+
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    }
+
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
@@ -36,12 +79,16 @@ export const URLSearch = () => {
                 console.log(url);
                 PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
                 IssueState.setSelected("error");
+                console.log(PageReport)
 
+                {/*
                 WebsiteReportStore.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-                console.log("nuts");
+
                 console.log(WebsiteReportStore.pageReports)
+            
                 console.log(PageReport);
                 console.log(PageReport.url);
+                **/}
 
 
 
