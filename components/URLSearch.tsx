@@ -81,14 +81,12 @@ export const URLSearch = () => {
                 IssueState.setSelected("error");
                 console.log(PageReport)
 
-                {/*
                 WebsiteReportStore.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
 
                 console.log(WebsiteReportStore.pageReports)
-            
+
                 console.log(PageReport);
                 console.log(PageReport.url);
-                **/}
 
 
 
