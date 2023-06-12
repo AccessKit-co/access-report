@@ -1,13 +1,21 @@
 "use client";
 
-import { useRef, KeyboardEvent } from "react";
+import { useEffect, useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useWebsiteReportStore, usePageReportStore } from "../store/PageReportStore";
 
 export const XMLFinder = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
-    const WebsiteReportStore = useWebsiteReportStore();
     const PageReport = usePageReportStore();
+    const WebsiteReport = useWebsiteReportStore();
+
+    useEffect(() => {
+        console.log('PageReport changed:', PageReport);
+    }, [PageReport]); // Whenever pageReport changes, this effect runs
+
+    useEffect(() => {
+        console.log('WebsiteReport changed:', WebsiteReport);
+    }, [WebsiteReport]); // Whenever websiteReport changes, this effect runs
 
     const handleFocus = () => {
         if (clickPoint.current) {
@@ -19,24 +27,6 @@ export const XMLFinder = () => {
         if (clickPoint.current) {
             clickPoint.current.style.display = "block";
         }
-    };
-
-    const query = async (url: string, n: number) => {
-        try {
-            console.log("query" + n)
-            console.log(`${url}`)
-
-            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-            const response = await APIcall.json();
-            console.log(response);
-            console.log(url);
-            PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-            console.log(PageReport);
-
-        } catch (error) {
-            console.log("Error:", error);
-        }
-
     };
 
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
@@ -55,23 +45,18 @@ export const XMLFinder = () => {
 
                 // Get the first <url> element
                 const urlList = xml.getElementsByTagName("url");
+
+                // This is a hacky way to get the first 3 urls, still have to work out the async issues
                 for (let i = 0; i < 3; i++) {
                     const urlElement = urlList[i];
                     const locElement = urlElement.getElementsByTagName("loc")[0];
                     console.log(locElement.textContent);
                     try {
-                        console.log("query" + i)
-                        console.log(locElement.textContent!.trim())
-
                         const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
                         const response = await APIcall.json();
-                        console.log(response);
                         PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-                        console.log(PageReport);
 
-                        WebsiteReportStore.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-
-                        console.log(WebsiteReportStore.pageReports)
+                        WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
 
                     } catch (error) {
                         console.log("Error:", error);
