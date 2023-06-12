@@ -15,6 +15,7 @@ import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
 import { URLSearch } from '../../components/URLSearch';
 import Image from 'next/image';
 import { XMLFinder } from '../../components/xmlFinder';
+import { PageSearch } from '../../components/PageSearch';
 
 interface Category {
   id: string;
@@ -64,7 +65,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-start w-screen h-screen px-16">
+      <div className="flex flex-col items-center justify-start w-screen h-screen px-16 gap-2">
 
         {/** Site Overall Review Component */}
         {
@@ -73,7 +74,7 @@ export default function Home() {
           </div>
         }
 
-        < div className="w-full flex flex-col gap-2 text-center items-center justify-center w-full h-32 my-2">
+        < div className="w-full flex flex-col text-center items-center justify-center w-full h-32">
           <div className='flex flex-row justify-between rounded-md overflow-clip border-2 w-[24rem] '>
             <div
               className="flex flex-col bg-[#F0F9FF] w-1/2">
@@ -166,11 +167,15 @@ export default function Home() {
           </div>
         </div>
 
+        <div className='w-full h-8 items-center justify-center'>
+          <PageSearch />
+        </div>
+
         {/** Page Report Component 2.0 */}
 
         <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] h-[28rem] overflow-clip">
           <div className='flex flex-row divide-x rounded-md border-2 w-full h-full'>
-            <div className='flex w-[10rem] shrink-0 bg-[#F0F9FF] items-center justify-center'>
+            <div className='flex w-[10rem] bg-[#F0F9FF] items-center justify-center'>
               <div className='flex flex-col items-center justify-top w-full h-full'>
 
                 <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FEEBEB] px-1'
