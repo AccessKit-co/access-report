@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useWebsiteReportStore, usePageReportStore } from "../store/PageReportStore";
+import { usePageReportStore } from "../store/PageReportStore";
+import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 
 export const XMLFinder = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
@@ -50,7 +51,6 @@ export const XMLFinder = () => {
                 for (let i = 0; i < 3; i++) {
                     const urlElement = urlList[i];
                     const locElement = urlElement.getElementsByTagName("loc")[0];
-                    console.log(locElement.textContent);
                     try {
                         const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
                         const response = await APIcall.json();
