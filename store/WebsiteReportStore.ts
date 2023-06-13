@@ -24,6 +24,7 @@ export type WebsiteReport = {
 {/** Type with setter functions */ }
 export type WebsiteReportStore = WebsiteReport & {
     setRootUrl: (text: string) => void;
+    findPageReportByUrl: (url: string) => PageReportState | undefined;
     setXmlSiteMap: (text: string[]) => void;
     setStatus: (status: boolean) => void;
     setPageReports: (pageReports: PageReportState[]) => void;
@@ -37,7 +38,7 @@ export type WebsiteReportStore = WebsiteReport & {
     setWebsiteReport: (websiteReport: WebsiteReport) => void;
 };
 
-const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
+const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
     rootUrl: '',
     xmlSiteMap: [],
     status: false,
@@ -58,8 +59,10 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
         set(state => ({
             rootUrl: text
         }));
-    }
-    ,
+    },
+    findPageReportByUrl: (url: string): PageReportState | undefined => {
+        return get().pageReports.find((report: PageReportState) => report.url === url);
+    },
     setXmlSiteMap: (text: string[]) => {
         set(state => ({
             xmlSiteMap: text
@@ -78,6 +81,18 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
     addPageReport: (pageReport: PageReportState) => {
         set(state => ({
             ...state,
+            totalErrors: state.totalErrors + pageReport.error.count,
+            totalContrasts: state.totalContrasts + pageReport.contrast.count,
+            totalAlerts: state.totalAlerts + pageReport.alert.count,
+            totalFeatures: state.totalFeatures + pageReport.feature.count,
+            totalStructures: state.totalStructures + pageReport.structure.count,
+            totalArias: state.totalArias + pageReport.aria.count,
+            averageErrors: (state.totalErrors + pageReport.error.count) / (state.pageReports.length + 1),
+            averageContrasts: (state.totalContrasts + pageReport.contrast.count) / (state.pageReports.length + 1),
+            averageAlerts: (state.totalAlerts + pageReport.alert.count) / (state.pageReports.length + 1),
+            averageFeatures: (state.totalFeatures + pageReport.feature.count) / (state.pageReports.length + 1),
+            averageStructures: (state.totalStructures + pageReport.structure.count) / (state.pageReports.length + 1),
+            averageArias: (state.totalArias + pageReport.aria.count) / (state.pageReports.length),
             pageReports: [...state.pageReports, {
                 url: pageReport.url,
                 error: {

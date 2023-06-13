@@ -146,7 +146,7 @@ const usePageReportStore = create<PageReportStore>((set) => ({
     feature: { description: "Feature", count: 0, items: [] },
     structure: { description: "Structure", count: 0, items: [] },
     aria: { description: "Aria", count: 0, items: [] },
-    async setPageReport(pageReport: PageReportState) {
+    setPageReport(pageReport: PageReportState) {
         set(state => ({
             url: pageReport.url,
             error: {

@@ -47,6 +47,8 @@ export const XMLFinder = () => {
                 // Get the first <url> element
                 const urlList = xml.getElementsByTagName("url");
 
+                WebsiteReport.setRootUrl(url);
+
                 // This is a hacky way to get the first 3 urls, still have to work out the async issues
                 for (let i = 0; i < 3; i++) {
                     const urlElement = urlList[i];

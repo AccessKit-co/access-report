@@ -2,7 +2,7 @@
 
 import { useState, useRef, KeyboardEvent } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { usePageReportStore } from "../store/PageReportStore";
+import { usePageReportStore, PageReportState } from "../store/PageReportStore";
 import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
 import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 
@@ -25,68 +25,27 @@ export const PageSearch = () => {
         }
     };
 
-    const query = async (url: string, n: number) => {
-        try {
-            console.log("query" + n)
-            console.log(`${url}`)
-
-            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-            const response = await APIcall.json();
-            console.log(response);
-            console.log(url);
-            PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-            console.log(PageReport);
-
-        } catch (error) {
-            console.log("Error:", error);
-        }
-
-    };
-
-    const query2 = async (url: string, n: number) => {
-        try {
-            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-            const response = await APIcall.json();
-            console.log(response);
-            console.log(url);
-            PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-            IssueState.setSelected("error");
-
-            {/*
-            WebsiteReportStore.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-
-            console.log(WebsiteReportStore.pageReports)
-        **/}
-            console.log(PageReport);
-            console.log(PageReport.url);
-
-
-
-
-        } catch (error) {
-            console.log("Error:", error);
-        }
-    }
-
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            const url = event.currentTarget.value;
+            const url = event.currentTarget.value //WebsiteReportStore.rootUrl + event.currentTarget.value;
+            console.log("3")
+            console.log(url);
+            console.log("4")
             try {
-                const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-                const response = await APIcall.json();
-                console.log(response);
-                console.log(url);
-                PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-                IssueState.setSelected("error");
-                console.log(PageReport)
-
-                WebsiteReportStore.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-
+                // I have to add an error message when the url is not foun within pageReports
+                console.log("1")
+                const SelectedPage: PageReportState = (WebsiteReportStore.findPageReportByUrl(url) as PageReportState);
+                console.log("2")
                 console.log(WebsiteReportStore.pageReports)
+                console.log(SelectedPage)
+                console.log((SelectedPage as PageReportState).error.count)
+                console.log("5")
 
-                console.log(PageReport);
-                console.log(PageReport.url);
+                PageReport.setPageReport(SelectedPage);
+
+                //PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                console.log(PageReport)
 
 
 

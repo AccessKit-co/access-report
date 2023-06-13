@@ -16,6 +16,7 @@ import { URLSearch } from '../../components/URLSearch';
 import Image from 'next/image';
 import { XMLFinder } from '../../components/xmlFinder';
 import { PageSearch } from '../../components/PageSearch';
+import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
 
 interface Category {
   id: string;
@@ -31,6 +32,7 @@ interface ApiResponse {
 export default function Home() {
   const PageStore = usePageReportStore();
   const IssueState = useIssueStateSelectStore();
+  const WebsiteReport = useWebsiteReportStore();
 
   const handleIssueState = (selecting: string) => {
     if (IssueState.selected == selecting) {
@@ -70,7 +72,7 @@ export default function Home() {
         {/** Site Overall Review Component */}
         {
           (PageStore.url == 'none') ? '' : <div className="flex items-center justify-center w-[20rem] h-8 overflow-clip">
-            <h2 className='text-xl font-medium font-sans truncate'>{PageStore.url} </h2>
+            <h2 className='text-xl font-medium font-sans truncate'>{WebsiteReport.rootUrl} </h2>
           </div>
         }
 
@@ -95,7 +97,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#EA0404]'> {PageStore.error.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#EA0404]'> {WebsiteReport.totalErrors}</span>
                     </div>
                   </div>
                 </div>
@@ -112,7 +114,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#008AE0]'> {PageStore.contrast.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#008AE0]'> {WebsiteReport.totalContrasts}</span>
                     </div>
                   </div>
                 </div>
@@ -127,7 +129,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#2CB56E]'> {PageStore.structure.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#2CB56E]'> {WebsiteReport.totalStructures}</span>
                     </div>
                   </div>
                 </div>
