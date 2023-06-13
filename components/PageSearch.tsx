@@ -35,11 +35,9 @@ export const PageSearch = () => {
             try {
                 // I have to add an error message when the url is not foun within pageReports
                 console.log("1")
-                const SelectedPage: PageReportState = (WebsiteReportStore.findPageReportByUrl(url) as PageReportState);
+                //const SelectedPage: PageReportState = (WebsiteReportStore.findPageReportByUrl(url) as PageReportState);
                 console.log("2")
                 console.log(WebsiteReportStore.pageReports)
-                console.log(SelectedPage)
-                console.log((SelectedPage as PageReportState).error.count)
                 console.log("5")
 
                 PageReport.setPageReport(SelectedPage);
@@ -57,7 +55,7 @@ export const PageSearch = () => {
     };
 
     return (
-        <div className="items-center flex flex-col justify-start w-[10rem] h-full ">
+        <div className="items-center flex flex-col justify-center w-[20rem] h-full ">
             <div className="flex w-full h-full rounded border-2 justify-center items-center px-2">
                 <div className="flex flex-row items-center justify-start w-full h-full  ">
                     <div className="flex h-full items-center justify-center" ref={clickPoint}>
@@ -65,8 +63,8 @@ export const PageSearch = () => {
                     </div>
                     <input
                         type="text"
-                        className="flex text-gray-900 text-xs items-center h-full w-full justify-center font-sans truncate border-none"
-                        placeholder="Search for your webpage..."
+                        className="flex text-xs items-center h-full w-full justify-center font-sans truncate border-none"
+                        placeholder={PageReport.url}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
                         onKeyDown={handleKeyDown}
