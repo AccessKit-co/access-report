@@ -14,7 +14,7 @@ import { SubtypeState, usePageReportStore } from '../../store/PageReportStore';
 import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
 import { URLSearch } from '../../components/URLSearch';
 import Image from 'next/image';
-import { XMLFinder } from '../../components/xmlFinder';
+import { WebsiteSearch } from '../../components/WebsiteSearch';
 import { PageSearch } from '../../components/PageSearch';
 import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
 
@@ -62,7 +62,7 @@ export default function Home() {
         <div className="flex items-center justify-center h-1/4 w-full">
           {/** Searchbar Component */}
           <div className="flex w-[24rem] h-[1.5rem] justify-center items-center bg-[#FFFFFF]">
-            <URLSearch />
+            <WebsiteSearch />
           </div>
         </div>
       </div>
@@ -300,7 +300,6 @@ export default function Home() {
             </div>
           </div>
         </div >
-        <XMLFinder />
       </div>
     </main >
   )

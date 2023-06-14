@@ -5,7 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
 import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 
-export const XMLFinder = () => {
+export const WebsiteSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const PageReport = usePageReportStore();
     const WebsiteReport = useWebsiteReportStore();
