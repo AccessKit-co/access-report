@@ -73,18 +73,25 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
         }));
     },
     addPageReport: (pageReport: PageReportState) => {
+        // Add the report 
         const { pageReports } = get();
         const newPageReports = {
             ...pageReports,
-            [pageReport.url]: pageReport // Updated this line
+            [pageReport.url]: pageReport
         };
-
-        // ...
 
         set(state => ({
             ...state,
-            pageReports: newPageReports, // Updated this line
-            // ...
+            // Add the number of issues to the total
+            totalErrors: state.totalErrors + pageReport.error.count,
+            totalContrasts: state.totalContrasts + pageReport.contrast.count,
+            totalAlerts: state.totalAlerts + pageReport.alert.count,
+            totalFeatures: state.totalFeatures + pageReport.feature.count,
+            totalStructures: state.totalStructures + pageReport.structure.count,
+            totalArias: state.totalArias + pageReport.aria.count,
+
+            pageReports: newPageReports, // change the dictionary for the new object
+            // ... 
         }));
     },
     setTotalErrors: (totalErrors: number) => {

@@ -35,15 +35,18 @@ export const PageSearch = () => {
             try {
                 // I have to add an error message when the url is not foun within pageReports
                 console.log("1")
+                console.log(WebsiteReportStore.pageReports[url])
                 //const SelectedPage: PageReportState = (WebsiteReportStore.findPageReportByUrl(url) as PageReportState);
                 console.log("2")
                 console.log(WebsiteReportStore.pageReports)
                 console.log("5")
 
                 //PageReport.setPageReport(WebsiteReportStore.findPageReportByUrl(url) as PageReportState);
-
-                //PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                console.log("6")
                 console.log(PageReport)
+                console.log("7")
+                PageReport.setPageReport({ url: url, error: WebsiteReportStore.pageReports[url].error, structure: WebsiteReportStore.pageReports[url].structure, alert: WebsiteReportStore.pageReports[url].alert, feature: WebsiteReportStore.pageReports[url].feature, contrast: WebsiteReportStore.pageReports[url].contrast, aria: WebsiteReportStore.pageReports[url].aria });
+                console.log("8")
 
 
 

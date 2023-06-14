@@ -44,9 +44,6 @@ export type WebsiteReport = {
     averageArias: number;
 };
 
-
-
-
 export type SubtypeStore = SubtypeState & {
     setdescription: (text: string) => void;
     setcount: (number: number) => void;
