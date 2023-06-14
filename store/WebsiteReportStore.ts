@@ -6,7 +6,7 @@ export type WebsiteReport = {
     rootUrl: string;
     xmlSiteMap: string[];
     status: boolean;
-    pageReports: PageReportState[];
+    pageReports: Record<string, PageReportState>;
     totalErrors: number;
     totalContrasts: number;
     totalAlerts: number;
@@ -27,7 +27,6 @@ export type WebsiteReportStore = WebsiteReport & {
     findPageReportByUrl: (url: string) => PageReportState | undefined;
     setXmlSiteMap: (text: string[]) => void;
     setStatus: (status: boolean) => void;
-    setPageReports: (pageReports: PageReportState[]) => void;
     addPageReport: (pageReport: PageReportState) => void;
     setTotalErrors: (totalErrors: number) => void;
     setTotalContrasts: (totalContrasts: number) => void;
@@ -42,7 +41,7 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
     rootUrl: '',
     xmlSiteMap: [],
     status: false,
-    pageReports: [],
+    pageReports: {},
     totalErrors: 0,
     totalContrasts: 0,
     totalAlerts: 0,
@@ -61,7 +60,7 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
         }));
     },
     findPageReportByUrl: (url: string): PageReportState | undefined => {
-        return get().pageReports.find((report: PageReportState) => report.url === url);
+        return get().pageReports[url];
     },
     setXmlSiteMap: (text: string[]) => {
         set(state => ({
@@ -73,100 +72,60 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
             status: status
         }));
     },
-    setPageReports: (pageReports: PageReportState[]) => {
-        set(state => ({
-            pageReports: pageReports
-        }));
-    },
     addPageReport: (pageReport: PageReportState) => {
+        const { pageReports } = get();
+        const newPageReports = {
+            ...pageReports,
+            [pageReport.url]: pageReport // Updated this line
+        };
+
+        // ...
+
         set(state => ({
             ...state,
-            totalErrors: state.totalErrors + pageReport.error.count,
-            totalContrasts: state.totalContrasts + pageReport.contrast.count,
-            totalAlerts: state.totalAlerts + pageReport.alert.count,
-            totalFeatures: state.totalFeatures + pageReport.feature.count,
-            totalStructures: state.totalStructures + pageReport.structure.count,
-            totalArias: state.totalArias + pageReport.aria.count,
-            averageErrors: (state.totalErrors + pageReport.error.count) / (state.pageReports.length + 1),
-            averageContrasts: (state.totalContrasts + pageReport.contrast.count) / (state.pageReports.length + 1),
-            averageAlerts: (state.totalAlerts + pageReport.alert.count) / (state.pageReports.length + 1),
-            averageFeatures: (state.totalFeatures + pageReport.feature.count) / (state.pageReports.length + 1),
-            averageStructures: (state.totalStructures + pageReport.structure.count) / (state.pageReports.length + 1),
-            averageArias: (state.totalArias + pageReport.aria.count) / (state.pageReports.length),
-            pageReports: [...state.pageReports, {
-                url: pageReport.url,
-                error: {
-                    description: pageReport.error.description,
-                    count: pageReport.error.count,
-                    items: pageReport.error.items ? pageReport.error.items : []
-                },
-                contrast: {
-                    description: pageReport.contrast.description,
-                    count: pageReport.contrast.count,
-                    items: pageReport.contrast.items ? pageReport.contrast.items : []
-                },
-                alert: {
-                    description: pageReport.alert.description,
-                    count: pageReport.alert.count,
-                    items: pageReport.alert.items ? pageReport.alert.items : []
-                },
-                feature: {
-                    description: pageReport.feature.description,
-                    count: pageReport.feature.count,
-                    items: pageReport.feature.items ? pageReport.feature.items : []
-                },
-                structure: {
-                    description: pageReport.structure.description,
-                    count: pageReport.structure.count,
-                    items: pageReport.structure.items ? pageReport.structure.items : []
-                },
-                aria: {
-                    description: pageReport.aria.description,
-                    count: pageReport.aria.count,
-                    items: pageReport.aria.items ? pageReport.aria.items : []
-                }
-            }]
+            pageReports: newPageReports, // Updated this line
+            // ...
         }));
     },
     setTotalErrors: (totalErrors: number) => {
         set(state => ({
             totalErrors: totalErrors,
-            averageErrors: totalErrors / state.pageReports.length
+            averageErrors: totalErrors / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalContrasts: (totalContrasts: number) => {
         set(state => ({
             totalContrasts: totalContrasts,
-            averageContrasts: totalContrasts / state.pageReports.length
+            averageContrasts: totalContrasts / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalAlerts: (totalAlerts: number) => {
         set(state => ({
             totalAlerts: totalAlerts,
-            averageAlerts: totalAlerts / state.pageReports.length
+            averageAlerts: totalAlerts / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalFeatures: (totalFeatures: number) => {
         set(state => ({
             totalFeatures: totalFeatures,
-            averageFeatures: totalFeatures / state.pageReports.length
+            averageFeatures: totalFeatures / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalStructures: (totalStructures: number) => {
         set(state => ({
             totalStructures: totalStructures,
-            averageStructures: totalStructures / state.pageReports.length
+            averageStructures: totalStructures / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalArias: (totalArias: number) => {
         set(state => ({
             totalArias: totalArias,
-            averageArias: totalArias / state.pageReports.length
+            averageArias: totalArias / Object.keys(state.pageReports).length
         }));
     }
     ,
@@ -182,12 +141,12 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
             totalFeatures: websiteReport.totalFeatures,
             totalStructures: websiteReport.totalStructures,
             totalArias: websiteReport.totalArias,
-            averageErrors: websiteReport.totalErrors / websiteReport.pageReports.length,
-            averageContrasts: websiteReport.totalContrasts / websiteReport.pageReports.length,
-            averageAlerts: websiteReport.totalAlerts / websiteReport.pageReports.length,
-            averageFeatures: websiteReport.totalFeatures / websiteReport.pageReports.length,
-            averageStructures: websiteReport.totalStructures / websiteReport.pageReports.length,
-            averageArias: websiteReport.totalArias / websiteReport.pageReports.length,
+            averageErrors: websiteReport.totalErrors / Object.keys(state.pageReports).length,
+            averageContrasts: websiteReport.totalContrasts / Object.keys(state.pageReports).length,
+            averageAlerts: websiteReport.totalAlerts / Object.keys(state.pageReports).length,
+            averageFeatures: websiteReport.totalFeatures / Object.keys(state.pageReports).length,
+            averageStructures: websiteReport.totalStructures / Object.keys(state.pageReports).length,
+            averageArias: websiteReport.totalArias / Object.keys(state.pageReports).length,
         }));
     },
 }));

@@ -29,7 +29,7 @@ export type WebsiteReport = {
     rootUrl: string;
     xmlSiteMap: string[];
     status: boolean;
-    pageReports: PageReportState[];
+    reportsObject: { [url: string]: PageReportState };
     totalErrors: number;
     totalContrasts: number;
     totalAlerts: number;

@@ -40,7 +40,7 @@ export const PageSearch = () => {
                 console.log(WebsiteReportStore.pageReports)
                 console.log("5")
 
-                PageReport.setPageReport(SelectedPage);
+                //PageReport.setPageReport(WebsiteReportStore.findPageReportByUrl(url) as PageReportState);
 
                 //PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
                 console.log(PageReport)
