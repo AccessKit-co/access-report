@@ -30,13 +30,30 @@ export const WebsiteSearch = () => {
         }
     };
 
+    const transformUrl = (url: string) => {
+        if (url.startsWith("http://")) {
+            return url.replace("http://", "");
+        } else if (url.startsWith("https://")) {
+            return url.replace("https://", "");
+        } else if (url.startsWith("www.")) {
+            return url.replace("www.", "");
+        }
+        else {
+            console.log("url starts with nothing")
+            return url;
+        }
+    }
+
+
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            const url = event.currentTarget.value;
+            const url = transformUrl(event.currentTarget.value);
+            console.log(url)
+
             try {
                 console.log(url)
-                const response = await fetch(`${url}/sitemap.xml`);
+                const response = await fetch(`http://${url}/sitemap.xml`);
                 const data = await response.text();
 
                 // parse the XML test into an XML Document
