@@ -25,25 +25,10 @@ export const PageSearch = () => {
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            const url = event.currentTarget.value //WebsiteReportStore.rootUrl + event.currentTarget.value;
-            console.log("3")
-            console.log(url);
-            console.log("4")
+            const url = "https://" + WebsiteReportStore.rootUrl + event.currentTarget.value //WebsiteReportStore.rootUrl + event.currentTarget.value;
             try {
-                // I have to add an error message when the url is not foun within pageReports
-                console.log("1")
-                console.log(WebsiteReportStore.pageReports[url])
-                //const SelectedPage: PageReportState = (WebsiteReportStore.findPageReportByUrl(url) as PageReportState);
-                console.log("2")
-                console.log(WebsiteReportStore.pageReports)
-                console.log("5")
-
-                //PageReport.setPageReport(WebsiteReportStore.findPageReportByUrl(url) as PageReportState);
-                console.log("6")
-                console.log(PageReport)
-                console.log("7")
+                // I have to add an error message when the url is not found within pageReports
                 PageReport.setPageReport({ url: url, error: WebsiteReportStore.pageReports[url].error, structure: WebsiteReportStore.pageReports[url].structure, alert: WebsiteReportStore.pageReports[url].alert, feature: WebsiteReportStore.pageReports[url].feature, contrast: WebsiteReportStore.pageReports[url].contrast, aria: WebsiteReportStore.pageReports[url].aria });
-                console.log("8")
 
 
 
@@ -55,20 +40,21 @@ export const PageSearch = () => {
     };
 
     return (
-        <div className="items-center justify-start w-[20rem] h-full ">
-            <div className="flex w-full h-full rounded border-2  justify-center items-center px-2">
-                <div className="flex flex-row items-center justify-start w-full h-full  ">
-                    <div className="flex h-full items-center justify-center px-0.5">
+        <div className="items-center justify-start w-[40rem] h-full ">
+            <div className="flex w-full h-full rounded   justify-center items-center px-2">
+                <div className="flex flex-row items-center justify-start w-full h-full mx-1">
+                    <div className="flex h-full items-center justify-start text-sm font-semibold flex-nowrap" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                    >
                         {WebsiteReportStore.rootUrl ? WebsiteReportStore.rootUrl : "No URL Selected"}
                     </div>
-                    <input
+                    {WebsiteReportStore.rootUrl ? <input
                         type="text"
-                        className="flex text-xs items-center h-full w-full justify-center font-sans truncate border-none"
-                        placeholder={WebsiteReportStore.rootUrl ? (PageReport.url == "none" ? "Enter a URL" : PageReport.url.replace(WebsiteReportStore.rootUrl, '')) : ''}
+                        className="flex text-xs items-center h-full justify-center font-sans truncate border-none"
+                        placeholder={PageReport.url.replace("https://" + WebsiteReportStore.rootUrl, "")}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
                         onKeyDown={handleKeyDown}
-                    />
+                    /> : ''}
                 </div>
             </div>
         </div >
