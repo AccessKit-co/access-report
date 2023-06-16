@@ -169,7 +169,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className='w-full h-8 items-center justify-center'>
+        <div className='w-full min-w-[36rem] h-8 items-center justify-start'>
           <PageSearch />
         </div>
 

@@ -1,15 +1,12 @@
 "use client";
 
 import { useState, useRef, KeyboardEvent } from "react";
-import { AiOutlineSearch } from 'react-icons/ai';
-import { usePageReportStore, PageReportState } from "../store/PageReportStore";
-import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
+import { usePageReportStore } from "../store/PageReportStore";
 import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 
 export const PageSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const PageReport = usePageReportStore();
-    const IssueState = useIssueStateSelectStore();
     const WebsiteReportStore = useWebsiteReportStore();
 
 
@@ -58,16 +55,16 @@ export const PageSearch = () => {
     };
 
     return (
-        <div className="items-center flex flex-col justify-center w-[20rem] h-full ">
-            <div className="flex w-full h-full rounded border-2 justify-center items-center px-2">
+        <div className="items-center justify-start w-[20rem] h-full ">
+            <div className="flex w-full h-full rounded border-2  justify-center items-center px-2">
                 <div className="flex flex-row items-center justify-start w-full h-full  ">
-                    <div className="flex h-full items-center justify-center" ref={clickPoint}>
-                        <AiOutlineSearch className=" h-full text-xl " />
+                    <div className="flex h-full items-center justify-center px-0.5">
+                        {WebsiteReportStore.rootUrl ? WebsiteReportStore.rootUrl : "No URL Selected"}
                     </div>
                     <input
                         type="text"
                         className="flex text-xs items-center h-full w-full justify-center font-sans truncate border-none"
-                        placeholder={PageReport.url}
+                        placeholder={WebsiteReportStore.rootUrl ? (PageReport.url == "none" ? "Enter a URL" : PageReport.url.replace(WebsiteReportStore.rootUrl, '')) : ''}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
                         onKeyDown={handleKeyDown}
