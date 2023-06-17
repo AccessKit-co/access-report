@@ -81,6 +81,9 @@ export const WebsiteSearch = () => {
                     }
                 }
 
+                //Absolutely disgusting, but it works, please fix this before I puke
+                PageReport.setPageReport({ url: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].url, error: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].error, structure: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].structure, alert: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].alert, feature: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].feature, contrast: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].contrast, aria: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].aria });
+
             } catch (error) {
                 console.log("Error:", error);
             }
