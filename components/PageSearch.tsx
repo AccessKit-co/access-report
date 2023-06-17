@@ -25,7 +25,7 @@ export const PageSearch = () => {
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            const url = "https://" + WebsiteReportStore.rootUrl + event.currentTarget.value //WebsiteReportStore.rootUrl + event.currentTarget.value;
+            const url = "https://" + WebsiteReportStore.rootUrl + "/" + event.currentTarget.value //WebsiteReportStore.rootUrl + event.currentTarget.value;
             try {
                 // I have to add an error message when the url is not found within pageReports
                 PageReport.setPageReport({ url: url, error: WebsiteReportStore.pageReports[url].error, structure: WebsiteReportStore.pageReports[url].structure, alert: WebsiteReportStore.pageReports[url].alert, feature: WebsiteReportStore.pageReports[url].feature, contrast: WebsiteReportStore.pageReports[url].contrast, aria: WebsiteReportStore.pageReports[url].aria });
@@ -45,12 +45,12 @@ export const PageSearch = () => {
                 <div className="flex flex-row items-center justify-start w-full h-full mx-1">
                     <div className="flex h-full items-center justify-start text-sm font-semibold flex-nowrap" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
                     >
-                        {WebsiteReportStore.rootUrl ? WebsiteReportStore.rootUrl : "No URL Selected"}
+                        {WebsiteReportStore.rootUrl ? WebsiteReportStore.rootUrl + "/" : "No URL Selected"}
                     </div>
                     {WebsiteReportStore.rootUrl ? <input
                         type="text"
                         className="flex text-xs items-center h-full justify-center font-sans truncate border-none"
-                        placeholder={PageReport.url.replace("https://" + WebsiteReportStore.rootUrl, "")}
+                        placeholder={PageReport.url.replace("https://" + WebsiteReportStore.rootUrl + "/", "")}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
                         onKeyDown={handleKeyDown}

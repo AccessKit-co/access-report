@@ -31,17 +31,16 @@ export const WebsiteSearch = () => {
     };
 
     const transformUrl = (url: string) => {
-        if (url.startsWith("http://")) {
-            return url.replace("http://", "");
-        } else if (url.startsWith("https://")) {
-            return url.replace("https://", "");
-        } else if (url.startsWith("www.")) {
-            return url.replace("www.", "");
-        }
-        else {
-            console.log("url starts with nothing")
-            return url;
-        }
+        // Remove the scheme (http://, https://) if present
+        let transformed = url.replace(/^https?:\/\//, '');
+
+        // Remove 'www.' if present
+        transformed = transformed.replace(/^www\./, '');
+
+        // Remove any path or query parameters
+        transformed = transformed.replace(/\/.*/, '');
+
+        return transformed;
     }
 
 
