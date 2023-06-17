@@ -72,7 +72,6 @@ export const WebsiteSearch = () => {
                     try {
                         const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
                         const response = await APIcall.json();
-                        PageReport.setPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
 
                         WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
 
@@ -82,7 +81,7 @@ export const WebsiteSearch = () => {
                 }
 
                 //Absolutely disgusting, but it works, please fix this before I puke
-                PageReport.setPageReport({ url: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].url, error: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].error, structure: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].structure, alert: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].alert, feature: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].feature, contrast: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].contrast, aria: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].aria });
+                PageReport.setPageReport({ url: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].url as string, error: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].error, structure: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].structure, alert: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].alert, feature: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].feature, contrast: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].contrast, aria: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].aria });
 
             } catch (error) {
                 console.log("Error:", error);
