@@ -25,8 +25,6 @@ export type PageReportState = {
     structure: IssueState;
     aria: IssueState;
 };
-
-{/** These are the store types with the setter functions */ }
 export type SubtypeStore = SubtypeState & {
     setdescription: (text: string) => void;
     setcount: (number: number) => void;
@@ -119,7 +117,7 @@ const useIssueStore = create<IssueStore>((set) => ({
 }));
 
 const usePageReportStore = create<PageReportStore>((set) => ({
-    url: 'none',
+    url: '',
     error: { description: "Error", count: 0, items: [] },
     contrast: { description: "Contrast", count: 0, items: [] },
     alert: { description: "Alerts", count: 0, items: [] },
@@ -221,6 +219,7 @@ const usePageReportStore = create<PageReportStore>((set) => ({
         }));
     },
 }));
+
 
 export { usePageReportStore, useIssueStore, useSubtypeStore };
 

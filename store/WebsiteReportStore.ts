@@ -6,7 +6,7 @@ export type WebsiteReport = {
     rootUrl: string;
     xmlSiteMap: string[];
     status: boolean;
-    siteReports: PageReportState[];
+    pageReports: Record<string, PageReportState>;
     totalErrors: number;
     totalContrasts: number;
     totalAlerts: number;
@@ -19,35 +19,31 @@ export type WebsiteReport = {
     averageFeatures: number;
     averageStructures: number;
     averageArias: number;
+    isLoading: boolean;
 };
 
 {/** Type with setter functions */ }
 export type WebsiteReportStore = WebsiteReport & {
     setRootUrl: (text: string) => void;
+    findPageReportByUrl: (url: string) => PageReportState | undefined;
     setXmlSiteMap: (text: string[]) => void;
     setStatus: (status: boolean) => void;
-    setSiteReports: (siteReports: PageReportState[]) => void;
-    addSiteReport: (siteReport: PageReportState) => void;
+    addPageReport: (pageReport: PageReportState) => void;
     setTotalErrors: (totalErrors: number) => void;
     setTotalContrasts: (totalContrasts: number) => void;
     setTotalAlerts: (totalAlerts: number) => void;
     setTotalFeatures: (totalFeatures: number) => void;
     setTotalStructures: (totalStructures: number) => void;
     setTotalArias: (totalArias: number) => void;
-    setAverageErrors: (averageErrors: number) => void;
-    setAverageContrasts: (averageContrasts: number) => void;
-    setAverageAlerts: (averageAlerts: number) => void;
-    setAverageFeatures: (averageFeatures: number) => void;
-    setAverageStructures: (averageStructures: number) => void;
-    setAverageArias: (averageArias: number) => void;
     setWebsiteReport: (websiteReport: WebsiteReport) => void;
+    setIsLoading: (isLoading: boolean) => void;
 };
 
-const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
+const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
     rootUrl: '',
     xmlSiteMap: [],
     status: false,
-    siteReports: [],
+    pageReports: {},
     totalErrors: 0,
     totalContrasts: 0,
     totalAlerts: 0,
@@ -60,12 +56,15 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
     averageFeatures: 0,
     averageStructures: 0,
     averageArias: 0,
+    isLoading: false,
     setRootUrl: (text: string) => {
         set(state => ({
             rootUrl: text
         }));
-    }
-    ,
+    },
+    findPageReportByUrl: (url: string): PageReportState | undefined => {
+        return get().pageReports[url];
+    },
     setXmlSiteMap: (text: string[]) => {
         set(state => ({
             xmlSiteMap: text
@@ -76,105 +75,95 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set) => ({
             status: status
         }));
     },
-    setSiteReports: (siteReports: PageReportState[]) => {
+    addPageReport: (pageReport: PageReportState) => {
+        // Add the report 
+        const { pageReports } = get();
+        const newPageReports = {
+            ...pageReports,
+            [pageReport.url]: pageReport
+        };
+
         set(state => ({
-            siteReports: siteReports
-        }));
-    },
-    addSiteReport: (siteReport: PageReportState) => {
-        set(state => ({
-            siteReports: [...state.siteReports, siteReport]
+            ...state,
+            // Add the number of issues to the total
+            totalErrors: state.totalErrors + pageReport.error.count,
+            totalContrasts: state.totalContrasts + pageReport.contrast.count,
+            totalAlerts: state.totalAlerts + pageReport.alert.count,
+            totalFeatures: state.totalFeatures + pageReport.feature.count,
+            totalStructures: state.totalStructures + pageReport.structure.count,
+            totalArias: state.totalArias + pageReport.aria.count,
+
+            pageReports: newPageReports, // change the dictionary for the new object
+            // ... 
         }));
     },
     setTotalErrors: (totalErrors: number) => {
         set(state => ({
-            totalErrors: totalErrors
+            totalErrors: totalErrors,
+            averageErrors: totalErrors / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalContrasts: (totalContrasts: number) => {
         set(state => ({
-            totalContrasts: totalContrasts
+            totalContrasts: totalContrasts,
+            averageContrasts: totalContrasts / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalAlerts: (totalAlerts: number) => {
         set(state => ({
-            totalAlerts: totalAlerts
+            totalAlerts: totalAlerts,
+            averageAlerts: totalAlerts / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalFeatures: (totalFeatures: number) => {
         set(state => ({
-            totalFeatures: totalFeatures
+            totalFeatures: totalFeatures,
+            averageFeatures: totalFeatures / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalStructures: (totalStructures: number) => {
         set(state => ({
-            totalStructures: totalStructures
+            totalStructures: totalStructures,
+            averageStructures: totalStructures / Object.keys(state.pageReports).length
         }));
     }
     ,
     setTotalArias: (totalArias: number) => {
         set(state => ({
-            totalArias: totalArias
+            totalArias: totalArias,
+            averageArias: totalArias / Object.keys(state.pageReports).length
         }));
     }
     ,
-    setAverageErrors: (averageErrors: number) => {
-        set(state => ({
-            averageErrors: averageErrors
-        }));
-    }
-    ,
-    setAverageContrasts: (averageContrasts: number) => {
-        set(state => ({
-            averageContrasts: averageContrasts
-        }));
-    }
-    ,
-    setAverageAlerts: (averageAlerts: number) => {
-        set(state => ({
-            averageAlerts: averageAlerts
-        }));
-    }
-    ,
-    setAverageFeatures: (averageFeatures: number) => {
-        set(state => ({
-            averageFeatures: averageFeatures
-        }));
-    }
-    ,
-    setAverageStructures: (averageStructures: number) => {
-        set(state => ({
-            averageStructures: averageStructures
-        }));
-    }
-    ,
-    setAverageArias: (averageArias: number) => {
-        set(state => ({
-            averageArias: averageArias
-        }));
-    },
     setWebsiteReport: (websiteReport: WebsiteReport) => {
         set(state => ({
             rootUrl: websiteReport.rootUrl,
             xmlSiteMap: websiteReport.xmlSiteMap,
             status: websiteReport.status,
-            siteReports: websiteReport.siteReports,
+            pageReports: websiteReport.pageReports,
             totalErrors: websiteReport.totalErrors,
             totalContrasts: websiteReport.totalContrasts,
             totalAlerts: websiteReport.totalAlerts,
             totalFeatures: websiteReport.totalFeatures,
             totalStructures: websiteReport.totalStructures,
             totalArias: websiteReport.totalArias,
-            averageErrors: websiteReport.averageErrors,
-            averageContrasts: websiteReport.averageContrasts,
-            averageAlerts: websiteReport.averageAlerts,
-            averageFeatures: websiteReport.averageFeatures,
-            averageStructures: websiteReport.averageStructures,
-            averageArias: websiteReport.averageArias
+            averageErrors: websiteReport.totalErrors / Object.keys(state.pageReports).length,
+            averageContrasts: websiteReport.totalContrasts / Object.keys(state.pageReports).length,
+            averageAlerts: websiteReport.totalAlerts / Object.keys(state.pageReports).length,
+            averageFeatures: websiteReport.totalFeatures / Object.keys(state.pageReports).length,
+            averageStructures: websiteReport.totalStructures / Object.keys(state.pageReports).length,
+            averageArias: websiteReport.totalArias / Object.keys(state.pageReports).length,
         }));
     },
+    setIsLoading: (isLoading: boolean) => {
+        set(state => ({
+            isLoading: isLoading
+        }));
+    }
 }));
+
+export { useWebsiteReportStore };

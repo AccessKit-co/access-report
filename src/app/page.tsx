@@ -1,19 +1,18 @@
 "use client";
 
 import { AiFillCheckCircle } from 'react-icons/ai';
-import { MdError } from 'react-icons/md';
-import { VscCircleLargeFilled } from 'react-icons/vsc';
 import { ImContrast, ImTree, } from 'react-icons/im';
-import { IoConstructSharp } from 'react-icons/io5';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { FiAlertCircle } from 'react-icons/fi';
 import { BsShieldFillX } from 'react-icons/bs';
-import { AiFillInfoCircle } from 'react-icons/ai';
+import CircularProgress from '@mui/material/CircularProgress';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { SubtypeState, usePageReportStore } from '../../store/PageReportStore';
 import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
-import { URLSearch } from '../../components/URLSearch';
 import Image from 'next/image';
+import { WebsiteSearch } from '../../components/WebsiteSearch';
+import { PageSearch } from '../../components/PageSearch';
+import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
 
 interface Category {
   id: string;
@@ -29,6 +28,7 @@ interface ApiResponse {
 export default function Home() {
   const PageStore = usePageReportStore();
   const IssueState = useIssueStateSelectStore();
+  const WebsiteReport = useWebsiteReportStore();
 
   const handleIssueState = (selecting: string) => {
     if (IssueState.selected == selecting) {
@@ -58,21 +58,21 @@ export default function Home() {
         <div className="flex items-center justify-center h-1/4 w-full">
           {/** Searchbar Component */}
           <div className="flex w-[24rem] h-[1.5rem] justify-center items-center bg-[#FFFFFF]">
-            <URLSearch />
+            <WebsiteSearch />
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-start w-screen h-screen px-16">
+      <div className="flex flex-col items-center justify-start w-screen h-screen px-16 gap-2">
 
         {/** Site Overall Review Component */}
         {
-          (PageStore.url == 'none') ? '' : <div className="flex items-center justify-center w-[20rem] h-8 overflow-clip">
-            <h2 className='text-xl font-medium font-sans truncate'>{PageStore.url} </h2>
-          </div>
+          WebsiteReport.rootUrl ? <div className="flex items-center justify-center w-[20rem] h-8 overflow-clip">
+            <h2 className='text-xl font-medium font-sans truncate'>{WebsiteReport.rootUrl} </h2>
+          </div> : ''
         }
 
-        < div className="w-full flex flex-col gap-2 text-center items-center justify-center w-full h-32 my-2">
+        < div className="w-full flex flex-col text-center items-center justify-center w-full h-32">
           <div className='flex flex-row justify-between rounded-md overflow-clip border-2 w-[24rem] '>
             <div
               className="flex flex-col bg-[#F0F9FF] w-1/2">
@@ -93,7 +93,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#EA0404]'> {PageStore.error.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#EA0404]'> {WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#EA0404' }} style={{ width: 16, height: 16 }} /> : WebsiteReport.totalErrors}</span>
                     </div>
                   </div>
                 </div>
@@ -110,7 +110,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#008AE0]'> {PageStore.contrast.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#008AE0]'> {WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#008AE0' }} style={{ width: 16, height: 16 }} /> : WebsiteReport.totalContrasts}</span>
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#2CB56E]'> {PageStore.structure.count}</span>
+                      <span className='absolute text-xl font-semibold text-[#2CB56E]'> {WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#2CB56E' }} style={{ width: 16, height: 16 }} /> : WebsiteReport.totalStructures}</span>
                     </div>
                   </div>
                 </div>
@@ -141,35 +141,42 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className='flex flex-col h-3/4 mx-3 items-center justify-center'>
-                {(PageStore.error.count >= 1) ?
-                  <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
-                    <div className='flex h-full w-1/4 items-center justify-center text-3xl group-hover:scale-125'>
-                      <BsShieldFillX style={{ fill: '#FF000E' }} />
+              {WebsiteReport.isLoading ?
+                <div className='flex flex-col h-3/4 mx-3 items-center justify-center' >
+                  <CircularProgress style={{ width: 48, height: 48 }} />
+                </div> : <div className='flex flex-col h-3/4 mx-3 items-center justify-center'>
+                  {(PageStore.error.count >= 1) ?
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
+                      <div className='flex h-full w-1/4 items-center justify-center text-3xl group-hover:scale-125'>
+                        <BsShieldFillX style={{ fill: '#FF000E' }} />
+                      </div>
+                      <div className='flex h-full w-3/4 justify-start items-center'>
+                        <h2 className='text-l font-semibold'>Non Compliant</h2>
+                      </div>
                     </div>
-                    <div className='flex h-full w-3/4 justify-start items-center'>
-                      <h2 className='text-l font-semibold'>Non Compliant</h2>
-                    </div>
-                  </div>
-                  :
-                  <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
-                    <div className='flex h-full w-1/4 items-center justify-center text-3xl'>
-                      <AiFillCheckCircle style={{ fill: 'green' }} />
-                    </div>
-                    <div className='flex h-full w-3/4 justify-center items-center'>
-                      <h2 className='text-l font-semibold'>Compliant</h2>
-                    </div>
-                  </div>}
-              </div>
+                    :
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
+                      <div className='flex h-full w-1/4 items-center justify-center text-3xl'>
+                        <AiFillCheckCircle style={{ fill: 'green' }} />
+                      </div>
+                      <div className='flex h-full w-3/4 justify-center items-center'>
+                        <h2 className='text-l font-semibold'>Compliant</h2>
+                      </div>
+                    </div>}
+                </div>}
             </div>
           </div>
+        </div>
+
+        <div className='w-full min-w-[36rem] h-4 items-center justify-start'>
+          <PageSearch />
         </div>
 
         {/** Page Report Component 2.0 */}
 
         <div className="w-full flex gap-2 text-center justify-center w-full min-w-[36rem] h-[28rem] overflow-clip">
           <div className='flex flex-row divide-x rounded-md border-2 w-full h-full'>
-            <div className='flex w-[10rem] shrink-0 bg-[#F0F9FF] items-center justify-center'>
+            <div className='flex w-[10rem] bg-[#F0F9FF] items-center justify-center'>
               <div className='flex flex-col items-center justify-top w-full h-full'>
 
                 <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FEEBEB] px-1'
@@ -273,7 +280,7 @@ export default function Home() {
                           <h2 className='font-semibold text-xl'> {(PageStore as any)[IssueState.selected].description} Report </h2>
                         </div>
                         <div className='flex flex-row w-full h-4 items-center justify-start text-sm'>
-                          <p className='text-xs font-extralight text-gray-400 justify-start items-center'> Issues in compliance with the code. </p>
+                          <p className='text-xs font-extralight text-gray-400 justify-start items-center'> {(PageStore as any)[IssueState.selected].description} </p>
                         </div>
                       </div>
                       <div className='flex flex-col items-center overflow-y-auto scroll-smooth overflow-clip justify-start h-[24rem] w-full'>
