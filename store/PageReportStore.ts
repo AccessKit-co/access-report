@@ -25,25 +25,6 @@ export type PageReportState = {
     structure: IssueState;
     aria: IssueState;
 };
-export type WebsiteReport = {
-    rootUrl: string;
-    xmlSiteMap: string[];
-    status: boolean;
-    reportsObject: { [url: string]: PageReportState };
-    totalErrors: number;
-    totalContrasts: number;
-    totalAlerts: number;
-    totalFeatures: number;
-    totalStructures: number;
-    totalArias: number;
-    averageErrors: number;
-    averageContrasts: number;
-    averageAlerts: number;
-    averageFeatures: number;
-    averageStructures: number;
-    averageArias: number;
-};
-
 export type SubtypeStore = SubtypeState & {
     setdescription: (text: string) => void;
     setcount: (number: number) => void;
@@ -136,7 +117,7 @@ const useIssueStore = create<IssueStore>((set) => ({
 }));
 
 const usePageReportStore = create<PageReportStore>((set) => ({
-    url: 'none',
+    url: '',
     error: { description: "Error", count: 0, items: [] },
     contrast: { description: "Contrast", count: 0, items: [] },
     alert: { description: "Alerts", count: 0, items: [] },

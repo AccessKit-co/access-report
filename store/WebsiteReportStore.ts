@@ -19,6 +19,7 @@ export type WebsiteReport = {
     averageFeatures: number;
     averageStructures: number;
     averageArias: number;
+    isLoading: boolean;
 };
 
 {/** Type with setter functions */ }
@@ -35,6 +36,7 @@ export type WebsiteReportStore = WebsiteReport & {
     setTotalStructures: (totalStructures: number) => void;
     setTotalArias: (totalArias: number) => void;
     setWebsiteReport: (websiteReport: WebsiteReport) => void;
+    setIsLoading: (isLoading: boolean) => void;
 };
 
 const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
@@ -54,6 +56,7 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
     averageFeatures: 0,
     averageStructures: 0,
     averageArias: 0,
+    isLoading: false,
     setRootUrl: (text: string) => {
         set(state => ({
             rootUrl: text
@@ -156,6 +159,11 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
             averageArias: websiteReport.totalArias / Object.keys(state.pageReports).length,
         }));
     },
+    setIsLoading: (isLoading: boolean) => {
+        set(state => ({
+            isLoading: isLoading
+        }));
+    }
 }));
 
 export { useWebsiteReportStore };

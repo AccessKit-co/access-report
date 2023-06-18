@@ -1,18 +1,14 @@
 "use client";
 
 import { AiFillCheckCircle } from 'react-icons/ai';
-import { MdError } from 'react-icons/md';
-import { VscCircleLargeFilled } from 'react-icons/vsc';
 import { ImContrast, ImTree, } from 'react-icons/im';
-import { IoConstructSharp } from 'react-icons/io5';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { FiAlertCircle } from 'react-icons/fi';
 import { BsShieldFillX } from 'react-icons/bs';
-import { AiFillInfoCircle } from 'react-icons/ai';
+import CircularProgress from '@mui/material/CircularProgress';
 import IssueSubtype from '../../components/PageReport/IssueReport/IssueSubtype';
 import { SubtypeState, usePageReportStore } from '../../store/PageReportStore';
 import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
-import { URLSearch } from '../../components/URLSearch';
 import Image from 'next/image';
 import { WebsiteSearch } from '../../components/WebsiteSearch';
 import { PageSearch } from '../../components/PageSearch';
@@ -71,9 +67,9 @@ export default function Home() {
 
         {/** Site Overall Review Component */}
         {
-          (PageStore.url == 'none') ? '' : <div className="flex items-center justify-center w-[20rem] h-8 overflow-clip">
+          WebsiteReport.rootUrl ? <div className="flex items-center justify-center w-[20rem] h-8 overflow-clip">
             <h2 className='text-xl font-medium font-sans truncate'>{WebsiteReport.rootUrl} </h2>
-          </div>
+          </div> : ''
         }
 
         < div className="w-full flex flex-col text-center items-center justify-center w-full h-32">
@@ -97,7 +93,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#EA0404]'> {WebsiteReport.totalErrors}</span>
+                      <span className='absolute text-xl font-semibold text-[#EA0404]'> {WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#EA0404' }} style={{ width: 16, height: 16 }} /> : WebsiteReport.totalErrors}</span>
                     </div>
                   </div>
                 </div>
@@ -114,7 +110,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#008AE0]'> {WebsiteReport.totalContrasts}</span>
+                      <span className='absolute text-xl font-semibold text-[#008AE0]'> {WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#008AE0' }} style={{ width: 16, height: 16 }} /> : WebsiteReport.totalContrasts}</span>
                     </div>
                   </div>
                 </div>
@@ -129,7 +125,7 @@ export default function Home() {
                   </div>
                   <div className='flex flex-row mx-1 w-1/5 justify-center items-center'>
                     <div className='flex h-full w-full items-center justify-center'>
-                      <span className='absolute text-xl font-semibold text-[#2CB56E]'> {WebsiteReport.totalStructures}</span>
+                      <span className='absolute text-xl font-semibold text-[#2CB56E]'> {WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#2CB56E' }} style={{ width: 16, height: 16 }} /> : WebsiteReport.totalStructures}</span>
                     </div>
                   </div>
                 </div>
@@ -145,26 +141,29 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className='flex flex-col h-3/4 mx-3 items-center justify-center'>
-                {(PageStore.error.count >= 1) ?
-                  <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
-                    <div className='flex h-full w-1/4 items-center justify-center text-3xl group-hover:scale-125'>
-                      <BsShieldFillX style={{ fill: '#FF000E' }} />
+              {WebsiteReport.isLoading ?
+                <div className='flex flex-col h-3/4 mx-3 items-center justify-center' >
+                  <CircularProgress style={{ width: 48, height: 48 }} />
+                </div> : <div className='flex flex-col h-3/4 mx-3 items-center justify-center'>
+                  {(PageStore.error.count >= 1) ?
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
+                      <div className='flex h-full w-1/4 items-center justify-center text-3xl group-hover:scale-125'>
+                        <BsShieldFillX style={{ fill: '#FF000E' }} />
+                      </div>
+                      <div className='flex h-full w-3/4 justify-start items-center'>
+                        <h2 className='text-l font-semibold'>Non Compliant</h2>
+                      </div>
                     </div>
-                    <div className='flex h-full w-3/4 justify-start items-center'>
-                      <h2 className='text-l font-semibold'>Non Compliant</h2>
-                    </div>
-                  </div>
-                  :
-                  <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
-                    <div className='flex h-full w-1/4 items-center justify-center text-3xl'>
-                      <AiFillCheckCircle style={{ fill: 'green' }} />
-                    </div>
-                    <div className='flex h-full w-3/4 justify-center items-center'>
-                      <h2 className='text-l font-semibold'>Compliant</h2>
-                    </div>
-                  </div>}
-              </div>
+                    :
+                    <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
+                      <div className='flex h-full w-1/4 items-center justify-center text-3xl'>
+                        <AiFillCheckCircle style={{ fill: 'green' }} />
+                      </div>
+                      <div className='flex h-full w-3/4 justify-center items-center'>
+                        <h2 className='text-l font-semibold'>Compliant</h2>
+                      </div>
+                    </div>}
+                </div>}
             </div>
           </div>
         </div>
