@@ -25,7 +25,6 @@ export type WebsiteReport = {
 {/** Type with setter functions */ }
 export type WebsiteReportStore = WebsiteReport & {
     setRootUrl: (text: string) => void;
-    findPageReportByUrl: (url: string) => PageReportState | undefined;
     setXmlSiteMap: (text: string[]) => void;
     setStatus: (status: boolean) => void;
     addPageReport: (pageReport: PageReportState) => void;
@@ -61,9 +60,6 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
         set(state => ({
             rootUrl: text
         }));
-    },
-    findPageReportByUrl: (url: string): PageReportState | undefined => {
-        return get().pageReports[url];
     },
     setXmlSiteMap: (text: string[]) => {
         set(state => ({

@@ -18,6 +18,26 @@ export const WebsiteSearch = () => {
         console.log('WebsiteReport changed:', WebsiteReport);
     }, [WebsiteReport]); // Whenever websiteReport changes, this effect runs
 
+    useEffect(() => {
+        if (!WebsiteReport.isLoading) {
+            const homePageUrl = "https://" + WebsiteReport.rootUrl + "/";
+            const homePageReport = WebsiteReport.pageReports[homePageUrl];
+
+            if (homePageReport) {
+                PageReport.setPageReport({
+                    url: homePageUrl,
+                    error: homePageReport.error,
+                    structure: homePageReport.structure,
+                    alert: homePageReport.alert,
+                    feature: homePageReport.feature,
+                    contrast: homePageReport.contrast,
+                    aria: homePageReport.aria
+                });
+            }
+        }
+    }, [WebsiteReport.isLoading]);
+
+
     const handleFocus = () => {
         if (clickPoint.current) {
             clickPoint.current.style.display = "none";
@@ -64,6 +84,8 @@ export const WebsiteSearch = () => {
                 const urlList = xml.getElementsByTagName("url");
 
                 WebsiteReport.setRootUrl(url);
+
+                //start loading animation
                 WebsiteReport.setIsLoading(true);
 
                 // This is a hacky way to get the first 3 urls, still have to work out the async issues
@@ -80,16 +102,15 @@ export const WebsiteSearch = () => {
                         console.log("Error:", error);
                     }
                 }
-
                 WebsiteReport.setIsLoading(false);
-
-                //Absolutely disgusting, but it works, please fix this before I puke
-                PageReport.setPageReport({ url: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].url as string, error: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].error, structure: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].structure, alert: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].alert, feature: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].feature, contrast: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].contrast, aria: WebsiteReport.pageReports[("https://" + WebsiteReport.rootUrl + "/")].aria });
+                //set the first page report to the home page url
 
             } catch (error) {
                 console.log("Error:", error);
             }
+
         }
+
     };
 
     return (

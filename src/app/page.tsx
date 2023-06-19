@@ -15,17 +15,6 @@ import { PageSearch } from '../../components/PageSearch';
 import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
 import { PageReport } from '../../components/PageReport/PageReport';
 
-interface Category {
-  id: string;
-  description: string;
-  priority: number;
-}
-
-interface ApiResponse {
-  categories: Category[];
-  // other properties from the API response if needed
-}
-
 export default function Home() {
   const PageStore = usePageReportStore();
   const IssueState = useIssueStateSelectStore();
@@ -300,7 +289,6 @@ export default function Home() {
             </div>
           </div>
         </div >
-        <PageReport />
       </div>
     </main >
   )
