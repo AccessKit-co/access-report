@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { WebsiteSearch } from '../../components/WebsiteSearch';
 import { PageSearch } from '../../components/PageSearch';
 import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
+import { PageReport } from '../../components/PageReport/PageReport';
 
 interface Category {
   id: string;
@@ -299,6 +300,7 @@ export default function Home() {
             </div>
           </div>
         </div >
+        <PageReport />
       </div>
     </main >
   )
