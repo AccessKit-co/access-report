@@ -1,25 +1,45 @@
 "use client";
 
-import { useEffect, useRef, KeyboardEvent } from "react";
+import { useEffect, useRef, KeyboardEvent, useState } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
 import { useWebsiteReportStore } from "../store/WebsiteReportStore";
+import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
+import { blue } from "@mui/material/colors";
+import Issue from "./PageReport/IssueReport/IssueC";
 
 export const WebsiteSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const PageReport = usePageReportStore();
     const WebsiteReport = useWebsiteReportStore();
+    const [isPage, setIsPage] = useState(false);
+    const IssueStateSelect = useIssueStateSelectStore();
 
+    // Whenever pageReport changes, this effect runs (debugging)
     useEffect(() => {
         console.log('PageReport changed:', PageReport);
-    }, [PageReport]); // Whenever pageReport changes, this effect runs
+        if (PageReport.url) {
+            console.log("cringe");
+            IssueStateSelect.setSelected("error");
+            console.log(IssueStateSelect.selected);
+        }
+        console.log("cringe");
+        console.log(IssueStateSelect.selected);
+    }, [PageReport]);
 
+    // Whenever websiteReport changes, this effect runs (debugging)
     useEffect(() => {
         console.log('WebsiteReport changed:', WebsiteReport);
-    }, [WebsiteReport]); // Whenever websiteReport changes, this effect runs
+    }, [WebsiteReport]);
 
+    // Whenever issueStateSelect changes, this effect runs (debugging)
     useEffect(() => {
-        if (!WebsiteReport.isLoading) {
+        console.log('IssueStateSelect changed:', IssueStateSelect);
+    }, [IssueStateSelect]);
+
+    // update the pageReport to the homepage when the websiteReport is done loading
+    useEffect(() => {
+        if (!WebsiteReport.isLoading && Object.keys(WebsiteReport.pageReports).length > 0) {
             const homePageUrl = "https://" + WebsiteReport.rootUrl + "/";
             const homePageReport = WebsiteReport.pageReports[homePageUrl];
 
@@ -34,8 +54,28 @@ export const WebsiteSearch = () => {
                     aria: homePageReport.aria
                 });
             }
+            //if there is no homepage, set the pageReport to the first page in the pageReports array
+            else if (Object.keys(WebsiteReport.pageReports).length > 0) {
+                const newPageReport = WebsiteReport.pageReports[Object.keys(WebsiteReport.pageReports)[0]] //hackiest hack ever
+
+                PageReport.setPageReport({
+                    url: newPageReport.url,
+                    error: newPageReport.error,
+                    structure: newPageReport.structure,
+                    alert: newPageReport.alert,
+                    feature: newPageReport.feature,
+                    contrast: newPageReport.contrast,
+                    aria: newPageReport.aria
+                });
+            }
         }
     }, [WebsiteReport.isLoading]);
+
+    // print the status of isPage when it changes (debugging)
+    useEffect(() => {
+        console.log('isPage changed:', isPage);
+    }, [isPage]);
+
 
 
     const handleFocus = () => {
@@ -66,49 +106,68 @@ export const WebsiteSearch = () => {
 
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-            event.preventDefault();
-            const url = transformUrl(event.currentTarget.value);
-            console.log(url)
-
-            try {
+            if (!isPage) {
+                event.preventDefault();
+                const url = transformUrl(event.currentTarget.value);
                 console.log(url)
-                const response = await fetch(`http://${url}/sitemap.xml`);
-                const data = await response.text();
+                try {
 
-                // parse the XML test into an XML Document
-                const parser = new DOMParser();
-                const xml = parser.parseFromString(data, 'text/xml');
-                console.log(xml);
+                    console.log(url)
+                    const response = await fetch(`http://${url}/sitemap.xml`);
+                    const data = await response.text();
 
-                // Get the first <url> element
-                const urlList = xml.getElementsByTagName("url");
+                    // parse the XML test into an XML Document
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(data, 'text/xml');
+                    console.log(xml);
 
-                WebsiteReport.setRootUrl(url);
+                    // Get the first <url> element
+                    const urlList = xml.getElementsByTagName("url");
 
-                //start loading animation
-                WebsiteReport.setIsLoading(true);
+                    WebsiteReport.setRootUrl(url);
 
-                // This is a hacky way to get the first 3 urls, still have to work out the async issues
-                for (let i = 0; i < 3; i++) {
-                    const urlElement = urlList[i];
-                    const locElement = urlElement.getElementsByTagName("loc")[0];
-                    try {
-                        const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
-                        const response = await APIcall.json();
+                    //start loading animation
+                    WebsiteReport.setIsLoading(true);
 
-                        WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                    // This is a hacky way to get the first 3 urls, still have to work out the async issues
+                    for (let i = 0; i < 3; i++) {
+                        const urlElement = urlList[i];
+                        const locElement = urlElement.getElementsByTagName("loc")[0];
+                        try {
+                            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
+                            const response = await APIcall.json();
 
-                    } catch (error) {
-                        console.log("Error:", error);
+                            WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+
+                        } catch (error) {
+                            console.log("Error:", error);
+                        }
                     }
+                    WebsiteReport.setIsLoading(false); //stop loading animation
+                } catch (error) {
+                    console.log("Error:", error);
                 }
-                WebsiteReport.setIsLoading(false);
-                //set the first page report to the home page url
-
-            } catch (error) {
-                console.log("Error:", error);
             }
+            else {
+                event.preventDefault();
+                const untransformedUrl = event.currentTarget.value;
+                const url = transformUrl(untransformedUrl);
+                console.log(untransformedUrl)
+                WebsiteReport.setIsLoading(true); //start loading animation
 
+                try {
+                    const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
+                    const response = await APIcall.json();
+
+                    WebsiteReport.setRootUrl(url);
+                    WebsiteReport.addPageReport({ url: untransformedUrl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+
+                } catch (error) {
+                    console.log("Error:", error);
+                }
+
+                WebsiteReport.setIsLoading(false); //stop loading animation
+            }
         }
 
     };
@@ -128,6 +187,9 @@ export const WebsiteSearch = () => {
                         onBlur={handleBlur}
                         onKeyDown={handleKeyDown}
                     />
+                    <button className="flex items-center justify-center border-2 bg-blue-500 hover:bg-blue-700 text-xs font-bold rounded m-1 " style={{ background: '#F0F9FF' }} onClick={() => { setIsPage(!isPage) }}>
+                        Page
+                    </button>
                 </div>
             </div>
         </div >

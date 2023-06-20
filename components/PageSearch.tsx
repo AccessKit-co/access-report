@@ -49,7 +49,8 @@ export const PageSearch = () => {
                     </div>
                     {WebsiteReportStore.rootUrl ? <input
                         type="text"
-                        className="flex text-xs items-center h-full justify-center font-sans truncate border-none"
+                        className="flex text-xs items-center h-full justify-center font-sans truncate border-2  rounded m-1"
+                        style={{ backgroundColor: "#F5F5F5", color: "#616161" }}
                         placeholder={PageReport.url.replace("https://" + WebsiteReportStore.rootUrl + "/", "")}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
