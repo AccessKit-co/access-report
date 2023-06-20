@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, KeyboardEvent } from "react";
+import { useState, useRef, useEffect, KeyboardEvent } from "react";
 import { usePageReportStore } from "../store/PageReportStore";
 import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 
@@ -8,7 +8,14 @@ export const PageSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const PageReport = usePageReportStore();
     const WebsiteReportStore = useWebsiteReportStore();
+    const [path, setPath] = useState<string>("");
 
+    // Whenever pageReport changes, this effect runs
+    useEffect(() => {
+        if (PageReport.url) {
+            setPath(PageReport.url.replace("https://www." + WebsiteReportStore.rootUrl + "/", "")); // this is hacky and only works for www. urls, have to fix this
+        }
+    }, [PageReport]);
 
     const handleFocus = () => {
         if (clickPoint.current) {
@@ -51,7 +58,7 @@ export const PageSearch = () => {
                         type="text"
                         className="flex text-xs items-center h-full justify-center font-sans truncate border-2  rounded m-1"
                         style={{ backgroundColor: "#F5F5F5", color: "#616161" }}
-                        placeholder={PageReport.url.replace("https://" + WebsiteReportStore.rootUrl + "/", "")}
+                        placeholder={path}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
                         onKeyDown={handleKeyDown}

@@ -19,12 +19,8 @@ export const WebsiteSearch = () => {
     useEffect(() => {
         console.log('PageReport changed:', PageReport);
         if (PageReport.url) {
-            console.log("cringe");
             IssueStateSelect.setSelected("error");
-            console.log(IssueStateSelect.selected);
         }
-        console.log("cringe");
-        console.log(IssueStateSelect.selected);
     }, [PageReport]);
 
     // Whenever websiteReport changes, this effect runs (debugging)
@@ -167,6 +163,8 @@ export const WebsiteSearch = () => {
                 }
 
                 WebsiteReport.setIsLoading(false); //stop loading animation
+
+                console.log(PageReport.url.replace("https://" + WebsiteReport.rootUrl + "/", ""));
             }
         }
 
