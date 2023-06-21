@@ -13,7 +13,7 @@ export const PageSearch = () => {
     // Whenever pageReport changes, this effect runs
     useEffect(() => {
         if (PageReport.url) {
-            setPath(PageReport.url.replace("https://www." + WebsiteReportStore.rootUrl + "/", "").replace("https://" + WebsiteReportStore.rootUrl + "/", "")); // this is hacky and only works for www. urls, have to fix this                                        
+            setPath(PageReport.url.replace("https://www." + WebsiteReportStore.rootUrl + "/", "")); // this is hacky and only works for www. urls, have to fix this
         }
     }, [PageReport]);
 

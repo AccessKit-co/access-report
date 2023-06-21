@@ -163,6 +163,8 @@ export const WebsiteSearch = () => {
                 }
 
                 WebsiteReport.setIsLoading(false); //stop loading animation
+
+                console.log(PageReport.url.replace("https://" + WebsiteReport.rootUrl + "/", ""));
             }
         }
 
