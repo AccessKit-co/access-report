@@ -1,12 +1,9 @@
-"use client";
-
 import { useEffect, useRef, KeyboardEvent, useState } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
 import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
-import { blue } from "@mui/material/colors";
-import Issue from "./PageReport/IssueReport/IssueC";
+import axios from 'axios'
 
 export const WebsiteSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
@@ -105,16 +102,18 @@ export const WebsiteSearch = () => {
             if (!isPage) {
                 event.preventDefault();
                 const url = transformUrl(event.currentTarget.value);
-                console.log(url)
                 try {
-
-                    console.log(url)
-                    const response = await fetch(`http://${url}/sitemap.xml`);
-                    const data = await response.text();
+                    //const response = await fetch(`http://${url}/sitemap.xml`);
+                    const response = await axios.get('/api/fetch-sitemap?url=' + url);
+                    if (response == null) {
+                        throw new Error("Sitemap not found");
+                    }
+                    console.log("sitemap found");
+                    console.log(response.data as string);
 
                     // parse the XML test into an XML Document
                     const parser = new DOMParser();
-                    const xml = parser.parseFromString(data, 'text/xml');
+                    const xml = parser.parseFromString(response.data, 'text/xml');
                     console.log(xml);
 
                     // Get the first <url> element
@@ -126,7 +125,7 @@ export const WebsiteSearch = () => {
                     WebsiteReport.setIsLoading(true);
 
                     // This is a hacky way to get the first 3 urls, still have to work out the async issues
-                    for (let i = 0; i < 3; i++) {
+                    for (let i = 0; i < 0; i++) {
                         const urlElement = urlList[i];
                         const locElement = urlElement.getElementsByTagName("loc")[0];
                         try {
@@ -162,7 +161,7 @@ export const WebsiteSearch = () => {
                     console.log("Error:", error);
                 }
 
-                WebsiteReport.setIsLoading(false); //stop loading animation
+                WebsiteReport.setIsLoading(false); //stop loading animationin
 
                 console.log(PageReport.url.replace("https://" + WebsiteReport.rootUrl + "/", ""));
             }
