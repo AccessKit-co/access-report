@@ -96,7 +96,7 @@ export const WebsiteSearch = () => {
         return transformed;
     }
 
-
+    // Handle the user pressing the enter key in the search bar
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             if (!isPage) {
@@ -105,31 +105,50 @@ export const WebsiteSearch = () => {
                 try {
                     //const response = await fetch(`http://${url}/sitemap.xml`);
                     const response = await axios.get('/api/fetch-sitemap?url=' + url);
+                    console.log(response);
                     if (response == null) {
                         throw new Error("Sitemap not found");
                     }
-                    console.log("sitemap found");
-                    console.log(response.data as string);
 
                     // parse the XML test into an XML Document
                     const parser = new DOMParser();
                     const xml = parser.parseFromString(response.data, 'text/xml');
                     console.log(xml);
 
-                    // Get the first <url> element
-                    const urlList = xml.getElementsByTagName("url");
-
                     WebsiteReport.setRootUrl(url);
 
                     //start loading animation
                     WebsiteReport.setIsLoading(true);
+
+                    // check if this sitemap is a sitemapindex or a list of urls
+                    const sitemapIndex = xml.getElementsByTagName("sitemap");
+                    console.log(sitemapIndex);
+                    if (sitemapIndex.length > 0) {
+                        console.log("Sitemap index found");
+                        for (let i = 0; i < sitemapIndex.length; i++) {
+                            const response = await axios.get('/api/fetch-sitemap?url=' + sitemapIndex[i].getElementsByTagName("loc")[0].textContent);
+                            if (response == null) {
+                                throw new Error("Sitemap not found");
+                            }
+
+                            // parse the XML test into an XML Document
+                            const parser = new DOMParser();
+                            const xml = parser.parseFromString(response.data, 'text/xml');
+                            console.log(xml);
+
+                        }
+                    }
+
+
+                    // Get the first <url> element
+                    const urlList = xml.getElementsByTagName("url");
 
                     // This is a hacky way to get the first 3 urls, still have to work out the async issues
                     for (let i = 0; i < 0; i++) {
                         const urlElement = urlList[i];
                         const locElement = urlElement.getElementsByTagName("loc")[0];
                         try {
-                            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
+                            //const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
                             const response = await APIcall.json();
 
                             WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
@@ -168,6 +187,19 @@ export const WebsiteSearch = () => {
         }
 
     };
+
+    //function to scan a specific page and add it to the pageReports dictionary
+    void async function waveScan(url: string) {
+        try {
+            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
+            const response = await APIcall.json();
+
+            WebsiteReport.addPageReport({ url: url, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    }
 
     return (
         <div className="items-center flex flex-col justify-center w-full h-8 ">
