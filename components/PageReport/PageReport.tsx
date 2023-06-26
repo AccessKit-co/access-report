@@ -6,10 +6,7 @@ import { ImContrast } from 'react-icons/im'
 import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore'
 import { usePageReportStore, SubtypeState } from '../../store/PageReportStore'
 import { PageSearch } from '../PageSearch'
-import { IssueSubtype } from './IssueReport/IssueSubtype'
-
-
-
+import IssueSubtype from './IssueReport/IssueSubtype'
 
 export const PageReport = () => {
     const PageStore = usePageReportStore();
