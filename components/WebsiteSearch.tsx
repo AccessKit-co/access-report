@@ -4,6 +4,7 @@ import { usePageReportStore } from "../store/PageReportStore";
 import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
 import axios from 'axios'
+import { encode } from "punycode";
 
 export const WebsiteSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
@@ -103,8 +104,7 @@ export const WebsiteSearch = () => {
                 event.preventDefault();
                 const url = transformUrl(event.currentTarget.value);
                 try {
-                    //const response = await fetch(`http://${url}/sitemap.xml`);
-                    const response = await axios.get('/api/fetch-sitemap?url=' + url);
+                    const response = await axios.get('/api/fetch-sitemap?url=' + url + '/sitemap.xml');
                     console.log(response);
                     if (response == null) {
                         throw new Error("Sitemap not found");
@@ -126,14 +126,22 @@ export const WebsiteSearch = () => {
                     if (sitemapIndex.length > 0) {
                         console.log("Sitemap index found");
                         for (let i = 0; i < sitemapIndex.length; i++) {
-                            const response = await axios.get('/api/fetch-sitemap?url=' + sitemapIndex[i].getElementsByTagName("loc")[0].textContent);
+                            const sitemapURL = sitemapIndex[i].getElementsByTagName("loc")[0].textContent?.replace("https://www.", '')
+                            console.log(sitemapURL);
+                            const encodedSitemapURL = encodeURIComponent(sitemapURL as string); // encode the url to be used in the API call, to not have issues with special characters
+
+                            const response = await axios.get('/api/fetch-sitemap?url=' + encodedSitemapURL);
+                            console.log("1")
                             if (response == null) {
                                 throw new Error("Sitemap not found");
                             }
 
                             // parse the XML test into an XML Document
+                            console.log("2")
                             const parser = new DOMParser();
+                            console.log("3")
                             const xml = parser.parseFromString(response.data, 'text/xml');
+                            console.log("4")
                             console.log(xml);
 
                         }
