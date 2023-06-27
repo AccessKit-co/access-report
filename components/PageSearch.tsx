@@ -15,7 +15,7 @@ export const PageSearch = () => {
         if (PageReport.url) {
             setPath(PageReport.url.replace("https://www." + WebsiteReportStore.rootUrl + "/", "")); // this is hacky and only works for www. urls, have to fix this
         }
-    }, [PageReport]);
+    }, [PageReport, WebsiteReportStore]);
 
     const handleFocus = () => {
         if (clickPoint.current) {

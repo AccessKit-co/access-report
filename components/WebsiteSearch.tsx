@@ -122,7 +122,6 @@ export const WebsiteSearch = () => {
 
                     // check if this sitemap is a sitemapindex or a list of urls
                     const sitemapIndex = xml.getElementsByTagName("sitemap");
-                    console.log(sitemapIndex);
                     if (sitemapIndex.length > 0) {
                         console.log("Sitemap index found");
 
@@ -153,7 +152,7 @@ export const WebsiteSearch = () => {
                                 const locElement = urlElement.getElementsByTagName("loc")[0];
                                 console.log(locElement.textContent!.trim());
                                 try {
-                                    //const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
+                                    const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
                                     const response = await APIcall.json();
 
                                     WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
@@ -169,15 +168,19 @@ export const WebsiteSearch = () => {
                     else { // if it is not a sitemap index, it is a list of urls
 
                         // Get the list of urls
+                        console.log("Sitemap found");
                         const urlList = xml.getElementsByTagName("url");
 
+                        WebsiteReport.setIsLoading(true);
                         // This is a hacky way to get the first 3 urls, still have to work out the async issues
-                        for (let i = 0; i < 0; i++) {
+                        for (let i = 0; i < 1; i++) {
                             const urlElement = urlList[i];
                             const locElement = urlElement.getElementsByTagName("loc")[0];
                             try {
-                                //const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
+                                console.log(locElement.textContent!.trim());
+                                const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
                                 const response = await APIcall.json();
+                                console.log(response);
 
                                 WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
 
