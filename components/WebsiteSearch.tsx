@@ -125,47 +125,68 @@ export const WebsiteSearch = () => {
                     console.log(sitemapIndex);
                     if (sitemapIndex.length > 0) {
                         console.log("Sitemap index found");
+
+                        // loop through all the sitemaps in the sitemap index   
                         for (let i = 0; i < sitemapIndex.length; i++) {
+                            //the API call already does this
                             const sitemapURL = sitemapIndex[i].getElementsByTagName("loc")[0].textContent?.replace("https://www.", '')
-                            console.log(sitemapURL);
                             const encodedSitemapURL = encodeURIComponent(sitemapURL as string); // encode the url to be used in the API call, to not have issues with special characters
 
-                            const response = await axios.get('/api/fetch-sitemap?url=' + encodedSitemapURL);
-                            console.log("1")
+                            const response = await axios.get('/api/fetch-sitemap?url=' + encodedSitemapURL); // fetch the sitemap
+
                             if (response == null) {
                                 throw new Error("Sitemap not found");
                             }
 
                             // parse the XML test into an XML Document
-                            console.log("2")
                             const parser = new DOMParser();
-                            console.log("3")
                             const xml = parser.parseFromString(response.data, 'text/xml');
-                            console.log("4")
                             console.log(xml);
 
+                            // Get the list of urls in this sitemap element
+                            const urlList = xml.getElementsByTagName("url");
+                            console.log(urlList);
+
+                            // loop over all the urls in the sitemap and run the accessibility API on them. Limited to 1 for now to text and not overuse credits
+                            for (let j = 0; j < 1; j++) {
+                                const urlElement = urlList[j];
+                                const locElement = urlElement.getElementsByTagName("loc")[0];
+                                console.log(locElement.textContent!.trim());
+                                try {
+                                    //const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
+                                    const response = await APIcall.json();
+
+                                    WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+
+                                } catch (error) {
+                                    console.log("Error:", error);
+                                }
+                            }
                         }
+
+                        WebsiteReport.setIsLoading(false);
                     }
+                    else { // if it is not a sitemap index, it is a list of urls
 
+                        // Get the list of urls
+                        const urlList = xml.getElementsByTagName("url");
 
-                    // Get the first <url> element
-                    const urlList = xml.getElementsByTagName("url");
+                        // This is a hacky way to get the first 3 urls, still have to work out the async issues
+                        for (let i = 0; i < 0; i++) {
+                            const urlElement = urlList[i];
+                            const locElement = urlElement.getElementsByTagName("loc")[0];
+                            try {
+                                //const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
+                                const response = await APIcall.json();
 
-                    // This is a hacky way to get the first 3 urls, still have to work out the async issues
-                    for (let i = 0; i < 0; i++) {
-                        const urlElement = urlList[i];
-                        const locElement = urlElement.getElementsByTagName("loc")[0];
-                        try {
-                            //const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
-                            const response = await APIcall.json();
+                                WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
 
-                            WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-
-                        } catch (error) {
-                            console.log("Error:", error);
+                            } catch (error) {
+                                console.log("Error:", error);
+                            }
                         }
+                        WebsiteReport.setIsLoading(false); //stop loading animation
                     }
-                    WebsiteReport.setIsLoading(false); //stop loading animation
                 } catch (error) {
                     console.log("Error:", error);
                 }
