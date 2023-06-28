@@ -100,6 +100,7 @@ export const WebsiteSearch = () => {
     // Handle the user pressing the enter key in the search bar
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
+            WebsiteReport.setIsLoading(true);
             if (!isPage) {
                 event.preventDefault();
                 const url = transformUrl(event.currentTarget.value);

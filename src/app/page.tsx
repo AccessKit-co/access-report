@@ -185,8 +185,7 @@ export default function Home() {
                   </div>
                   <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
                     <div className='flex w-full h-full border-2 border-[#FDB0B0] bg-[#FED7D7] rounded items-center justify-center '>
-                      <span className='text-l
-                      items-center justify-center h-full font-semibold text-[#EA0404]'>{WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#EA0404' }} style={{ width: 16, height: 16 }} /> : PageStore.error.count} </span>
+                      {WebsiteReport.isLoading ? <span className='text-l items-center justify-center h-full font-semibold text-[#EA0404]'> <CircularProgress sx={{ color: '#EA0404' }} style={{ width: 16, height: 16 }} />  </span> : <span className='text-l items-center justify-center font-semibold text-[#EA0404]'> {PageStore.error.count} </span>}
                     </div>
                   </div>
                 </button>
@@ -207,7 +206,7 @@ export default function Home() {
                   </div>
                   <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
                     <div className='flex w-full h-full border-2 border-[#70C8FF] bg-[#C2E8FF] rounded items-center justify-center '>
-                      <span className='text-l items-center justify-center h-full font-semibold text-[#008AE0]'>{WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#008AE0' }} style={{ width: 16, height: 16 }} /> : PageStore.contrast.count} </span>
+                      {WebsiteReport.isLoading ? <span className='text-l items-center justify-center h-full font-semibold text-[#008AE0]'> <CircularProgress sx={{ color: '#008AE0' }} style={{ width: 16, height: 16 }} />  </span> : <span className='text-l items-center justify-center font-semibold text-[#008AE0]'> {PageStore.contrast.count} </span>}
                     </div>
                   </div>
                 </button>
@@ -228,7 +227,7 @@ export default function Home() {
                   </div>
                   <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
                     <div className='flex w-full h-full border-2 border-[#5BD797] bg-[#CEF3E0] rounded items-center justify-center '>
-                      <span className='text-l items-center justify-center h-full font-semibold text-[#2CB56E]'>{WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#2CB56E' }} style={{ width: 16, height: 16 }} /> : PageStore.structure.count} </span>
+                      {WebsiteReport.isLoading ? <span className='text-l items-center justify-center h-full font-semibold text-[#2CB56E]'> <CircularProgress sx={{ color: '#2CB56E' }} style={{ width: 16, height: 16 }} />  </span> : <span className='text-l items-center justify-center font-semibold text-[#2CB56E]'> {PageStore.structure.count} </span>}
                     </div>
                   </div>
                 </button>
@@ -248,8 +247,8 @@ export default function Home() {
                     </div>
                   </div>
                   <div className='flex w-1/3 shrink-0 h-full p-2 justify-center items-center'>
-                    <div className='flex w-full h-full border-2 border-[#FFCC85] bg-[#FFE6C2] rounded items-center justify-center '>
-                      <span className='items-center  justify-center text-l font-semibold text-[#FF9505] h-full'>{WebsiteReport.isLoading ? <CircularProgress sx={{ color: '#FF9505' }} style={{ width: 16, height: 16 }} /> : PageStore.alert.count} </span>
+                    <div className='flex w-full h-full border-2 border-[#FFCC85] bg-[#FFE6C2] rounded items-center justify-center '>{WebsiteReport.isLoading ?
+                      <span className='items-center  justify-center text-l text-center font-semibold text-[#FF9505] h-full'> <CircularProgress sx={{ color: '#FF9505' }} style={{ width: 16, height: 16 }} /> </span> : <span className='items-center  justify-center text-l text-center font-semibold text-[#FF9505] '> {PageStore.alert.count} </span>}
                     </div>
                   </div>
                 </button>
