@@ -50,7 +50,7 @@ export const WebsiteSearch = () => {
             }
             //if there is no homepage, set the pageReport to the first page in the pageReports array
             else if (Object.keys(WebsiteReport.pageReports).length > 0) {
-                const newPageReport = WebsiteReport.pageReports[Object.keys(WebsiteReport.pageReports)[0]] //hackiest hack ever
+                const newPageReport = WebsiteReport.pageReports[Object.keys(WebsiteReport.pageReports)[0]];
 
                 PageReport.setPageReport({
                     url: newPageReport.url,
@@ -65,25 +65,21 @@ export const WebsiteSearch = () => {
         }
     }, [WebsiteReport.isLoading]);
 
-    // print the status of isPage when it changes (debugging)
-    useEffect(() => {
-        console.log('isPage changed:', isPage);
-    }, [isPage]);
-
-
-
+    // When we click on the search bar
     const handleFocus = () => {
         if (clickPoint.current) {
             clickPoint.current.style.display = "none";
         }
     };
 
+    // When we exit the search bar
     const handleBlur = () => {
         if (clickPoint.current) {
             clickPoint.current.style.display = "block";
         }
     };
 
+    // standardizing the format of the url
     const transformUrl = (url: string, path: boolean = true) => {
         // Remove the scheme (http://, https://) if present
         let transformed = url.replace(/^https?:\/\//, '');
@@ -112,90 +108,85 @@ export const WebsiteSearch = () => {
         }
     }
 
+    // parsing for the sitemap.xml
+    const parseSitemap = async (sitemapURL: string) => {
+        try {
+            const response = await axios.get('/api/fetch-sitemap?url=' + sitemapURL + '/sitemap.xml'); // fetch the sitemap server-side in order to avoid CORS issues
+
+            if (response == null) {
+                throw new Error("Sitemap not found");
+            }
+
+            // parse the XML test into an XML Document
+            const parser = new DOMParser();
+            return (parser.parseFromString(response.data, 'text/xml') as Document);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    }
+
+    // scan every website on this xml sitemap 
+    const sitemapAudit = async (xml: Document) => {
+        try {
+            const urlList = xml.getElementsByTagName("url"); // Get the list of urls in this sitemap element
+
+            WebsiteReport.setIsLoading(true);
+
+            // loop over all the urls
+            for (let i = 0; i < 2; i++) {
+
+                // get the ith url from the sitemap and transform it to remove the scheme
+                const pageurl = transformUrl(urlList[i].getElementsByTagName("loc")[0].textContent!.trim(), false);
+                await auditPage(pageurl); //WAVE API audit
+            }
+            WebsiteReport.setIsLoading(false);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    }
 
     // Handle the user pressing the enter key in the search bar
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             WebsiteReport.setIsLoading(true);
             if (!isPage) {
-                event.preventDefault();
+                event.preventDefault(); // url that has been inputted
                 const url = transformUrl(event.currentTarget.value);
-                try {
-                    const response = await axios.get('/api/fetch-sitemap?url=' + url + '/sitemap.xml');
-                    console.log(response);
-                    if (response == null) {
-                        throw new Error("Sitemap not found");
+
+                WebsiteReport.setRootUrl(url);
+                WebsiteReport.setIsLoading(true);
+
+                // fetch the xml sitemap
+                const xml = await parseSitemap(url);
+
+                // check if sitemap is a sitemapindex or a list of urls
+                const sitemapIndex = (xml as Document).getElementsByTagName("sitemap");
+
+                if (sitemapIndex.length > 0) {
+                    console.log("Sitemap index found");
+
+                    // loop through all the sitemaps in the sitemap index   
+                    for (let i = 0; i < sitemapIndex.length; i++) {
+                        // get the url of the sitemap and encode it to be used in the API call
+                        const sitemapURL = encodeURIComponent(sitemapIndex[i].getElementsByTagName("loc")[0].textContent?.replace("https://www.", '') as string);
+
+                        // fetch the xml sitemap
+                        const xml = await parseSitemap(url);
+
+                        await sitemapAudit(xml as Document);
                     }
-
-                    // parse the XML test into an XML Document
-                    const parser = new DOMParser();
-                    const xml = parser.parseFromString(response.data, 'text/xml');
-                    console.log(xml);
-
-                    WebsiteReport.setRootUrl(url);
-
-                    //start loading animation
-                    WebsiteReport.setIsLoading(true);
-
-                    // check if this sitemap is a sitemapindex or a list of urls
-                    const sitemapIndex = xml.getElementsByTagName("sitemap");
-                    if (sitemapIndex.length > 0) {
-                        console.log("Sitemap index found");
-
-                        // loop through all the sitemaps in the sitemap index   
-                        for (let i = 0; i < sitemapIndex.length; i++) {
-                            //the API call already does this
-                            const sitemapURL = sitemapIndex[i].getElementsByTagName("loc")[0].textContent?.replace("https://www.", '')
-                            const encodedSitemapURL = encodeURIComponent(sitemapURL as string); // encode the url to be used in the API call, to not have issues with special characters
-
-                            const response = await axios.get('/api/fetch-sitemap?url=' + encodedSitemapURL); // fetch the sitemap
-
-                            if (response == null) {
-                                throw new Error("Sitemap not found");
-                            }
-
-                            // parse the XML test into an XML Document
-                            const parser = new DOMParser();
-                            const xml = parser.parseFromString(response.data, 'text/xml');
-                            console.log(xml);
-
-                            // Get the list of urls in this sitemap element
-                            const urlList = xml.getElementsByTagName("url");
-                            console.log(urlList);
-
-                            // loop over all the urls in the sitemap and run the accessibility API on them
-                            for (let j = 0; j < 1; j++) {
-                                // get the jth url from the sitemap and transform it to remove the scheme
-                                const pageurl = transformUrl(urlList[j].getElementsByTagName("loc")[0].textContent!.trim(), false);
-
-                                await auditPage(pageurl);
-                            }
-                        }
-
-                        WebsiteReport.setIsLoading(false);
-                    }
-                    else { // if it is not a sitemap index, it is a list of urls
-
-                        console.log("Sitemap found");
-                        const urlList = xml.getElementsByTagName("url"); // Get the list of urls in this sitemap element
-
-                        WebsiteReport.setIsLoading(true);
-
-                        // loop over all the urls in the sitemap and run the accessibility API on them
-                        for (let i = 0; i < 2; i++) {
-
-                            // get the ith url from the sitemap and transform it to remove the scheme
-                            const pageurl = transformUrl(urlList[i].getElementsByTagName("loc")[0].textContent!.trim(), false);
-
-
-                            await auditPage(pageurl);
-                        }
-                        WebsiteReport.setIsLoading(false);
-                    }
-                } catch (error) {
-                    console.log("Error:", error);
                 }
+
+                // if it is not a sitemap index, it is a list of urls
+                else {
+                    console.log("Sitemap found");
+                    await sitemapAudit(xml as Document);
+                }
+
+                WebsiteReport.setIsLoading(false);
             }
+
+            // Only audits one page, the exact url entered in the WebsiteSearch bar
             else {
                 event.preventDefault();
                 const url = event.currentTarget.value;
