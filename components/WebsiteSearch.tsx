@@ -179,7 +179,7 @@ export const WebsiteSearch = () => {
                             const locElement = urlElement.getElementsByTagName("loc")[0];
                             try {
                                 console.log(locElement.textContent!.trim());
-                                const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
+                                const APIcall = await fetch(`https://wave.webaim.org/api/request?key=FARz2hsx3220&reporttype=4&url=${locElement.textContent!.trim()}`);
                                 const response = await APIcall.json();
                                 console.log(response);
 
