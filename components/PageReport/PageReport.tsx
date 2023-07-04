@@ -29,7 +29,7 @@ export const PageReport = () => {
             </div>
 
             {/** Page Report Component 2.0 */}
-            <div className="gap-2 text-center justify-center w-full min-w-[36rem] h-[32rem] overflow-clip">
+            <div className="gap-2 text-center justify-center w-full min-w-[36rem] h-80 overflow-clip">
                 <div className='flex flex-row divide-x rounded-md border-2 w-full h-full'>
                     <div className='flex w-[10rem] bg-[#F0F9FF] items-center justify-center'>
                         <div className='flex flex-col items-center justify-top w-full h-full'>

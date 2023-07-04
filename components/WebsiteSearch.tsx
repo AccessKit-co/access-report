@@ -99,6 +99,20 @@ export const WebsiteSearch = () => {
         return transformed;
     }
 
+    // sending an WAVE API request on the server side to audit the page 
+    const auditPage = async (pageurl: string) => {
+        try {
+            const response = await axios.get('/api/fetch-audit?url=' + pageurl); // fetch the audit from the server-side API call
+            const data = response.data;
+
+            WebsiteReport.addPageReport({ url: pageurl, error: data.error, structure: data.structure, alert: data.alert, feature: data.feature, contrast: data.contrast, aria: data.aria });
+
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    }
+
+
     // Handle the user pressing the enter key in the search bar
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
@@ -149,21 +163,12 @@ export const WebsiteSearch = () => {
                             const urlList = xml.getElementsByTagName("url");
                             console.log(urlList);
 
-                            // loop over all the urls in the sitemap and run the accessibility API on them. Limited to 1 for now to text and not overuse credits
+                            // loop over all the urls in the sitemap and run the accessibility API on them
                             for (let j = 0; j < 1; j++) {
-                                const urlElement = urlList[j];
-                                const locElement = urlElement.getElementsByTagName("loc")[0];
-                                console.log(locElement.textContent!.trim());
-                                try {
-                                    const response = await axios.get('/api/fetch-audit?url=' + locElement.textContent!.trim());
-                                    console.log(response);
-                                    //const response = await (APIcall as .json();
+                                // get the jth url from the sitemap and transform it to remove the scheme
+                                const pageurl = transformUrl(urlList[j].getElementsByTagName("loc")[0].textContent!.trim(), false);
 
-                                    //WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-
-                                } catch (error) {
-                                    console.log("Error:", error);
-                                }
+                                await auditPage(pageurl);
                             }
                         }
 
@@ -171,27 +176,21 @@ export const WebsiteSearch = () => {
                     }
                     else { // if it is not a sitemap index, it is a list of urls
 
-                        // Get the list of urls
                         console.log("Sitemap found");
-                        const urlList = xml.getElementsByTagName("url");
+                        const urlList = xml.getElementsByTagName("url"); // Get the list of urls in this sitemap element
 
                         WebsiteReport.setIsLoading(true);
-                        // This is a hacky way to get the first 3 urls, still have to work out the async issues
+
+                        // loop over all the urls in the sitemap and run the accessibility API on them
                         for (let i = 0; i < 2; i++) {
-                            const urlElement = urlList[i];
-                            const locElement = urlElement.getElementsByTagName("loc")[0];
-                            const pageurl = transformUrl(locElement.textContent!.trim(), false);
-                            try {
-                                const response = await axios.get('/api/fetch-audit?url=' + pageurl);
-                                const data = response.data;
 
-                                WebsiteReport.addPageReport({ url: pageurl, error: data.error, structure: data.structure, alert: data.alert, feature: data.feature, contrast: data.contrast, aria: data.aria });
+                            // get the ith url from the sitemap and transform it to remove the scheme
+                            const pageurl = transformUrl(urlList[i].getElementsByTagName("loc")[0].textContent!.trim(), false);
 
-                            } catch (error) {
-                                console.log("Error:", error);
-                            }
+
+                            await auditPage(pageurl);
                         }
-                        WebsiteReport.setIsLoading(false); //stop loading animation
+                        WebsiteReport.setIsLoading(false);
                     }
                 } catch (error) {
                     console.log("Error:", error);
@@ -200,41 +199,16 @@ export const WebsiteSearch = () => {
             else {
                 event.preventDefault();
                 const url = event.currentTarget.value;
-                const transformedUrl = transformUrl(url);
-                console.log(url)
-                WebsiteReport.setIsLoading(true); //start loading animation
+                WebsiteReport.setIsLoading(true);
 
-                try {
-                    const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-                    const response = await APIcall.json();
+                WebsiteReport.setRootUrl(transformUrl(url)); // set the root url to the url without the path
+                await auditPage(transformUrl(url, false)); // audit the page at the url with the path
 
-                    WebsiteReport.setRootUrl(url);
-                    WebsiteReport.addPageReport({ url: url, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-
-                } catch (error) {
-                    console.log("Error:", error);
-                }
-
-                WebsiteReport.setIsLoading(false); //stop loading animationin
-
-                console.log(PageReport.url.replace("https://" + WebsiteReport.rootUrl + "/", ""));
+                WebsiteReport.setIsLoading(false);
             }
         }
 
     };
-
-    //function to scan a specific page and add it to the pageReports dictionary
-    void async function waveScan(url: string) {
-        try {
-            const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${url}`);
-            const response = await APIcall.json();
-
-            WebsiteReport.addPageReport({ url: url, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
-
-        } catch (error) {
-            console.log("Error:", error);
-        }
-    }
 
     return (
         <div className="items-center flex flex-col justify-center w-full h-8 ">
