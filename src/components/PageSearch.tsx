@@ -17,12 +17,14 @@ export const PageSearch = () => {
         }
     }, [PageReport, WebsiteReportStore]);
 
+    // When we click on the search bar
     const handleFocus = () => {
         if (clickPoint.current) {
             clickPoint.current.style.display = "none";
         }
     };
 
+    // When we click off the search bar
     const handleBlur = () => {
         if (clickPoint.current) {
             clickPoint.current.style.display = "block";
@@ -37,10 +39,6 @@ export const PageSearch = () => {
             try {
                 // I have to add an error message when the url is not found within pageReports
                 PageReport.setPageReport({ url: url, error: WebsiteReportStore.pageReports[url].error, structure: WebsiteReportStore.pageReports[url].structure, alert: WebsiteReportStore.pageReports[url].alert, feature: WebsiteReportStore.pageReports[url].feature, contrast: WebsiteReportStore.pageReports[url].contrast, aria: WebsiteReportStore.pageReports[url].aria });
-
-
-
-
             } catch (error) {
                 console.log("Error:", error);
             }
