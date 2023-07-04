@@ -14,6 +14,7 @@ import { WebsiteSearch } from '../../components/WebsiteSearch';
 import { PageSearch } from '../../components/PageSearch';
 import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
 import { PageReport } from '../../components/PageReport/PageReport';
+import { WebsiteReportDashboard } from '../../components/WebsiteReport/WebsiteReport';
 
 export default function Home() {
   const PageStore = usePageReportStore();
@@ -157,6 +158,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+
 
         <div className='w-full min-w-[36rem] h-4 items-center justify-start'>
           <PageSearch />

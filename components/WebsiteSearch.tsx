@@ -84,15 +84,17 @@ export const WebsiteSearch = () => {
         }
     };
 
-    const transformUrl = (url: string) => {
+    const transformUrl = (url: string, path: boolean = true) => {
         // Remove the scheme (http://, https://) if present
         let transformed = url.replace(/^https?:\/\//, '');
 
         // Remove 'www.' if present
         transformed = transformed.replace(/^www\./, '');
 
-        // Remove any path or query parameters
-        transformed = transformed.replace(/\/.*/, '');
+        if (path) {
+            // Remove any path or query parameters
+            transformed = transformed.replace(/\/.*/, '');
+        }
 
         return transformed;
     }
@@ -153,10 +155,11 @@ export const WebsiteSearch = () => {
                                 const locElement = urlElement.getElementsByTagName("loc")[0];
                                 console.log(locElement.textContent!.trim());
                                 try {
-                                    const APIcall = await fetch(`https://wave.webaim.org/api/request?key=pdRy5s8x3220&reporttype=4&url=${locElement.textContent!.trim()}`);
-                                    const response = await APIcall.json();
+                                    const response = await axios.get('/api/fetch-audit?url=' + locElement.textContent!.trim());
+                                    console.log(response);
+                                    //const response = await (APIcall as .json();
 
-                                    WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                                    //WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
 
                                 } catch (error) {
                                     console.log("Error:", error);
@@ -174,16 +177,15 @@ export const WebsiteSearch = () => {
 
                         WebsiteReport.setIsLoading(true);
                         // This is a hacky way to get the first 3 urls, still have to work out the async issues
-                        for (let i = 0; i < 1; i++) {
+                        for (let i = 0; i < 2; i++) {
                             const urlElement = urlList[i];
                             const locElement = urlElement.getElementsByTagName("loc")[0];
+                            const pageurl = transformUrl(locElement.textContent!.trim(), false);
                             try {
-                                console.log(locElement.textContent!.trim());
-                                const APIcall = await fetch(`https://wave.webaim.org/api/request?key=FARz2hsx3220&reporttype=4&url=${locElement.textContent!.trim()}`);
-                                const response = await APIcall.json();
-                                console.log(response);
+                                const response = await axios.get('/api/fetch-audit?url=' + pageurl);
+                                const data = response.data;
 
-                                WebsiteReport.addPageReport({ url: response.statistics.pageurl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                                WebsiteReport.addPageReport({ url: pageurl, error: data.error, structure: data.structure, alert: data.alert, feature: data.feature, contrast: data.contrast, aria: data.aria });
 
                             } catch (error) {
                                 console.log("Error:", error);
@@ -197,9 +199,9 @@ export const WebsiteSearch = () => {
             }
             else {
                 event.preventDefault();
-                const untransformedUrl = event.currentTarget.value;
-                const url = transformUrl(untransformedUrl);
-                console.log(untransformedUrl)
+                const url = event.currentTarget.value;
+                const transformedUrl = transformUrl(url);
+                console.log(url)
                 WebsiteReport.setIsLoading(true); //start loading animation
 
                 try {
@@ -207,7 +209,7 @@ export const WebsiteSearch = () => {
                     const response = await APIcall.json();
 
                     WebsiteReport.setRootUrl(url);
-                    WebsiteReport.addPageReport({ url: untransformedUrl, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
+                    WebsiteReport.addPageReport({ url: url, error: response.categories.error, structure: response.categories.structure, alert: response.categories.alert, feature: response.categories.feature, contrast: response.categories.contrast, aria: response.categories.aria });
 
                 } catch (error) {
                     console.log("Error:", error);
