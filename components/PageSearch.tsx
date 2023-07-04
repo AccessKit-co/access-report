@@ -32,7 +32,8 @@ export const PageSearch = () => {
     const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            const url = "https://" + WebsiteReportStore.rootUrl + "/" + event.currentTarget.value //WebsiteReportStore.rootUrl + event.currentTarget.value;
+            const url = WebsiteReportStore.rootUrl + "/" + event.currentTarget.value //WebsiteReportStore.rootUrl + event.currentTarget.value;
+            console.log("URL:", url);
             try {
                 // I have to add an error message when the url is not found within pageReports
                 PageReport.setPageReport({ url: url, error: WebsiteReportStore.pageReports[url].error, structure: WebsiteReportStore.pageReports[url].structure, alert: WebsiteReportStore.pageReports[url].alert, feature: WebsiteReportStore.pageReports[url].feature, contrast: WebsiteReportStore.pageReports[url].contrast, aria: WebsiteReportStore.pageReports[url].aria });
