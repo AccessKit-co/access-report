@@ -16,8 +16,8 @@ export default function IssueSubtype(subtype: SubtypeState) {
 
 
     return (
-        < div className="flex flex-col rounded-lg border divide-y overflow-clip items-top justify-start">
-            <button onClick={handleClick} className='flex flex-row w-full justify-top p-1 bg-[#F0F9FF]'>
+        < div className="flex flex-col rounded-lg border-1.5 overflow-clip items-top justify-start bg-gray-50">
+            <button onClick={handleClick} className='flex flex-row w-full justify-top bg-[#F0F9FF] p-1'>
                 <div className='flex flex-row  h-full w-full justify-between overflow-x-clip '>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
                         <div className='flex flex-col h-full w-full justify-start items-center'>
@@ -39,9 +39,9 @@ export default function IssueSubtype(subtype: SubtypeState) {
                 </div>
             </button>
             {isClicked ?
-                <div className=' flex flex-col items-center overflow-y-auto overflow-clip w-full scrollbar-hide'>
+                <div className='flex flex-col items-center justify-center overflow-y-auto overflow-clip scrollbar-hide my-1'>
                     {subtype.selectors ?
-                        <div className='flex flex-col w-full max-h-36'>
+                        <div className='flex flex-col w-full max-h-36 gap-1'>
                             {subtype.selectors.map(
                                 (selector: string, index: number) =>
                                     <Issue key={index} selector={selector} />
