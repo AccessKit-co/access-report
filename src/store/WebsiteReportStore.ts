@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { PageReportState } from './PageReportStore';
 
-{/** Type for structuring the data gotten from a website scan */ }
+// Type for structuring the data gotten from a website scan 
 export type WebsiteReport = {
     rootUrl: string;
     xmlSiteMap: string[];
@@ -22,10 +22,9 @@ export type WebsiteReport = {
     isLoading: boolean;
 };
 
-{/** Type with setter functions */ }
+// Type with setter functions 
 export type WebsiteReportStore = WebsiteReport & {
     setRootUrl: (text: string) => void;
-    findPageReportByUrl: (url: string) => PageReportState | undefined;
     setXmlSiteMap: (text: string[]) => void;
     setStatus: (status: boolean) => void;
     addPageReport: (pageReport: PageReportState) => void;
@@ -39,6 +38,7 @@ export type WebsiteReportStore = WebsiteReport & {
     setIsLoading: (isLoading: boolean) => void;
 };
 
+// Actual store
 const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
     rootUrl: '',
     xmlSiteMap: [],
@@ -61,9 +61,6 @@ const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
         set(state => ({
             rootUrl: text
         }));
-    },
-    findPageReportByUrl: (url: string): PageReportState | undefined => {
-        return get().pageReports[url];
     },
     setXmlSiteMap: (text: string[]) => {
         set(state => ({
