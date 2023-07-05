@@ -30,7 +30,7 @@ export const PageReport = () => {
 
                 {/** Issue Buttons sidebar*/}
 
-                <div className='flex w-40 bg-[#F0F9FF] items-center justify-center'>
+                <div className='flex w-40 bg-[#F0F9FF] items-center justify-center shrink-0 '>
                     <div className='flex flex-col items-center justify-top w-full h-full'>
                         <button onClick={() => { handleIssueState("error") }} className='flex flex-row w-full h-10 items-center justify-start hover:bg-[#FEEBEB] px-1'
                             style={{

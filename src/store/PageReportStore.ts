@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
-{/** keep in mind this store only works for reporttype=4 */ }
+//keep in mind this store only works for reporttype=4 reports from the WAVE api
 
-{/** These are the raw data types */ }
+// These are the raw data types
 export type SubtypeState = {
     description: string;
     count: number;
@@ -25,20 +25,6 @@ export type PageReportState = {
     structure: IssueState;
     aria: IssueState;
 };
-export type SubtypeStore = SubtypeState & {
-    setdescription: (text: string) => void;
-    setcount: (number: number) => void;
-    setselectors: (text: string[]) => void;
-    setid: (text: string) => void;
-    setSubtype: (subtype: SubtypeState) => void;
-};
-
-export type IssueStore = IssueState & {
-    setIssue: (issue: IssueState) => void;
-    setIssueDescription: (text: string) => void;
-    setIssueCount: (newCount: number) => void;
-    setSubtypes: (newSubtypes: SubtypeState[]) => void;
-};
 
 export type PageReportStore = PageReportState & {
     setUrl: (text: string) => void;
@@ -51,72 +37,8 @@ export type PageReportStore = PageReportState & {
     setPageReport: (pageReport: PageReportState) => void;
 };
 
-{/** These are the stores */ }
-
-const useSubtypeStore = create<SubtypeStore>((set) => ({
-    description: 'description of this subtype',
-    count: 0,
-    selectors: [],
-    id: 'Subtype',
-    setSubtype(subtype: SubtypeState) {
-        set(state => ({
-            description: subtype.description,
-            count: subtype.count,
-            selectors: subtype.selectors,
-            id: subtype.id,
-        }));
-    },
-    setdescription(text: string) {
-        set(state => ({
-            description: text
-        }));
-    },
-    setcount(newCount: number) {
-        set(state => ({
-            count: newCount
-        }));
-    },
-    setselectors(newSelectors: string[]) {
-        set(state => ({
-            selectors: newSelectors
-        }));
-    },
-    setid(newId: string) {
-        set(state => ({
-            id: newId
-        }));
-    },
-}));
-
-const useIssueStore = create<IssueStore>((set) => ({
-    description: '',
-    count: 0,
-    items: [],
-    setIssue(issue: IssueState) {
-        set(state => ({
-            description: issue.description,
-            count: issue.count,
-            items: issue.items ? issue.items : []
-        }));
-    },
-    setIssueDescription(text: string) {
-        set(state => ({
-            description: text
-        }));
-    },
-    setIssueCount(newCount: number) {
-        set(state => ({
-            count: newCount
-        }));
-    },
-    setSubtypes(items: SubtypeState[]) {
-        set(state => ({
-            items: items
-        }));
-    },
-}));
-
-const usePageReportStore = create<PageReportStore>((set) => ({
+// Page Report store
+export const usePageReportStore = create<PageReportStore>((set) => ({
     url: '',
     error: { description: "Error", count: 0, items: [] },
     contrast: { description: "Contrast", count: 0, items: [] },
@@ -219,7 +141,4 @@ const usePageReportStore = create<PageReportStore>((set) => ({
         }));
     },
 }));
-
-
-export { usePageReportStore, useIssueStore, useSubtypeStore };
 
