@@ -1,35 +1,12 @@
 "use client";
-
-import { AiFillCheckCircle } from 'react-icons/ai';
-import { ImContrast, ImTree, } from 'react-icons/im';
-import { FiAlertTriangle } from 'react-icons/fi';
-import { FiAlertCircle } from 'react-icons/fi';
-import { BsShieldFillX } from 'react-icons/bs';
-import CircularProgress from '@mui/material/CircularProgress';
-import IssueSubtype from '../components/PageReport/IssueReport/IssueSubtype';
-import { SubtypeState, usePageReportStore } from '../store/PageReportStore';
-import { useIssueStateSelectStore } from '../store/IssueStateSelectStore';
 import Image from 'next/image';
 import { WebsiteSearch } from '../components/WebsiteSearch';
 import { PageSearch } from '../components/PageSearch';
-import { useWebsiteReportStore } from '../store/WebsiteReportStore';
 import { PageReport } from '../components/PageReport/PageReport';
 import { WebsiteReportDashboard } from '../components/WebsiteReport/WebsiteReport';
 import { Page } from 'puppeteer';
 
 export default function Home() {
-  const PageStore = usePageReportStore();
-  const IssueState = useIssueStateSelectStore();
-  const WebsiteReport = useWebsiteReportStore();
-
-  const handleIssueState = (selecting: string) => {
-    if (IssueState.selected == selecting) {
-      IssueState.setSelected(''); // deselect
-    }
-    IssueState.setSelected(selecting);
-  };
-
-
   return (
     <main className="min-h-screen w-screen flex flex-col items-center scrollbar-hide gap-2">
 
