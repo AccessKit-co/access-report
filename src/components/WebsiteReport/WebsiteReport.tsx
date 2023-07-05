@@ -3,8 +3,6 @@ import { FiAlertCircle } from 'react-icons/fi';
 import { BsShieldFillX } from 'react-icons/bs';
 import { ImContrast, ImTree } from 'react-icons/im';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import { usePageReportStore } from '../../store/PageReportStore';
-import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
 import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
 
 export const WebsiteReportDashboard = () => {

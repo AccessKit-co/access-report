@@ -5,7 +5,7 @@ interface IssueProps {
     selector: string;
 }
 
-export default function Issue({ selector }: IssueProps) {
+export default function IssueCodeSnippet({ selector }: IssueProps) {
     const [isClicked, setIsClicked] = useState<boolean>(false);
 
     const handleClick = () => {

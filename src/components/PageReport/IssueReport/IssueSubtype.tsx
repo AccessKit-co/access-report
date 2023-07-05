@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Issue from "./IssueC";
+import IssueCodeSnippet from "./IssueCodeSnippet";
 import { SubtypeState, usePageReportStore } from '../../../store/PageReportStore';
 import { AiFillInfoCircle } from "react-icons/ai";
 
@@ -44,7 +44,7 @@ export default function IssueSubtype(subtype: SubtypeState) {
                         <div className='flex flex-col w-full max-h-36 gap-1'>
                             {subtype.selectors.map(
                                 (selector: string, index: number) =>
-                                    <Issue key={index} selector={selector} />
+                                    <IssueCodeSnippet key={index} selector={selector} />
                             )}
 
                         </div>

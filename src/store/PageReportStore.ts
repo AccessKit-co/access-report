@@ -10,7 +10,7 @@ export type SubtypeState = {
     selectors: string[];
 };
 
-export type IssueState = {
+export type SelectedIssueState = {
     description: string;
     count: number;
     items: SubtypeState[];
@@ -18,22 +18,22 @@ export type IssueState = {
 
 export type PageReportState = {
     url: string;
-    error: IssueState;
-    contrast: IssueState;
-    alert: IssueState;
-    feature: IssueState;
-    structure: IssueState;
-    aria: IssueState;
+    error: SelectedIssueState;
+    contrast: SelectedIssueState;
+    alert: SelectedIssueState;
+    feature: SelectedIssueState;
+    structure: SelectedIssueState;
+    aria: SelectedIssueState;
 };
 
 export type PageReportStore = PageReportState & {
     setUrl: (text: string) => void;
-    setError: (issue: IssueState) => void;
-    setContrast: (issue: IssueState) => void;
-    setAlert: (issue: IssueState) => void;
-    setFeature: (issue: IssueState) => void;
-    setStructure: (issue: IssueState) => void;
-    setAria: (issue: IssueState) => void;
+    setError: (issue: SelectedIssueState) => void;
+    setContrast: (issue: SelectedIssueState) => void;
+    setAlert: (issue: SelectedIssueState) => void;
+    setFeature: (issue: SelectedIssueState) => void;
+    setStructure: (issue: SelectedIssueState) => void;
+    setAria: (issue: SelectedIssueState) => void;
     setPageReport: (pageReport: PageReportState) => void;
 };
 
@@ -86,7 +86,7 @@ export const usePageReportStore = create<PageReportStore>((set) => ({
             url: text
         }));
     },
-    setError(issue: IssueState) {
+    setError(issue: SelectedIssueState) {
         set(state => ({
             error: {
                 ...state.error,
@@ -95,7 +95,7 @@ export const usePageReportStore = create<PageReportStore>((set) => ({
             }
         }));
     },
-    setContrast(issue: IssueState) {
+    setContrast(issue: SelectedIssueState) {
         set(state => ({
             contrast: {
                 ...state.contrast,
@@ -104,7 +104,7 @@ export const usePageReportStore = create<PageReportStore>((set) => ({
             }
         }));
     },
-    setAlert(issue: IssueState) {
+    setAlert(issue: SelectedIssueState) {
         set(state => ({
             alert: {
                 ...state.alert,
@@ -113,7 +113,7 @@ export const usePageReportStore = create<PageReportStore>((set) => ({
             }
         }));
     },
-    setFeature(issue: IssueState) {
+    setFeature(issue: SelectedIssueState) {
         set(state => ({
             feature: {
                 ...state.feature,
@@ -122,7 +122,7 @@ export const usePageReportStore = create<PageReportStore>((set) => ({
             }
         }));
     },
-    setStructure(issue: IssueState) {
+    setStructure(issue: SelectedIssueState) {
         set(state => ({
             structure: {
                 ...state.structure,
@@ -131,7 +131,7 @@ export const usePageReportStore = create<PageReportStore>((set) => ({
             }
         }));
     },
-    setAria(issue: IssueState) {
+    setAria(issue: SelectedIssueState) {
         set(state => ({
             aria: {
                 ...state.aria,
