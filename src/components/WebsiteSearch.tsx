@@ -98,10 +98,14 @@ export const WebsiteSearch = () => {
     // sending an WAVE API request on the server side to audit the page 
     const auditPage = async (pageurl: string) => {
         try {
+            console.log("Auditing page:", pageurl);
             const response = await axios.get('/api/fetch-audit?url=' + pageurl); // fetch the audit from the server-side API call
+            console.log("Response:", response);
             const data = response.data;
 
+            console.log("Data:", data);
             WebsiteReport.addPageReport({ url: pageurl, error: data.error, structure: data.structure, alert: data.alert, feature: data.feature, contrast: data.contrast, aria: data.aria });
+            console.log("WebsiteReport:", WebsiteReport);
 
         } catch (error) {
             console.log("Error:", error);

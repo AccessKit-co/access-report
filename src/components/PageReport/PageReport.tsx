@@ -134,9 +134,9 @@ export const PageReport = () => {
                                             <p className='text-xs font-extralight text-gray-400 justify-start items-center'> {(PageStore as any)[IssueState.selected].description} </p>
                                         </div>
                                     </div>
-                                    <div className='flex flex-col items-center overflow-y-auto scroll-smooth overflow-clip justify-start h-[24rem] w-full'>
+                                    <div className='flex flex-col items-center overflow-y-auto overflow-clip justify-start h-[24rem] w-full scrollbar-hide overscroll-auto'>
                                         {(PageStore as any)[IssueState.selected].items ?
-                                            <div className='flex flex-col items-top justify-center gap-2 w-full'>
+                                            <div className='flex flex-col items-top justify-center gap-1 w-full'>
                                                 {Object.values((PageStore as any)[IssueState.selected].items as SubtypeState[]).map(
                                                     (item: SubtypeState, index: number) =>
                                                         <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
