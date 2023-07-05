@@ -8,13 +8,13 @@ import { Page } from 'puppeteer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-screen flex flex-col items-center scrollbar-hide gap-1">
+    <main className="min-h-screen w-screen flex flex-col items-center scrollbar-hide gap-1 ">
 
       {/** Header for login and Logo */}
 
       <div className="flex flex-col items-center justify-center h-36 w-full bg-gradient-to-b from-[#F0F9FF] via-[#F0F9FF] via-[87.5%] to-transparent to-[87.5%]">
         <div className="flex flex-row items-center justify-center h-3/4 w-full">
-          <div className='flex flex-row my-2 items-center justifynpm -center w-1/2'>
+          <div className='flex flex-row my-2 items-center justify-center w-1/2'>
             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 m-0.5'>
               <Image src='/AccessKitLogoNoBg.svg' alt="AccessKit Logo" width={32} height={32} />
             </div>
@@ -32,10 +32,12 @@ export default function Home() {
         </div>
       </div>
 
-      <WebsiteReportDashboard />
-      <PageSearch />
-      <div className='container items-center justify-center w-full'>
-        <PageReport />
+      <div className="flex flex-col items-center justify-center w-full px-20 gap-1">
+        <WebsiteReportDashboard />
+        <PageSearch />
+        <div className='container items-center justify-center w-full'>
+          <PageReport />
+        </div>
       </div>
 
     </main >

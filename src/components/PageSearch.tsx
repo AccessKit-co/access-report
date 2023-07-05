@@ -46,8 +46,8 @@ export const PageSearch = () => {
     };
 
     return (
-        <div className="items-center justify-start w-[40rem] h-full ">
-            <div className="flex w-full h-full rounded   justify-center items-center px-2">
+        <div className="items-center justify-start w-full h-full ">
+            <div className="flex w-full h-full rounded  justify-center items-center">
                 <div className="flex flex-row items-center justify-start w-full h-full mx-1">
                     <div className="flex h-full items-center justify-start text-sm font-semibold flex-nowrap" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
                     >
@@ -55,8 +55,8 @@ export const PageSearch = () => {
                     </div>
                     {WebsiteReport.rootUrl ? <input
                         type="text"
-                        className="flex text-xs items-center h-full justify-center font-sans truncate border-2  rounded"
-                        style={{ backgroundColor: "gray-100", color: "#616161" }}
+                        className="flex text-xs items-center h-full justify-center font-sans truncate border-2  rounded bg-gray-100"
+                        style={{ color: "#616161" }}
                         placeholder={path}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
