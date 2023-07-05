@@ -14,7 +14,7 @@ export default function Home() {
 
       <div className="flex flex-col items-center justify-center h-36 w-full bg-gradient-to-b from-[#F0F9FF] via-[#F0F9FF] via-[87.5%] to-transparent to-[87.5%]">
         <div className="flex flex-row items-center justify-center h-3/4 w-full">
-          <div className='flex flex-row my-2 items-center justify-center w-1/2'>
+          <div className='flex flex-row my-2 items-center justifynpm -center w-1/2'>
             <div className='flex h-full items-center justify-center text-2xl group-hover:scale-125 m-0.5'>
               <Image src='/AccessKitLogoNoBg.svg' alt="AccessKit Logo" width={32} height={32} />
             </div>
