@@ -8,7 +8,7 @@ import { Page } from 'puppeteer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-screen flex flex-col items-center scrollbar-hide gap-2">
+    <main className="min-h-screen w-screen flex flex-col items-center scrollbar-hide gap-1">
 
       {/** Header for login and Logo */}
 

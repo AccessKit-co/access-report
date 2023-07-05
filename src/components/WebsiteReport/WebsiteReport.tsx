@@ -8,16 +8,7 @@ import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
 import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
 
 export const WebsiteReportDashboard = () => {
-    const PageStore = usePageReportStore();
-    const IssueState = useIssueStateSelectStore();
     const WebsiteReport = useWebsiteReportStore();
-
-    const handleIssueState = (selecting: string) => {
-        if (IssueState.selected == selecting) {
-            IssueState.setSelected(''); // deselect
-        }
-        IssueState.setSelected(selecting);
-    };
 
     return (
         <>
@@ -102,7 +93,7 @@ export const WebsiteReportDashboard = () => {
                             <div className='flex flex-col h-3/4 mx-3 items-center justify-center' >
                                 <CircularProgress style={{ width: 48, height: 48 }} />
                             </div> : <div className='flex flex-col h-3/4 mx-3 items-center justify-center'>
-                                {(PageStore.error.count >= 1) ?
+                                {(WebsiteReport.totalErrors >= 1) ?
                                     <div className='flex flex-row rounded-lg border bg-gray-200 w-fit h-1/2 items-center justify-center p-1 gap-1'>
                                         <div className='flex h-full w-1/4 items-center justify-center text-3xl group-hover:scale-125'>
                                             <BsShieldFillX style={{ fill: '#FF000E' }} />
