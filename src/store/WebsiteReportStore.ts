@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { PageReportState } from './PageReportStore';
 
-{/** Type for structuring the data gotten from a website scan */ }
+// Type for structuring the data gotten from a website scan 
 export type WebsiteReport = {
     rootUrl: string;
     xmlSiteMap: string[];
@@ -22,7 +22,7 @@ export type WebsiteReport = {
     isLoading: boolean;
 };
 
-{/** Type with setter functions */ }
+// Type with setter functions 
 export type WebsiteReportStore = WebsiteReport & {
     setRootUrl: (text: string) => void;
     setXmlSiteMap: (text: string[]) => void;
@@ -38,6 +38,7 @@ export type WebsiteReportStore = WebsiteReport & {
     setIsLoading: (isLoading: boolean) => void;
 };
 
+// Actual store
 const useWebsiteReportStore = create<WebsiteReportStore>((set, get) => ({
     rootUrl: '',
     xmlSiteMap: [],

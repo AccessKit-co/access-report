@@ -16,7 +16,7 @@ export default function IssueSubtype(subtype: SubtypeState) {
 
 
     return (
-        < div className="flex flex-col rounded-lg border-1.5 overflow-clip items-top justify-start bg-gray-50 w-full ">
+        < div className="flex flex-col rounded-lg border-1.5 overflow-clip items-top justify-start bg-gray-50 w-full">
             <button onClick={handleClick} className='flex flex-row w-full justify-top bg-[#F0F9FF] p-1'>
                 <div className='flex flex-row  h-full w-full justify-between overflow-x-clip '>
                     <div className='flex items-center justify-start w-5/6 overflow-x-clip'>
