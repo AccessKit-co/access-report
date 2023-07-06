@@ -39,7 +39,7 @@ export default function IssueSubtype(subtype: SubtypeState) {
                 </div>
             </button>
             {isClicked ?
-                <div className='flex flex-col items-center justify-center overflow-y-auto overflow-clip scrollbar-hide my-1'>
+                <div className='flex flex-col items-center justify-center overflow-y-auto overflow-clip scrollbar-hide my-1 w-full'>
                     {subtype.selectors ?
                         <div className='flex flex-col w-full max-h-36 gap-1'>
                             {subtype.selectors.map(

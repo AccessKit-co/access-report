@@ -32,10 +32,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full px-20 gap-1">
+      <div className="flex flex-col items-center justify-center w-full px-4 gap-1">
         <WebsiteReportDashboard />
         <PageSearch />
-        <div className='container items-center justify-center w-full'>
+        <div className='flex items-center justify-center w-full'>
           <PageReport />
         </div>
       </div>

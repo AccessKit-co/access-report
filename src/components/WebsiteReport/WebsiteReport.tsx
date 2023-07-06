@@ -19,7 +19,7 @@ export const WebsiteReportDashboard = () => {
             }
 
             < div className="w-full flex flex-col text-center items-center justify-center w-full h-32">
-                <div className='flex flex-row justify-between rounded-md overflow-clip border-2 w-[24rem] '>
+                <div className='flex flex-row justify-between rounded-md overflow-clip border-2 w-[22rem] '>
                     <div
                         className="flex flex-col bg-[#F0F9FF] w-1/2">
                         <div className='flex flex-row mx-2 h-1/4 items-center justify-center'>
