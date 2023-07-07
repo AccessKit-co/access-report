@@ -26,7 +26,7 @@ export const PageReport = () => {
     };
 
     return (
-        <div className="flex flex-col gap-1 text-center justify-center items-top w-full h-80 min-w-[20rem] max-w-[60rem] overflow-clip bg-grey">
+        <div className="flex flex-col gap-2 text-center justify-center items-top w-full min-w-[20rem] max-w-[60rem] h-[32rem] overflow-clip bg-grey">
             <PageSearch />
             <div className='flex flex-row divide-x rounded-md border-2 h-full w-full'>
 
@@ -123,34 +123,34 @@ export const PageReport = () => {
 
                 {/** Issue Report */}
 
-                <div className='flex h-full items-center justify-center p-2 w-full'>
-                    {WebsiteReport.isLoading ? <CircularProgress style={{ width: 96, height: 96 }} /> :
-                        <div className='flex flex-col items-center justify-center w-full h-full'>
-
-                            {
-                                SelectedIssueState.selected == '' ? '' :
-                                    <div
-                                        className="flex flex-col w-full h-full justify-start items-center">
-                                        <div className='flex flex-col w-full h-16 items-center justify-start'>
-                                            <div className='flex flex-row w-full h-8 items-center justify-start'>
-                                                <h2 className='font-semibold text-xl'> {(PageStoreState as any)[SelectedIssueState.selected].description} Report </h2>
-                                            </div>
-                                            <div className='flex flex-row w-full h-4 items-center justify-start text-sm'>
-                                                <p className='text-xs font-extralight text-gray-400 justify-start items-center'> {(PageStoreState as any)[SelectedIssueState.selected].description} </p>
-                                            </div>
-                                        </div>
-                                        <div className='flex flex-col items-center overflow-y-auto overflow-clip justify-start h-full w-full scrollbar-hide overscroll-auto pb-2'>
-                                            {(PageStoreState as any)[SelectedIssueState.selected].items ?
-                                                <div className='flex flex-col items-top justify-center gap-1 w-full'>
-                                                    {Object.values((PageStoreState as any)[SelectedIssueState.selected].items as SubtypeState[]).map(
-                                                        (item: SubtypeState, index: number) =>
-                                                            <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
+                <div className='flex h-full w-full items-center justify-center p-2'>
+                    { // Sets a loading animation wihile website is being scanned
+                        WebsiteReport.isLoading ? <CircularProgress style={{ width: 96, height: 96 }} /> :
+                            <>
+                                { // We do this to prevent errors when the user has not selected any issue and before it auto selectors Error
+                                    SelectedIssueState.selected == '' ? '' :
+                                        <div
+                                            className="flex flex-col w-full h-full justify-center items-center">
+                                            <div className='flex flex-col w-full h-16 items-center justify-start'>
+                                                <div className='flex flex-row w-full h-8 items-center justify-start'>
+                                                    <h2 className='font-semibold text-xl'> {(PageStoreState as any)[SelectedIssueState.selected].description} Report </h2>
                                                 </div>
-                                                : []}
+                                                <div className='flex flex-row w-full h-4 items-center justify-start text-sm'>
+                                                    <p className='text-xs font-extralight text-gray-400 justify-start items-center'> {(PageStoreState as any)[SelectedIssueState.selected].description} </p>
+                                                </div>
+                                            </div>
+                                            <div className='flex flex-col items-center overflow-y-auto overflow-clip justify-start h-full w-full scrollbar-hide overscroll-auto pb-2'>
+                                                {(PageStoreState as any)[SelectedIssueState.selected].items ?
+                                                    <div className='flex flex-col items-top justify-center gap-1 w-full'>
+                                                        {Object.values((PageStoreState as any)[SelectedIssueState.selected].items as SubtypeState[]).map(
+                                                            (item: SubtypeState, index: number) =>
+                                                                <IssueSubtype key={index} description={item.description} count={item.count} id={item.id} selectors={item.selectors} />)}
+                                                    </div>
+                                                    : []}
+                                            </div>
                                         </div>
-                                    </div>
-                            }
-                        </div>}
+                                }
+                            </>}
                 </div>
             </div>
         </div >
