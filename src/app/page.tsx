@@ -32,9 +32,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full px-4 gap-1">
+      <div className="flex flex-col items-center justify-center w-full md:px-12 px-4 gap-1">
         <WebsiteReportDashboard />
-        <PageSearch />
         <div className='flex items-center justify-center w-full'>
           <PageReport />
         </div>

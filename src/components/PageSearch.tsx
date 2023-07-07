@@ -46,7 +46,7 @@ export const PageSearch = () => {
     };
 
     return (
-        <div className="items-center justify-start w-full h-full ">
+        <div className="items-center justify-start w-full">
             <div className="flex w-full h-full rounded  justify-center items-center">
                 <div className="flex flex-row items-center justify-start w-full h-full mx-1">
                     <div className="flex h-full items-center justify-start text-sm font-semibold flex-nowrap" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}

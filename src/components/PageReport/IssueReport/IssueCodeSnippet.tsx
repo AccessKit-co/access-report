@@ -13,7 +13,7 @@ export default function IssueCodeSnippet({ selector }: IssueProps) {
     };
 
     return (
-        < div className="flex flex-col w-full">
+        < div className="flex flex-col w-full overflow-x-clip">
             <button onClick={handleClick} className='flex flex-row h-8 justify-start items-center overflow-clip mx-1 border rounded bg-gray-200 w-full'>
                 <div className='flex w-1/8 h-full justify-start p-1'>
                     <VscDebugBreakpointLog size='0.6rem' />

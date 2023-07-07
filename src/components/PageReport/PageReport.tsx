@@ -7,10 +7,11 @@ import { ImTree } from 'react-icons/im'
 import { ImContrast } from 'react-icons/im'
 import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore'
 import { usePageReportStore, SubtypeState } from '../../store/PageReportStore'
-import { PageSearch } from '../PageSearch'
 import IssueSubtype from './IssueReport/IssueSubtype'
 import { useWebsiteReportStore } from '../../store/WebsiteReportStore'
 import { CircularProgress } from '@mui/material'
+import { PageSearch } from '../PageSearch';
+import { Page } from 'puppeteer';
 
 export const PageReport = () => {
     const PageStoreState = usePageReportStore();
@@ -25,7 +26,8 @@ export const PageReport = () => {
     };
 
     return (
-        <div className="flex gap-2 text-center justify-center items-center w-full h-80 min-w-[22rem] max-w-[60rem] overflow-clip bg-grey">
+        <div className="flex flex-col gap-1 text-center justify-center items-top w-full h-80 min-w-[20rem] max-w-[60rem] overflow-clip bg-grey">
+            <PageSearch />
             <div className='flex flex-row divide-x rounded-md border-2 h-full w-full'>
 
                 {/** Issue Buttons sidebar*/}
