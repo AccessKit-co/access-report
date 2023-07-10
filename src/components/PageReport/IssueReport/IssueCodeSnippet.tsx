@@ -13,11 +13,14 @@ export default function IssueCodeSnippet({ selector }: IssueProps) {
     };
 
     return (
-        <div className="flex flex-col h-6 bg-gray-200 rounded border-1.5 overflow-x-clip text-clip w-full">
-            <div className='flex flex-row h-full justify-between overflow-x-clip text-clip p-1 truncate'>
-                <p className='text-xs font-light h-full text-left truncate '>{selector}</p>
+        // Button expands to show full selector on click
+        <button onClick={handleClick} className={isClicked ? "flex flex-col bg-gray-100 rounded border w-full  hover:bg-gray-300" : "flex flex-col h-6 bg-gray-200 rounded border w-full hover:bg-gray-300"}>
+
+            <div className="flex flex-row h-full w-full p-1">
+                <p className={isClicked ? "text-xs font-extralight font-mono h-full w-full text-left" : "text-xs font-light font-mono h-full w-full text-left truncate"}>{selector}</p>
             </div>
-        </div>
+
+        </button>
 
     );
 }

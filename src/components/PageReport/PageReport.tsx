@@ -28,7 +28,7 @@ export const PageReport = () => {
     return (
         <div className="flex flex-col gap-1 w-full">
             <PageSearch />
-            <div className="flex text-center justify-center w-full min-w-[24rem] h-[28rem] overflow-clip">
+            <div className="flex text-center justify-center w-full min-w-[20rem] h-[24rem] overflow-clip">
                 <div className='flex flex-row divide-x rounded border-2 h-full w-full'>
 
                     {/** Issue Buttons sidebar*/}
@@ -124,7 +124,7 @@ export const PageReport = () => {
 
                     {/** Issue Report */}
 
-                    <div className='flex grow h-full items-center justify-center p-2 min-w-[12rem]'>
+                    <div className='flex grow h-full items-center justify-center p-2 min-w-[10rem]'>
                         { // Sets a loading animation wihile website is being scanned
                             WebsiteReport.isLoading ? <CircularProgress style={{ width: 96, height: 96 }} /> :
                                 <>
