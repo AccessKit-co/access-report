@@ -17,12 +17,12 @@ export default function IssueSubtype(subtype: SubtypeState) {
 
     return (
         < div className="flex flex-col rounded-lg border-1.5 overflow-clip items-top justify-start bg-gray-50 w-full ">
-            <button onClick={handleClick} className='flex flex-row w-full bg-[#F0F9FF] p-1'>
+            <button onClick={handleClick} className={isClicked ? "flex flex-row w-full bg-cyan-200 p-1 hover:bg-cyan-300" : "flex flex-row w-full bg-[#F0F9FF] p-1 hover:bg-cyan-300"}>
                 <div className='flex flex-row  h-full w-full justify-between items-center '>
-                    <div className='flex items-center justify-start w-5/6 '>
+                    <div className='flex items-center justify-start w-3/4'>
                         <div className='flex flex-col h-full w-full justify-start items-center text-clip'>
                             <div className='flex flex-row gap-1 h-full w-full justify-start mx-1 items-center'>
-                                <h2 className='text-l font-semibold'>{subtype.id}</h2>
+                                <h2 className='text-l font-semibold truncate'>{subtype.id}</h2>
                                 <AiFillInfoCircle style={{ color: '#F2994A' }} aria-label="deez nuts" />
                             </div>
                             <div className='flex items-center justify-start w-full '>
