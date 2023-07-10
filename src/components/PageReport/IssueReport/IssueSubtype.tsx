@@ -16,9 +16,9 @@ export default function IssueSubtype(subtype: SubtypeState) {
 
 
     return (
-        < div className="flex flex-col rounded-lg border-1.5 overflow-clip items-top justify-start bg-gray-50 w-full">
-            <button onClick={handleClick} className='flex flex-row w-full justify-top bg-[#F0F9FF] p-1'>
-                <div className='flex flex-row  h-full w-full justify-between '>
+        < div className="flex flex-col rounded-lg border-1.5 overflow-clip items-top justify-start bg-gray-50 w-full ">
+            <button onClick={handleClick} className='flex flex-row w-full bg-[#F0F9FF] p-1'>
+                <div className='flex flex-row  h-full w-full justify-between items-center '>
                     <div className='flex items-center justify-start w-5/6 '>
                         <div className='flex flex-col h-full w-full justify-start items-center text-clip'>
                             <div className='flex flex-row gap-1 h-full w-full justify-start mx-1 items-center'>
@@ -31,17 +31,16 @@ export default function IssueSubtype(subtype: SubtypeState) {
                             </div>
                         </div>
                     </div>
-                    <div className='flex w-1/8 shrink-0 h-full p-1 justify-center items-center'>
-                        <div className='flex w-full h-full border-2 bg-[#E5D0FF] rounded items-center justify-center p-1 '>
-                            <span className='text-l font-semibold'>{subtype.count} </span>
+                    <div className='flex w-[3rem] h-[3rem] p-2 shrink-0 justify-center items-center'>
+                        <div className='flex w-full h-full border rounded items-center justify-center bg-white'><span className='items-center  justify-center text-l text-center font-bold '> {subtype.count} </span>
                         </div>
                     </div>
                 </div>
             </button>
             {isClicked ?
-                <div className='flex flex-col items-top justify-start overflow-scroll scrollbar-hide my-1 w-full max-h-36'>
+                <div className='flex flex-col items-top justify-start overflow-scroll scrollbar-hide my-1 w-full max-h-28'>
                     {subtype.selectors ?
-                        <div className='flex flex-col items-top justify-start w-full gap-1'>
+                        <div className='flex flex-col items-top justify-start w-full gap-1 px-1'>
                             {subtype.selectors.map(
                                 (selector: string, index: number) =>
                                     <IssueCodeSnippet key={index} selector={selector} />

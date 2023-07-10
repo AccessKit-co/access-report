@@ -13,9 +13,9 @@ export default function IssueCodeSnippet({ selector }: IssueProps) {
     };
 
     return (
-        <div className="flex flex-col h-8 bg-gray-200 rounded border-1.5 overflow-x-clip text-clip w-full">
-            <div className='flex flex-row h-full justify-between overflow-x-clip text-clip truncate'>
-                <p className='text-xs font-light h-full text-left truncate'>{selector}</p>
+        <div className="flex flex-col h-6 bg-gray-200 rounded border-1.5 overflow-x-clip text-clip w-full">
+            <div className='flex flex-row h-full justify-between overflow-x-clip text-clip p-1 truncate'>
+                <p className='text-xs font-light h-full text-left truncate '>{selector}</p>
             </div>
         </div>
 
