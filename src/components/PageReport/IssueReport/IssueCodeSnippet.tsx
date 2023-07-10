@@ -13,16 +13,11 @@ export default function IssueCodeSnippet({ selector }: IssueProps) {
     };
 
     return (
-        < div className="flex flex-col w-full truncate">
-            <button onClick={handleClick} className='flex flex-row h-8 justify-start items-center overflow-clip mx-1 border rounded bg-gray-200 w-5/6'>
-                <div className='flex w-1/8 h-full justify-start p-1'>
-                    <VscDebugBreakpointLog size='0.6rem' />
-                </div>
-                <div className='flex flex-col w-6/8 justify-start truncate h-full'>
-                    <p className='text-xs font-light h-full text-left truncate'>{selector}</p>
-                </div>
+        <div className="flex flex-col h-8 bg-gray-200 rounded border-1.5 overflow-x-clip text-clip w-full">
+            <div className='flex flex-row h-full justify-between overflow-x-clip text-clip truncate'>
+                <p className='text-xs font-light h-full text-left truncate'>{selector}</p>
+            </div>
+        </div>
 
-            </button>
-        </div >
     );
 }
