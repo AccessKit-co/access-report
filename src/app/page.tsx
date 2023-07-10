@@ -8,7 +8,7 @@ import { Page } from 'puppeteer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-screen flex flex-col items-center scrollbar-hide gap-1 ">
+    <main className="min-h-screen w-screen flex flex-col items-center scrollbar-hide gap-1 overflow-y-hidden">
 
       {/** Header for login and Logo */}
 
@@ -32,7 +32,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full md:px-12 px-4 gap-1">
+      <div className="flex flex-col items-center justify-center w-full md:px-12 px-4 gap-1 scrollbar-hide">
         <WebsiteReportDashboard />
         <div className='flex items-center justify-center w-full'>
           <PageReport />
