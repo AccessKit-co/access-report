@@ -3,21 +3,20 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { usePageReportStore } from "../store/PageReportStore";
 import { useWebsiteReportStore } from "../store/WebsiteReportStore";
 import { useIssueStateSelectStore } from "../store/IssueStateSelectStore";
-import axios from 'axios'
-import { encode } from "punycode";
+import axios from 'axios';
 
 export const WebsiteSearch = () => {
     const clickPoint = useRef<HTMLDivElement>(null);
     const PageReport = usePageReportStore();
     const WebsiteReport = useWebsiteReportStore();
     const [isPage, setIsPage] = useState(false);
-    const IssueStateSelect = useIssueStateSelectStore();
+    const SelectedIssueStateSelect = useIssueStateSelectStore();
 
     // Whenever pageReport changes, this effect runs (debugging)
     useEffect(() => {
         console.log('PageReport changed:', PageReport);
         if (PageReport.url) {
-            IssueStateSelect.setSelected("error");
+            SelectedIssueStateSelect.setSelected("error");
         }
     }, [PageReport]);
 
@@ -26,10 +25,10 @@ export const WebsiteSearch = () => {
         console.log('WebsiteReport changed:', WebsiteReport);
     }, [WebsiteReport]);
 
-    // Whenever issueStateSelect changes, this effect runs (debugging)
+    // Whenever SelectedIssueStateSelect changes, this effect runs (debugging)
     useEffect(() => {
-        console.log('IssueStateSelect changed:', IssueStateSelect);
-    }, [IssueStateSelect]);
+        console.log('SelectedIssueStateSelect changed:', SelectedIssueStateSelect);
+    }, [SelectedIssueStateSelect]);
 
     // update the pageReport to the homepage when the websiteReport is done loading
     useEffect(() => {

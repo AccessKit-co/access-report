@@ -3,8 +3,6 @@ import { FiAlertCircle } from 'react-icons/fi';
 import { BsShieldFillX } from 'react-icons/bs';
 import { ImContrast, ImTree } from 'react-icons/im';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import { usePageReportStore } from '../../store/PageReportStore';
-import { useIssueStateSelectStore } from '../../store/IssueStateSelectStore';
 import { useWebsiteReportStore } from '../../store/WebsiteReportStore';
 
 export const WebsiteReportDashboard = () => {
@@ -20,8 +18,8 @@ export const WebsiteReportDashboard = () => {
                 </div> : ''
             }
 
-            < div className="w-full flex flex-col text-center items-center justify-center w-full h-32">
-                <div className='flex flex-row justify-between rounded-md overflow-clip border-2 w-[24rem] '>
+            < div className="flex flex-col text-center items-center justify-center w-full h-32">
+                <div className='flex flex-row justify-between rounded-md overflow-clip border-2 w-[22rem] '>
                     <div
                         className="flex flex-col bg-[#F0F9FF] w-1/2">
                         <div className='flex flex-row mx-2 h-1/4 items-center justify-center'>
