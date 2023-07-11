@@ -213,7 +213,7 @@ export const WebsiteSearch = () => {
                     </div>
                     <input
                         type="text"
-                        className="flex text-gray-900 text-xs items-center h-full w-full justify-center font-sans truncate border-none"
+                        className="flex text-gray-900 text-xs items-center h-full w-full justify-center font-sans truncate border-none px-1"
                         placeholder="Search for your webpage..."
                         onFocus={handleFocus}
                         onBlur={handleBlur}

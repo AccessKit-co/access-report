@@ -12,8 +12,8 @@ import { PageSearch } from '../PageSearch';
 
 const colorScheme = {
     'error': { text: '#EA0404', bg: 'bg-[#FED7D7]', border: 'border-[#FDB0B0]', 'hover': 'hover:bg-[#FEEBEB]' },
-    'contrast': { 'text': '#008AE0', bg: 'bg-[#C2E8FF]', border: 'border-[#70C8FF]', hover: 'hover:bg-[#C2E8FF]' },
-    'structure': { 'text': '#2CB56E', bg: 'bg-[#CEF3E0]', border: 'border-[#5BD797]', hover: 'hover:bg-[#CEF3E0]' },
+    'contrast': { text: '#008AE0', bg: 'bg-[#C2E8FF]', border: 'border-[#70C8FF]', hover: 'hover:bg-[#C2E8FF]' },
+    'structure': { text: '#2CB56E', bg: 'bg-[#CEF3E0]', border: 'border-[#5BD797]', hover: 'hover:bg-[#CEF3E0]' },
     'alert': { 'text': '#FF9505', bg: 'bg-[#FFE6C2]', border: 'border-[#FFCC85]', hover: 'hover:bg-[#FFEFD6]' },
 };
 
@@ -39,6 +39,7 @@ export const PageReport = () => {
     const issueButton = (type: string,) => {
         const issueColorScheme = (colorScheme as any)[type];
         const Icon = (issueIcons as any)[type];
+        const textColor = "text-[" + issueColorScheme.text + "]";
 
         return (
             <button onClick={() => { handleSelectedIssueState(type) }} className={`flex flex-row w-full h-10 items-center justify-start ${issueColorScheme.hover} px-1`}
@@ -57,7 +58,10 @@ export const PageReport = () => {
                 </div>
                 <div className='flex shrink-0 w-1/3 h-full p-2 justify-center items-center'>
                     <div className={`flex w-full h-full border-2 ${issueColorScheme.border} ${issueColorScheme.bg} rounded items-center justify-center`}>
-                        {WebsiteReport.isLoading ? <span className='text-l items-center justify-center h-full font-semibold text-[#EA0404]'> <CircularProgress sx={{ color: issueColorScheme.text }} style={{ width: 16, height: 16 }} />  </span> : <span className={`text-l items-center justify-center font-semibold text-[${issueColorScheme.text}]`}> {(PageStoreState as any)[type].count} </span>}
+                        {WebsiteReport.isLoading ? <span className='text-l items-center justify-center h-full font-semibold text-[#EA0404]'> <CircularProgress sx={{ color: issueColorScheme.text }} style={{ width: 16, height: 16 }} />  </span> : <span className='text-l items-center justify-center font-semibold'
+                            style={{
+                                color: issueColorScheme.text
+                            }}> {(PageStoreState as any)[type].count} </span>}
                     </div>
                 </div>
             </button>
@@ -66,9 +70,9 @@ export const PageReport = () => {
     }
 
     return (
-        <div className="flex flex-col gap-1 w-full">
+        <div className="flex flex-col gap-1 w-full items-center justify-center">
             <PageSearch />
-            <div className="flex text-center justify-center w-full min-w-[20rem] h-[24rem] overflow-clip">
+            <div className="flex text-center justify-center w-full max-w-[48rem] min-w-[20rem] h-[24rem] overflow-clip">
                 <div className='flex flex-row divide-x rounded border-2 h-full w-full'>
 
                     {/** Issue Buttons sidebar*/}
